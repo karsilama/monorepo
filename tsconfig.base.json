@@ -10,11 +10,16 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
+    "forceConsistentCasingInFileNames": true,
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
+    "strict": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@monorepo/domain": ["users/domain/src/index.ts"],
+      "@monorepo/feature": ["users/feature/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

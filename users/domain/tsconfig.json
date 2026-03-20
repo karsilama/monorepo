@@ -1,17 +1,15 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "strict": true,
+    "isolatedModules": true,
+    "target": "es2022",
+    "moduleResolution": "bundler",
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "isolatedModules": true,
-    "target": "es2022",
-    "moduleResolution": "bundler",
     "emitDecoratorMetadata": false,
-    "module": "esnext",
-    "forceConsistentCasingInFileNames": true
+    "module": "esnext"
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -23,10 +21,7 @@
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
+      "path": "./tsconfig.lib.json"
     }
   ]
 }
