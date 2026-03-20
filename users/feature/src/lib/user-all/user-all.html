@@ -4,9 +4,7 @@
   <div class="h-4 bg-gray-200 rounded"></div>
   <div class="h-4 bg-gray-200 rounded w-5/6"></div>
 </div>
-}
-
-@if (users.error()) {
+} @else { @if (users.error()) {
 <div class="text-red-600">Error loading users</div>
 }
 
@@ -17,3 +15,5 @@
 </mat-selection-list>
 
 <p>Options selected: {{usersList.selectedOptions.selected.length}}</p>
+
+}
