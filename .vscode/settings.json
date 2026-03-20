@@ -25,5 +25,14 @@
     "**/.DS_Store": true,
     "**/dist": true,
     "**/out-tsc": true
+  },
+  "css.validate": false,
+  "scss.validate": false,
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
   }
 }

@@ -1,1 +1,10 @@
-<router-outlet></router-outlet>
+<section class="flex h-full w-full p-5">
+  <mat-card class="w-full h-full overflow-hidden" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>{{title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <router-outlet></router-outlet>
+    </mat-card-content>
+  </mat-card>
+</section>
