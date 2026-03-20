@@ -18,18 +18,18 @@ export default [
           depConstraints: [
             {
               sourceTag: 'type:app',
-              onlyDependOnLibsWithTags: ['type:feature', 'type:ui', 'type:util'],
+              onlyDependOnLibsWithTags: ['type:feature', 'type:shared', 'type:ui', 'type:util'],
             },
             {
               sourceTag: 'type:feature',
-              onlyDependOnLibsWithTags: ['type:ui', 'type:domain', 'type:util'],
+              onlyDependOnLibsWithTags: ['type:ui', 'type:shared', 'type:domain', 'type:util'],
             },
             {
               sourceTag: 'type:ui',
               onlyDependOnLibsWithTags: ['type:ui', 'type:util'],
             },
             {
-              sourceTag: 'type:domain',
+              sourceTag: 'type:shared',
               onlyDependOnLibsWithTags: ['type:domain', 'type:util'],
             },
             {
@@ -38,12 +38,8 @@ export default [
             },
             {
               sourceTag: 'scope:shared',
-              onlyDependOnLibsWithTags: ['scope:shared', 'type:util'],
-            },
-            {
-              sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
-            },
+              onlyDependOnLibsWithTags: ['scope:shared', 'scope:users', 'type:util'],
+            }
           ],
         },
       ],

@@ -1,10 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 class UserToken {}
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 class PermissionsService {
   canActivate(currentUser: UserToken): boolean {
     return !!currentUser;

@@ -1,1 +1,19 @@
-<p>user-all works!</p>
+@if (users.isLoading()) {
+<div class="animate-pulse space-y-4">
+  <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+  <div class="h-4 bg-gray-200 rounded"></div>
+  <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+</div>
+}
+
+@if (users.error()) {
+<div class="text-red-600">Error loading users</div>
+}
+
+<mat-selection-list #usersList>
+  @for (user of users.value(); track user.id) {
+  <mat-list-option>{{ user.firstName }} {{ user.lastName }}</mat-list-option>
+  }
+</mat-selection-list>
+
+<p>Options selected: {{usersList.selectedOptions.selected.length}}</p>
