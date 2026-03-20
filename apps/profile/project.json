@@ -75,7 +75,6 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "profile:build",
-        "port": 4200,
         "staticFilePath": "dist/apps/profile/browser",
         "spa": true
       }

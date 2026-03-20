@@ -1,1 +1,2 @@
-export * from './lib/feature/feature';
+export * from './lib/users-feature.module';
+export * from './lib/users.routes';
