@@ -11,15 +11,22 @@ export class UsersFacade {
   public readonly loaded = this.store.selectSignal(
     UsersSelectors.selectUsersLoaded,
   );
+
+  public readonly selectedUser = this.store.selectSignal(
+    UsersSelectors.selectSelectedUser,
+  );
+
   public readonly error = this.store.selectSignal(
     UsersSelectors.selectUsersError,
   );
+
   public readonly all = this.store.selectSignal(UsersSelectors.selectAllUsers);
+
   public readonly selected = this.store.selectSignal(
     UsersSelectors.selectEntity,
   );
 
-  init() {
-    this.store.dispatch(UsersActions.initUsers());
+  public editUser(id: number): void {
+    this.store.dispatch(UsersActions.editUser({ id }));
   }
 }

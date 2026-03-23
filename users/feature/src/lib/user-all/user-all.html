@@ -8,9 +8,9 @@
 <div class="text-red-600">Error loading users</div>
 }}
 
-<mat-list lines="50">
+<mat-list>
   @for (user of users(); track user.id) {
-  <mat-list-item (click)="navigate(user.id)">
+  <mat-list-item (click)="editUser(user.id)">
     <div matListItemAvatar>
       <img [src]="user.image" alt="avatar" />
     </div>
@@ -22,7 +22,7 @@
     </div>
 
     <div matListItemMeta>
-      <button mat-icon-button matListItemAction>
+      <button matMiniFab matListItemAction>
         <mat-icon>edit</mat-icon>
       </button>
     </div>

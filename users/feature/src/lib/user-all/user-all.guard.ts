@@ -1,10 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
-
-@Injectable({
-  providedIn: 'root',
-})
-class UserToken {}
+import { UserToken } from '../user-token.service';
 
 @Injectable({
   providedIn: 'root',

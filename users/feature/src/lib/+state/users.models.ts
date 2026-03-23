@@ -40,7 +40,7 @@ export interface Crypto {
 }
 
 export interface User {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
   maidenName: string;
@@ -75,4 +75,8 @@ export interface UsersResponse {
   total: number;
   skip: number;
   limit: number;
+}
+
+export interface SelectUserResponse {
+  selectedUser: User;
 }

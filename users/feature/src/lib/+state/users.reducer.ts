@@ -7,9 +7,10 @@ import { User } from './users.models';
 export const USERS_FEATURE_KEY = 'users';
 
 export interface UsersState extends EntityState<User> {
-  selectedId?: string | number; // which Users record has been selected
-  loaded: boolean; // has the Users list been loaded
-  error?: string | null; // last known error (if any)
+  selectedId?: string | number;
+  selectedUser?: User | null;
+  loaded: boolean;
+  error?: string | null;
 }
 
 export interface UsersPartialState {
@@ -29,13 +30,19 @@ const reducer = createReducer(
     ...state,
     loaded: false,
     error: null,
+    selectedUser: null,
   })),
   on(UsersActions.loadUsersSuccess, (state, { users }) =>
-    usersAdapter.setAll(users, { ...state, loaded: true }),
+    usersAdapter.setAll(users, { ...state, loaded: true, selectedUser: null }),
   ),
   on(UsersActions.loadUsersFailure, (state, { error }) => ({
     ...state,
     error,
+    selectedUser: null,
+  })),
+  on(UsersActions.selectUserSuccess, (state, { selectedUser }) => ({
+    ...state,
+    selectedUser,
   })),
 );
 
