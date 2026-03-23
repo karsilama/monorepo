@@ -1,5 +1,5 @@
 {
-  "name": "util",
+  "name": "suite-util",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "suite/util/src",
   "prefix": "lib",

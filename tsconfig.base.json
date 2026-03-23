@@ -17,9 +17,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@users/domain": ["users/domain/src/index.ts"],
-      "@users/feature": ["users/feature/src/index.ts"],
-      "@users/shared": ["users/shared/src/index.ts"]
+      "@users/feature": ["users/feature/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

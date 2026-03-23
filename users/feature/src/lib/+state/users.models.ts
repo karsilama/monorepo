@@ -40,7 +40,7 @@ export interface Crypto {
 }
 
 export interface User {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   maidenName: string;

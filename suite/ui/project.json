@@ -1,5 +1,5 @@
 {
-  "name": "ui",
+  "name": "suite-ui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "suite/ui/src",
   "prefix": "lib",

@@ -1,14 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, inject, resource } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { User } from '@users/shared';
-import { firstValueFrom } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { editUser } from '../+state/users.actions';
+import { UsersFacade } from '../+state/users.facade';
 
-const matModules = [MatListModule];
-
-interface UsersResponse {
-  users: User[];
-}
+const matModules = [MatListModule, MatIconModule];
 
 @Component({
   selector: 'lib-user-all',
@@ -18,14 +15,14 @@ interface UsersResponse {
   standalone: true,
 })
 export class UserAll {
-  private http = inject(HttpClient);
+  private user = inject(UsersFacade);
+  private store = inject(Store);
 
-  public users = resource<User[], void>({
-    loader: async () => {
-      const response = await firstValueFrom(
-        this.http.get<UsersResponse>('https://dummyjson.com/users')
-      );
-      return response.users;
-    },
-  });
+  public users = this.user.all;
+  public error = this.user.error;
+  public loaded = this.user.loaded;
+
+  public navigate(id: string): void {
+    this.store.dispatch(editUser({ id }));
+  }
 }
