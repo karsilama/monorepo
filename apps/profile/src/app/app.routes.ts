@@ -5,6 +5,7 @@ export const appRoutes: Route[] = [
   {
     path: '',
     loadComponent: () => Home,
+    pathMatch: 'full',
   },
   {
     path: 'users',

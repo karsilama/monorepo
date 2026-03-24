@@ -9,12 +9,10 @@ export const UsersRoutes: Route[] = [
     path: '',
     loadComponent: () => UserAll,
     canActivate: [canActivateTeam],
-    children: [
-      {
-        path: ':id',
-        canActivate: [canActivateEdition],
-        loadComponent: () => UserEdit,
-      },
-    ],
+  },
+  {
+    path: ':id',
+    canActivate: [canActivateEdition],
+    loadComponent: () => UserEdit,
   },
 ];

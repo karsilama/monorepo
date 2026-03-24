@@ -12,14 +12,20 @@
   <img mat-card-image [src]="selectedUser()?.image" alt="User avatar" />
   <mat-card-content>
     <p>
-      {{ selectedUser()?.company }} -
-      {{ selectedUser()?.address }}
+      {{ selectedUser()?.company?.name }} -
+      {{ selectedUser()?.address?.postalCode }},
+      {{ selectedUser()?.address?.address }},
+      {{ selectedUser()?.address?.state }}
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button matButton aria-label="Cancel edition">Cancel</button>
-    <button matButton color="primary" aria-label="Save user information">
-      Save
-    </button>
+    <div class="w-full flex items-center justify-end gap-4">
+      <button matButton aria-label="Cancel edition" (click)="navigateUsers()">
+        Cancel
+      </button>
+      <button matButton color="primary" aria-label="Save user information">
+        Save
+      </button>
+    </div>
   </mat-card-actions>
 </mat-card>

@@ -10,7 +10,7 @@
 
 <mat-list>
   @for (user of users(); track user.id) {
-  <mat-list-item (click)="editUser(user.id)">
+  <mat-list-item (click)="navigateUserEdit(user.id)">
     <div matListItemAvatar>
       <img [src]="user.image" alt="avatar" />
     </div>

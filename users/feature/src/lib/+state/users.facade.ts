@@ -26,7 +26,15 @@ export class UsersFacade {
     UsersSelectors.selectEntity,
   );
 
-  public editUser(id: number): void {
-    this.store.dispatch(UsersActions.editUser({ id }));
+  public navigateUserEdit(id: number): void {
+    this.store.dispatch(UsersActions.navigateUserEdit({ id }));
+  }
+
+  public navigateUserAll(): void {
+    this.store.dispatch(UsersActions.navigateUserAll());
+  }
+
+  public getUserById(id: number): void {
+    this.store.dispatch(UsersActions.getUserById({ id }));
   }
 }

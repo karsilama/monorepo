@@ -2,13 +2,14 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { RouterModule } from '@angular/router';
 import { UsersFacade } from '../+state/users.facade';
 
 const matModules = [MatListModule, MatIconModule, MatButtonModule];
 
 @Component({
   selector: 'lib-user-all',
-  imports: [matModules],
+  imports: [matModules, RouterModule],
   templateUrl: './user-all.html',
   styles: ``,
   standalone: true,
@@ -20,7 +21,7 @@ export class UserAll {
   public error = this.user.error;
   public loaded = this.user.loaded;
 
-  public editUser(id: number): void {
-    this.user.editUser(id);
+  public navigateUserEdit(id: number): void {
+    this.user.navigateUserEdit(id);
   }
 }

@@ -3,20 +3,27 @@ import { User } from './users.models';
 
 export const initUsers = createAction('[Users Page] Init');
 
-export const selectUser = createAction(
-  '[Users/API] Select User',
+export const navigateUserAll = createAction('[Users/API] Navigate user all');
+
+export const navigateUserEdit = createAction(
+  '[Users/API] Navigate user edit',
+  props<{ id: number }>(),
+);
+
+export const getUserById = createAction(
+  '[Users/API] Get User by id',
   props<{
     id: number;
   }>(),
 );
 
-export const selectUserSuccess = createAction(
-  '[Users/API] Select User Success',
-  props<{ selectedUser: User }>(),
+export const getUserByIdSuccess = createAction(
+  '[Users/API] Select User by id Failure',
+  props<{ user: User }>(),
 );
 
-export const selectUserFailure = createAction(
-  '[Users/API] Select User Failure',
+export const getUserByIdFailure = createAction(
+  '[Users/API] Get User by id Failure',
   props<{ error: string }>(),
 );
 
@@ -35,9 +42,4 @@ export const loadUsersSuccess = createAction(
 export const loadUsersFailure = createAction(
   '[Users/API] Load Users Failure',
   props<{ error: string }>(),
-);
-
-export const editUser = createAction(
-  '[Users/API] Edit User',
-  props<{ id: number }>(),
 );

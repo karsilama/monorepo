@@ -40,9 +40,9 @@ const reducer = createReducer(
     error,
     selectedUser: null,
   })),
-  on(UsersActions.selectUserSuccess, (state, { selectedUser }) => ({
+  on(UsersActions.getUserByIdSuccess, (state, { user }) => ({
     ...state,
-    selectedUser,
+    selectedUser: user,
   })),
 );
 
