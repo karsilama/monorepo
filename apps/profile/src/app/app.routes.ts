@@ -9,7 +9,6 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'users',
-    loadChildren: () =>
-      import('@users/feature').then((x) => x.UsersFeatureModule),
+    loadChildren: () => import('@users').then((x) => x.UsersFeatureModule),
   },
 ];

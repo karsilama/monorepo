@@ -42,5 +42,6 @@
   },
   "editor.quickSuggestions": {
     "strings": true
-  }
+  },
+  "cSpell.words": ["Identificador"]
 }

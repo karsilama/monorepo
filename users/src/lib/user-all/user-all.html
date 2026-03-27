@@ -1,0 +1,32 @@
+@if (loaded()) {
+<div class="animate-pulse space-y-4">
+  <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+  <div class="h-4 bg-gray-200 rounded"></div>
+  <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+</div>
+} @else { @if (error()) {
+<div class="text-red-600">Error loading users</div>
+}}
+
+<mat-list>
+  @for (user of users(); track user.id) {
+  <mat-list-item (click)="navigateUserEdit(user.id)">
+    <div matListItemAvatar>
+      <img [src]="user.image" alt="avatar" />
+    </div>
+    <div matListItemTitle>{{ user.firstName }} {{ user.lastName }}</div>
+    <div matListItemLine>
+      CODE {{ user.address.postalCode }}, - {{ user.address.address }}, - {{
+      user.address.city }}, - {{ user.address.country }}, {{ user.address.state
+      }}, -
+    </div>
+
+    <div matListItemMeta>
+      <ng-content matListItemAction>
+        <suite-mini-fab-button icon="edit" arialLabel="Edit user">
+        </suite-mini-fab-button>
+      </ng-content>
+    </div>
+  </mat-list-item>
+  }
+</mat-list>

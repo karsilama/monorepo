@@ -17,9 +17,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@users/feature": ["users/feature/src/index.ts"],
+      "@users": ["users/src/index.ts"],
       "@suite/ui": ["suite/ui/src/index.ts"],
-      "@suite/util": ["suite/util/src/index.ts"]
+      "@suite/util": ["suite/util/src/index.ts"],
+      "@suite/feature": ["suite/feature/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

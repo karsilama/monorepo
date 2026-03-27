@@ -22,7 +22,7 @@ export default [
             },
             {
               sourceTag: 'type:feature',
-              onlyDependOnLibsWithTags: ['type:ui', 'type:domain', 'type:util'],
+              onlyDependOnLibsWithTags: ['type:ui', 'type:domain', 'type:util', 'type:feature'],
             },
             {
               sourceTag: 'type:ui',

@@ -1,0 +1,46 @@
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title
+      >{{ selectedUser()?.firstName }} -
+      {{ selectedUser()?.lastName }}</mat-card-title
+    >
+    <mat-card-subtitle>
+      {{ selectedUser()?.email }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    [src]="selectedUser()?.image ?? ''"
+    alt="User avatar"
+    loading="lazy"
+  />
+  <mat-card-content>
+    <p>
+      {{ selectedUser()?.company?.name }} -
+      {{ selectedUser()?.address?.postalCode }},
+      {{ selectedUser()?.address?.address }},
+      {{ selectedUser()?.address?.state }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="w-full flex items-center justify-end gap-4">
+      <suite-button
+        (execute)="navigateUsers()"
+        arialLabel="Cancel edition"
+        icon="arrow_back"
+      >
+        Back
+      </suite-button>
+
+      <suite-button
+        (execute)="editUser()"
+        arialLabel="Edit user information"
+        color="primary"
+        icon="edit"
+      >
+        Edit User
+      </suite-button>
+    </div>
+  </mat-card-actions>
+</mat-card>
