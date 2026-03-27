@@ -12,6 +12,10 @@ export class UsersEffects {
   private http = inject(HttpClient);
   private router = inject(Router);
 
+  /**
+   * Request dummy Users all
+   * Http Adapter
+   */
   loadUsers$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -31,6 +35,11 @@ export class UsersEffects {
       ),
     { dispatch: true },
   );
+
+  /**
+   * Request dummy User by id
+   * Http Adapter
+   */
 
   getUserById$ = createEffect(
     () =>
@@ -56,6 +65,11 @@ export class UsersEffects {
     { dispatch: true },
   );
 
+  /**
+   * Request dummy save User
+   * No Logic added
+   */
+
   saveUserById$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -72,6 +86,9 @@ export class UsersEffects {
     { dispatch: true },
   );
 
+  /**
+   * Router Navigation
+   */
   navigateUserEdit$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -94,6 +111,10 @@ export class UsersEffects {
       ),
     { dispatch: false },
   );
+
+  /**
+   * Initialize Users List
+   */
 
   init$ = createEffect(
     () =>

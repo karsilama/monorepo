@@ -29,19 +29,38 @@ export class UserEdit {
   public readonly selectedUser = this.user.selectedUser;
 
   constructor() {
+    /**
+     *
+     * Gets user id from router snapshot
+     */
     const id = this.route.snapshot.params['id'];
     if (id) {
       this.user.getUserById(+id);
     }
+
+    /**
+     * Register a new dialog into a static Dialog Record
+     * @param id an identifier
+     * @param component component node for rendering
+     */
     this.dialog.register({
       id: 'user-edit',
       component: UserEditDialog,
     });
   }
 
+  /**
+   * Back main User list
+   *
+   */
   public navigateUsers(): void {
     this.user.navigateUserAll();
   }
+
+  /**
+   * Open registered dialog for edition
+   *
+   */
 
   public editUser() {
     this.dialog.openDialog('user-edit', this.selectedUser());
