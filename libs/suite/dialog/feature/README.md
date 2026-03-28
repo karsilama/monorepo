@@ -2,6 +2,14 @@
 
 This library was generated with [Nx](https://nx.dev) as a **Feature library** for Angular applications. It provides smart components and services with reactive store interactions following Angular decoupling best practices.
 
+
+Open project ->
+
+```typescript
+nx serve app/profile --open
+```
+
+
 ---
 
 ## 🧩 # Dialog Service Overview

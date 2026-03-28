@@ -1,12 +1,15 @@
-# Users lib feature
+# Auth lib feature
 
 This library was generated with [Nx](https://nx.dev).
 
 ## Hexagonal Architecture + NgRx Feature Store (Angular)
 
-### 🧩 Login Feature Lib
+- Login Feature Lib
+- Logout Feature Lib
 
-### 🧩 Logout Feature Lib
+```typescript
+nx serve app/mercadona --open
+```
 
 
 #### 🧩 Overview
@@ -18,7 +21,7 @@ This approach uses **Hexagonal Architecture** combined with:
 - **Ports & Adapters**
 - **REST API** → **(HTTP) integration**
 - **Angular Signals, Computed, and Effects**
-- Use case: **Pessimistic editable list of users**
+- Use case: **Login/Logout form**
 
 ---
 
