@@ -4,7 +4,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
@@ -15,9 +15,11 @@
     "skipLibCheck": true,
     "strict": true,
     "skipDefaultLibCheck": true,
+    "types": ["jest"],
     "baseUrl": ".",
     "paths": {
       "@users": ["libs/users/src/index.ts"],
+      "@auth": ["libs/auth/src/index.ts"],
       "@suite/buttons/ui": ["libs/suite/buttons/ui/src/index.ts"],
       "@suite/util": ["libs/suite/util/src/index.ts"],
       "@suite/dialog/feature": ["libs/suite/dialog/feature/src/index.ts"]

@@ -43,5 +43,5 @@
   "editor.quickSuggestions": {
     "strings": true
   },
-  "cSpell.words": ["Identificador"]
+  "cSpell.words": ["Identificador", "mercadona", "ngrx"]
 }
