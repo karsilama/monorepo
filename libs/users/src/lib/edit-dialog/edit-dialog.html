@@ -1,0 +1,61 @@
+<form class="flex flex-col justify-center gap-4 m-5">
+  <p>
+    <mat-form-field appearance="outline" class="" w-full>
+      <mat-label aria-label="Email">Email</mat-label>
+      <input
+        type="email"
+        matInput
+        [formField]="form.email"
+        placeholder="Ex. user@domain.com"
+      />
+      @for (error of form.email().errors(); track error) { @if (error.message) {
+      <mat-error>{{ error.message }}</mat-error>
+      } }
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline" class="" w-full>
+      <mat-label aria-label="First Name">First Name</mat-label>
+      <input
+        type="firstName"
+        matInput
+        [formField]="form.firstName"
+        placeholder="Ex. Your name"
+      />
+      @for (error of form.firstName().errors(); track error) { @if
+      (error.message) {
+      <mat-error>{{ error.message }}</mat-error>
+      } }
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline" class="" w-full>
+      <mat-label aria-label="Last Name">Last Name</mat-label>
+      <input
+        type="lastName"
+        matInput
+        [formField]="form.lastName"
+        placeholder="Ex. Last name"
+      />
+      @for (error of form.lastName().errors(); track error) { @if
+      (error.message) {
+      <mat-error>{{ error.message }}</mat-error>
+      } }
+    </mat-form-field>
+  </p>
+</form>
+
+<div class="flex w-full justify-start items-center">
+  <suite-button (execute)="cancel()" arialLabel="Cancel edition" icon="cancel">
+    Cancel
+  </suite-button>
+
+  <suite-button
+    (execute)="saveUser()"
+    arialLabel="Save user information"
+    color="primary"
+    icon="save_alt"
+  >
+    Save
+  </suite-button>
+</div>

@@ -17,10 +17,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@users": ["users/src/index.ts"],
-      "@suite/ui": ["suite/ui/src/index.ts"],
-      "@suite/util": ["suite/util/src/index.ts"],
-      "@suite/feature": ["suite/feature/src/index.ts"]
+      "@users": ["libs/users/src/index.ts"],
+      "@suite/buttons/ui": ["libs/suite/buttons/ui/src/index.ts"],
+      "@suite/util": ["libs/suite/util/src/index.ts"],
+      "@suite/dialog/feature": ["libs/suite/dialog/feature/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
