@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
-import { UserToken } from '../services/user-token.service';
 
 interface CanUserEdit {
   canUserEdit(id: string): boolean;

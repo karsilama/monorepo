@@ -8,26 +8,10 @@ This library was generated with [Nx](https://nx.dev).
 
 This approach uses **Hexagonal Architecture** combined with:
 
-- **NgRx Feature Store**
-- **Facade Pattern**
-- **Ports & Adapters**
-- **REST API** → **(HTTP) integration**
+#### Lib Feature
+
+- **Smart Component** -> Feature-specific functionality and orchestration
 - **Angular Signals, Computed, and Effects**
 - Use case: **Pessimistic editable list of users**
-
----
-
-### 🏗️ Hexagonal Architecture (quick view)
-
-Separates the system into:
-
-- **Domain (core)** → business logic
-- **Ports** → Interfaces/contracts (inbound & outbound)
-- **Adapters** → Implementations (e.g. HTTP)
-- **Facade** → Abstraction layer that decouples the UI from NgRx
-- **Feature** → Smart components / State & interaction
-- **State** → NgRx reactive state
-- **Ui** → Presentational / Dumbs components
-- **Util** → Shared resources between apps or modules
 
 ---

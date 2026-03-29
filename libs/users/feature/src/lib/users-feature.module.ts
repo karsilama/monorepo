@@ -1,8 +1,10 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { isDevMode, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { AuthInterceptor } from '@users/infrastructure';
 import { fromUsers, UsersEffects } from 'libs/users/+state/src';
 import { UsersRoutes } from './users.routes';
 
@@ -17,6 +19,11 @@ import { UsersRoutes } from './users.routes';
       autoPause: true,
       trace: false,
     }),
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useValue: AuthInterceptor,
+    },
   ],
 })
 export class UsersFeatureModule {}

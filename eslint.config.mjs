@@ -21,8 +21,16 @@ export default [
               onlyDependOnLibsWithTags: ['type:feature', 'type:ui', 'type:util'],
             },
             {
+              sourceTag: 'type:infrastructure',
+              onlyDependOnLibsWithTags: ['type:ui', 'type:domain', 'type:util', 'type:infrastructure', 'type:feature', 'type:state'],
+            },
+            {
               sourceTag: 'type:feature',
-              onlyDependOnLibsWithTags: ['type:ui', 'type:domain', 'type:util', 'type:feature'],
+              onlyDependOnLibsWithTags: ['type:ui', 'type:domain', 'type:util', 'type:feature', 'type:infrastructure', 'type:state'],
+            },
+            {
+              sourceTag: 'type:state',
+              onlyDependOnLibsWithTags: ['type:ui', 'type:domain', 'type:util', 'type:state', 'type:infrastructure', 'type:feature'],
             },
             {
               sourceTag: 'type:ui',

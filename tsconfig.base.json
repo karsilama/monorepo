@@ -25,7 +25,8 @@
       "@users/+state": ["libs/users/+state/src/index.ts"],
       "@users/feature": ["libs/users/feature/src/index.ts"],
       "@users/ui": ["libs/users/ui/src/index.ts"],
-      "@users/shared": ["libs/users/shared/src/index.ts"]
+      "@users/shared": ["libs/users/shared/src/index.ts"],
+      "@users/infrastructure": ["libs/users/infrastructure/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

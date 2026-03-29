@@ -4,22 +4,23 @@
 
 In the Profile App, you'll find some Angular 21 feature techniques form modeling reactive. Serve the project by running' `nx serve apps/profile --open` and explore what was created. Now, let's get you up to speed!
 
-## Apps Folder
+## ⭐ Apps libraries
 
 Contains application entry points used to explore and validate new features in Angular (e.g., Signals, Signal-based Forms, Resources, RxResource, and others). These apps act as sandboxes and integration layers for experimentation.
 
-## Suite Lib
+## ⭐ Suite libraries
 -> Reusable UI Suite (e.g., Buttons, Dialog)
 
 - Custom UI components
 - Angular Material wrappers with standardized configuration
 
-## Other libraries 
+## ⭐ Other libraries 
 -> ex: Users
 
-## LIbrary types
+## ⭐ Library types
 
 - **domain**: Core business logic and domain models
+- **infrastructure**: HTTP interceptors, guards, services, and API clients 
 - **features**: Feature-specific functionality and orchestration
 - **state**: Centralized state management with NgRx (actions, reducers, effects, selectors)
 - **ui**: Reusable presentational components (dumb components)

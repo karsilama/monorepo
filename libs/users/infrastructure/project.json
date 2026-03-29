@@ -1,0 +1,13 @@
+{
+  "name": "users-infrastructure",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "users/infrastructure/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:users", "type:infrastructure"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
