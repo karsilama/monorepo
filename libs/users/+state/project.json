@@ -4,7 +4,7 @@
   "sourceRoot": "users/state/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:users", "type:store"],
+  "tags": ["scope:users", "type:state"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

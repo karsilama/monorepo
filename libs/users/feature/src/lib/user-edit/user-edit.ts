@@ -3,7 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
 import { SuiteButton } from '@suite/buttons/ui';
 import { DialogService } from '@suite/dialog/feature';
-import { UsersFacade } from '../+state/users.facade';
+import { UsersFacade } from 'libs/users/+state/src';
 import { UserEditDialog } from '../edit-dialog/edit-dialog';
 
 export interface UseData {

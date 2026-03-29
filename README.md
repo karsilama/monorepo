@@ -2,28 +2,29 @@
 
 ✨ NX monorepo / Multi App ✨.
 
-In the Profile App, you'll find some Angular 21 feature techniques form modeling reactive. Serve the proyect by running' `nx serve apps/profile --open` and explore what was created. Now, let's get you up to speed!
+In the Profile App, you'll find some Angular 21 feature techniques form modeling reactive. Serve the project by running' `nx serve apps/profile --open` and explore what was created. Now, let's get you up to speed!
 
 ## Apps Folder
 
 Contains application entry points used to explore and validate new features in Angular (e.g., Signals, Signal-based Forms, Resources, RxResource, and others). These apps act as sandboxes and integration layers for experimentation.
 
-## Lib Folders, 'ex. Users'
+## Suite Lib
+-> Reusable UI Suite (e.g., Buttons, Dialog)
 
-Houses reusable, feature-oriented libraries structured by domain and responsibility.
+- Custom UI components
+- Angular Material wrappers with standardized configuration
 
-* **Suite libraries types 'ex Buttons, Dialog'**
+## Other libraries 
+-> ex: Users
 
-  * **features**: domain-specific functionality
-  * **ui**: reusable presentation components
-  * **utils**: helper functions and utilities
+## LIbrary types
 
-* **Users**
-
-  * Domain libraries -> interfaces, business logic
-  * State libraries -> encapsulating state management, facade
-  * Feature libraries -> Smart components, state integration
-  * Feature libraries -> Dumb components, presentational
+- **domain**: Core business logic and domain models
+- **features**: Feature-specific functionality and orchestration
+- **state**: Centralized state management with NgRx (actions, reducers, effects, selectors)
+- **ui**: Reusable presentational components (dumb components)
+- **utils**: Shared helper functions, utilities, and custom pipes
+- **shared**: Cross-cutting libraries and shared resources
 
 ```typescript
     _                      _                 ____ _     ___

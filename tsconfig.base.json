@@ -22,7 +22,7 @@
       "@suite/util": ["libs/suite/util/src/index.ts"],
       "@suite/dialog/feature": ["libs/suite/dialog/feature/src/index.ts"],
       "@users/domain": ["libs/users/domain/src/index.ts"],
-      "@users/state": ["libs/users/state/src/index.ts"],
+      "@users/+state": ["libs/users/+state/src/index.ts"],
       "@users/feature": ["libs/users/feature/src/index.ts"],
       "@users/ui": ["libs/users/ui/src/index.ts"],
       "@users/shared": ["libs/users/shared/src/index.ts"]

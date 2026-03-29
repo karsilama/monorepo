@@ -17,7 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
 import { SuiteButton } from '@suite/buttons/ui';
-import { saveUserById } from '../+state/users.actions';
+import { saveUserById } from 'libs/users/+state/src';
 
 @Component({
   selector: 'users-edit-dialog',
@@ -67,6 +67,7 @@ export class UserEditDialog {
   });
 
   public saveUser() {
+    debugger;
     this.store.dispatch(
       saveUserById({
         user: this.userModel(),

@@ -10,15 +10,15 @@
 
 <mat-list>
   @for (user of users(); track user.id) {
-  <mat-list-item (click)="navigateUserEdit(user.id)">
+  <mat-list-item (click)="navigateUserEdit(user.id!)">
     <div matListItemAvatar>
       <img [src]="user.image" alt="avatar" />
     </div>
     <div matListItemTitle>{{ user.firstName }} {{ user.lastName }}</div>
     <div matListItemLine>
-      CODE {{ user.address.postalCode }}, - {{ user.address.address }}, - {{
-      user.address.city }}, - {{ user.address.country }}, {{ user.address.state
-      }}, -
+      CODE {{ user?.address?.postalCode }}, - {{ user?.address?.address }}, - {{
+      user?.address?.city }}, - {{ user?.address?.country }}, {{
+      user?.address?.state }}, -
     </div>
 
     <div matListItemMeta>

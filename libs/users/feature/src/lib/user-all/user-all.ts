@@ -2,14 +2,14 @@ import { Component, inject } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { SuiteMiniFabButton } from '@suite/buttons/ui';
-import { UsersFacade } from '../+state/users.facade';
+import { UsersFacade } from 'libs/users/+state/src';
 
 @Component({
   selector: 'users-all',
   imports: [MatListModule, RouterModule, SuiteMiniFabButton],
   templateUrl: './user-all.html',
   host: {
-    class: 'lg:w-[640px] flex justify-center items-center',
+    class: 'flex justify-center items-center',
   },
   standalone: true,
 })
