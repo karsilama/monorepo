@@ -52,4 +52,12 @@ export class DialogService<TData = unknown, TResult = unknown> {
 
     return dialogRef;
   }
+
+  public close() {
+    const dialogRef =
+      this.matDialog.openDialogs[this.matDialog.openDialogs.length - 1];
+    if (dialogRef) {
+      dialogRef.close();
+    }
+  }
 }

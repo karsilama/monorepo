@@ -67,7 +67,6 @@ export class UserEditDialog {
   });
 
   public saveUser() {
-    debugger;
     this.store.dispatch(
       saveUserById({
         user: this.userModel(),

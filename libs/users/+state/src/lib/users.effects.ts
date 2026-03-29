@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { DialogService } from '@suite/dialog/feature';
 import { UserDomainModel, UsersResponse } from '@users/domain';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import * as UsersActions from './users.actions';
 
 @Injectable()
@@ -11,6 +12,7 @@ export class UsersEffects {
   private actions$ = inject(Actions);
   private http = inject(HttpClient);
   private router = inject(Router);
+  private dialog = inject(DialogService);
 
   /**
    * Request dummy Users all
@@ -74,6 +76,7 @@ export class UsersEffects {
     () =>
       this.actions$.pipe(
         ofType(UsersActions.saveUserById),
+
         map(() =>
           /**
            * @TODO Must!!
@@ -89,6 +92,17 @@ export class UsersEffects {
   /**
    * Router Navigation
    */
+  saveUserByIdSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(UsersActions.saveUserByIdSuccess),
+        tap(() => {
+          this.dialog.close();
+        }),
+      ),
+    { dispatch: false },
+  );
+
   navigateUserEdit$ = createEffect(
     () =>
       this.actions$.pipe(
