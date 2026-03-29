@@ -18,11 +18,14 @@
     "types": ["jest"],
     "baseUrl": ".",
     "paths": {
-      "@users": ["libs/users/src/index.ts"],
-      "@auth": ["libs/auth/src/index.ts"],
       "@suite/buttons/ui": ["libs/suite/buttons/ui/src/index.ts"],
       "@suite/util": ["libs/suite/util/src/index.ts"],
-      "@suite/dialog/feature": ["libs/suite/dialog/feature/src/index.ts"]
+      "@suite/dialog/feature": ["libs/suite/dialog/feature/src/index.ts"],
+      "@users/domain": ["libs/users/domain/src/index.ts"],
+      "@users/state": ["libs/users/state/src/index.ts"],
+      "@users/feature": ["libs/users/feature/src/index.ts"],
+      "@users/ui": ["libs/users/ui/src/index.ts"],
+      "@users/shared": ["libs/users/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,0 +1,13 @@
+{
+  "name": "users-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "users/ui/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:users", "type:ui"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
