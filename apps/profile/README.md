@@ -9,8 +9,9 @@ nx serve app/profile --open
 ```
 
 - **Navigation**
-  - User all / Back 
-  - Edition Dialog
+  - User all / Back -> AUTH user token validation | Angular resource promise based - Auth library
+  - User details page
+  - Edition dialog | MatDialog wrapper - Suite library
 - Use case: **Editable list of users**
 
 ## Dialogs overview

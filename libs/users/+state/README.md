@@ -33,8 +33,7 @@ This module manages user-related state using NgRx pattern, providing a complete 
 
 ### Key Features
 
-- ✅ **Complete CRUD operations** for user management
-- ✅ **HTTP integration** with error handling
+- ✅ **HTTP integration**
 - ✅ **Router navigation** effects
 - ✅ **Memoized selectors** for performance
 - ✅ **Full test coverage** with Jest + Jasmine Marbles

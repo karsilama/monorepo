@@ -7,13 +7,7 @@ const matModules = [MatButtonModule];
 @Component({
   selector: 'app-home',
   imports: [matModules, RouterLink],
-  template: `
-    @if (user.value()?.accessToken) {
-      <button mat-button routerLink="/users">Users page</button>
-    } @else {
-      <button mat-button>Loading..</button>
-    }
-  `,
+  templateUrl: './home.html',
 })
 export class Home {
   private auth = inject(AuthService);

@@ -25,7 +25,8 @@
       "@users/+state": ["libs/users/+state/src/index.ts"],
       "@users/feature": ["libs/users/feature/src/index.ts"],
       "@users/infrastructure": ["libs/users/infrastructure/src/index.ts"],
-      "@auth/domain": ["libs/auth/domain/src/index.ts"]
+      "@auth/domain": ["libs/auth/domain/src/index.ts"],
+      "@suite/schematics": ["libs/suite/schematics/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

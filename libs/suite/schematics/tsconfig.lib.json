@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc",
+    "declaration": true,
+    "types": ["node"],
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/lib/feature-route-module/files/src/__name@dasherize__-routes.ts.template",
+    "src/lib/feature-route-module/files/src/__name@dasherize-feature.module.ts.template",
+    "src/feature-route-module/index.js"
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "jest.config.cts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ]
+}
