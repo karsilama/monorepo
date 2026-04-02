@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { UserFormModel } from '@users/domain';
+import { UserFormModel } from '@users/infrastructure';
 import * as UsersActions from './users.actions';
 import { UsersFacade } from './users.facade';
 

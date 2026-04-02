@@ -1,25 +1,26 @@
 import { inject, Injectable } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
+import { AuthService } from '@auth/domain';
 
 interface CanUserEdit {
-  canUserEdit(id: string): boolean;
+  canUserEdit(auth: AuthService): boolean;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 class PermissionsService implements CanUserEdit {
-  public canActivate(currentUser: UserToken): boolean {
-    return !!currentUser;
+  canActivate(auth: AuthService): boolean {
+    return !!auth.validateToken();
   }
-  public canMatch(currentUser: UserToken): boolean {
-    return !!currentUser;
+  canMatch(auth: AuthService): boolean {
+    return !!auth.validateToken();
   }
-  public canUserEdit(id: string): boolean {
-    return !!id;
+  public canUserEdit(auth: AuthService): boolean {
+    return !!auth.userCanEdit();
   }
 }
 
 export const canActivateEdition: CanActivateFn = () => {
-  return inject(PermissionsService).canActivate(inject(UserToken));
+  return inject(PermissionsService).canActivate(inject(AuthService));
 };

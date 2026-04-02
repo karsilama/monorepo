@@ -7,7 +7,11 @@ import { Router } from '@angular/router';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { UserDomainModel, UserFormModel, UsersResponse } from '@users/domain';
+import {
+  UserDomainModel,
+  UserFormModel,
+  UsersResponse,
+} from '@users/infrastructure';
 import { hot } from 'jasmine-marbles';
 import { Observable, of } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';

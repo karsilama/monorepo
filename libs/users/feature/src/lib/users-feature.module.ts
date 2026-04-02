@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { isDevMode, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
@@ -19,11 +19,7 @@ import { UsersRoutes } from './users.routes';
       autoPause: true,
       trace: false,
     }),
-    {
-      provide: HTTP_INTERCEPTORS,
-      multi: true,
-      useValue: AuthInterceptor,
-    },
+    provideHttpClient(withInterceptors([AuthInterceptor])),
   ],
 })
 export class UsersFeatureModule {}

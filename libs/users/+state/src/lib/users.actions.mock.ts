@@ -1,4 +1,4 @@
-import { UserDomainModel, UserFormModel } from '@users/domain';
+import { UserDomainModel, UserFormModel } from '@users/infrastructure';
 import { Observable, of } from 'rxjs';
 
 export const UsersMock: UserDomainModel[] = [

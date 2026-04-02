@@ -1,4 +1,4 @@
-import { UserDomainModel } from '@users/domain';
+import { UserDomainModel } from '@users/infrastructure';
 import {
   initialUsersState,
   usersAdapter,

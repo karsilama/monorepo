@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { DialogService } from '@suite/dialog/feature';
-import { UserDomainModel, UsersResponse } from '@users/domain';
+import { UserDomainModel, UsersResponse } from '@users/infrastructure';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import * as UsersActions from './users.actions';
 
@@ -25,13 +25,14 @@ export class UsersEffects {
         mergeMap(() =>
           this.http.get<UsersResponse>('https://dummyjson.com/users').pipe(
             map(({ users }) => UsersActions.loadUsersSuccess({ users })),
-            catchError((error) =>
-              of(
+            catchError((error) => {
+              debugger;
+              return of(
                 UsersActions.loadUsersFailure({
                   error,
                 }),
-              ),
-            ),
+              );
+            }),
           ),
         ),
       ),

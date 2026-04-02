@@ -17,7 +17,7 @@ export interface UseData {
   templateUrl: './user-edit.html',
   imports: [MatCardModule, SuiteButton],
   host: {
-    class: 'lg:w-[640px] flex justify-center items-center',
+    class: 'block w-full md:max-w-[300px] m-auto',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -8,7 +8,7 @@
 <div class="text-red-600">Error loading users</div>
 }}
 
-<mat-list>
+<mat-list class="w-full md:w-[640px]">
   @for (user of users(); track user.id) {
   <mat-list-item (click)="navigateUserEdit(user.id!)">
     <div matListItemAvatar>

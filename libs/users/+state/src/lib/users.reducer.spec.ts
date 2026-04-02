@@ -1,4 +1,4 @@
-import { UserDomainModel, UserFormModel } from '@users/domain';
+import { UserDomainModel, UserFormModel } from '@users/infrastructure';
 import * as UsersActions from './users.actions';
 import { initialUsersState, usersReducer } from './users.reducer';
 

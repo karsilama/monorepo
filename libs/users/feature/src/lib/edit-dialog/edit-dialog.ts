@@ -23,7 +23,7 @@ import { saveUserById } from 'libs/users/+state/src';
   selector: 'users-edit-dialog',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    style: 'display:block; margin: 20px',
+    class: 'block m-20',
   },
   imports: [MatFormFieldModule, FormField, MatInputModule, SuiteButton],
   templateUrl: './edit-dialog.html',

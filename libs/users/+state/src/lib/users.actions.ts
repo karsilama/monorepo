@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { UserDomainModel, UserFormModel } from '@users/domain';
+import { UserDomainModel, UserFormModel } from '@users/infrastructure';
 
 export const initUsers = createAction('[Users Page] Init');
 
