@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
-import { SuiteButton } from '@suite/buttons/ui';
-import { DialogService } from '@suite/dialog/feature';
+import { LabButton } from 'libs/lab/buttons/ui/src';
+import { DialogService } from 'libs/lab/dialog/feature/src';
 import { UsersFacade } from 'libs/users/+state/src';
 import { UserEditDialog } from '../edit-dialog/edit-dialog';
 
@@ -15,7 +15,7 @@ export interface UseData {
 @Component({
   selector: 'users-edit',
   templateUrl: './user-edit.html',
-  imports: [MatCardModule, SuiteButton],
+  imports: [MatCardModule, LabButton],
   host: {
     class: 'block w-full md:max-w-[300px] m-auto',
   },

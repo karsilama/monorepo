@@ -1,8 +1,0 @@
-import {  NgModule } from '@angular/core';
-import { <%= camelize(name) %>Routes } from './<%= name %>.routes';
-
-@NgModule({
-  imports: [RouterModule.forChild(<%= camelize(name) %>Routes)],
-
-})
-export class <%= camelize(name) %>FeatureModule {}

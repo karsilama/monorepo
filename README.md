@@ -8,14 +8,25 @@ In the Profile App, you'll find some Angular 21 feature techniques form modeling
 
 Contains application entry points used to explore and validate new features in Angular (e.g., Signals, Signal-based Forms, Resources, RxResource, and others). These apps act as sandboxes and integration layers for experimentation.
 
-## ⭐ Suite libraries
--> Reusable UI Suite (e.g., Buttons, Dialog)
+## ⭐ Lab libraries
+Lab is an experimental module libraries aims to exploring the newest front end tools, best practices and clean code.
+-> Reusable UI Lab (e.g., Buttons, Dialog)
 
 - Custom UI components
 - Angular Material wrappers with standardized configuration
 
 ## ⭐ Other libraries 
 -> ex: Users
+
+- Exploring signals, store signals and signal form on a User all/details/edition pages
+- Api rest integrations by using HTTP client and observables
+- Auth integration
+
+-> ex Auth
+
+- A Singleton service  with **getAuthToken** 
+- Fake **loginUser** for managing access token
+- Token validation **validateToken** and **userCanEdit** form **Guards**
 
 ## ⭐ Library types
 

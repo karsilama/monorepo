@@ -18,15 +18,15 @@
     "types": ["jest"],
     "baseUrl": ".",
     "paths": {
-      "@suite/buttons/ui": ["libs/suite/buttons/ui/src/index.ts"],
-      "@suite/util": ["libs/suite/util/src/index.ts"],
-      "@suite/dialog/feature": ["libs/suite/dialog/feature/src/index.ts"],
+      "@lab/buttons/ui": ["libs/lab/buttons/ui/src/index.ts"],
+      "@lab/util": ["libs/lab/util/src/index.ts"],
+      "@lab/dialog/feature": ["libs/lab/dialog/feature/src/index.ts"],
       "@users/domain": ["libs/users/domain/src/index.ts"],
       "@users/+state": ["libs/users/+state/src/index.ts"],
       "@users/feature": ["libs/users/feature/src/index.ts"],
       "@users/infrastructure": ["libs/users/infrastructure/src/index.ts"],
       "@auth/domain": ["libs/auth/domain/src/index.ts"],
-      "@suite/schematics": ["libs/suite/schematics/src/index.ts"]
+      "@lab/schematics": ["libs/lab/schematics/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

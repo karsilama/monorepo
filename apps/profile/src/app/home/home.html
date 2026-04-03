@@ -1,91 +1,64 @@
 <div class="max-w-2xl mx-auto p-8 bg-white rounded-xl shadow-md font-sans">
-  <h1 class="text-3xl font-bold mb-4">✨ NX Monorepo / Multi App ✨</h1>
-  <p class="mb-6">Mi profile es un monorepo Angular 21 con modelado reactivo</p>
-  <p class="mb-6">
-    Son librerías no buildeables que las utilizo para explorar y validar nuevas
-    features de Angular (Signals, Signal-based Forms, Resources, RxResource,
-    etc.).
-  </p>
+  <!-- Header -->
+  <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+    <h1
+      class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+    >
+      ✨ NX Monorepo / Multi App ✨
+    </h1>
+    <p class="text-lg text-gray-700 mb-3">
+      Profile es un monorepo Angular 21 con modelado reactivo
+    </p>
+    <p class="text-gray-600 mb-3">
+      Son librerías que las utilizo para explorar y validar nuevas features de
+      Angular (Signals, Signal-based Forms, Resources, RxResource, etc.).
+    </p>
+    <p class="text-gray-600">
+      Al estar en crecimiento, también encontrás @todos, integraciones fake u
+      otros procesos experimentales.
+    </p>
+  </div>
 
-  <p class="mb-6">
-    Es un constante modelo en crecimiento por lo que encontrás @todos,
-    integraciones con fake APIs u otros procesos en construcción o
-    experimentales.
-  </p>
+  <h2 class="text-2xl font-semibold mt-8 mb-3">⭐ Users Library</h2>
+  <div class="flex items-center gap-2">
+    <p><b>Use case</b> -> User information update</p>
+    @if (user.value()?.accessToken) {
+    <button mat-button routerLink="/users">Ir a Users page</button>
+    } @else {
+    <button mat-button>Loading..</button>
+    }
+  </div>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-3">⭐ App Profile</h2>
+  <ul class="list-disc my-2 mx-4">
+    <li>User list / details page -> <b>Api rest & signals integrations</b></li>
+    <li>User dialog edition -> <b>Lab Integration / Dialog</b></li>
+  </ul>
 
-  <h3 class="font-semibold text-lg mb-2">Quick Start</h3>
-  <pre class="bg-gray-100 p-6 rounded-lg text-sm overflow-x-auto mb-6">
-nx serve app/profile --open</pre
-  >
-
-  <h2 class="text-2xl font-semibold mt-8 mb-3">⭐ Libraries</h2>
-  <b class="mb-6">Users</b>
-
-  @if (user.value()?.accessToken) {
-  <button mat-button routerLink="/users">Ir a Users page</button>
-  } @else {
-  <button mat-button>Loading..</button>
-  }
-
-  <ul class="list-disc ml-6 space-y-4">
-    <li>
-      <b class="font-semibold">+state</b>
-      <span class="ml-2 text-gray-600">UsersFacade</span>
-    </li>
-    <li>
-      <b class="font-semibold">domain</b>
-      <span class="ml-2 text-gray-600">Empty for now</span>
-    </li>
+  <h2 class="text-2xl font-semibold mt-8 mb-3">⭐ Auth Library</h2>
+  <ul class="list-disc my-2 mx-4">
     <li>
       <b class="font-semibold">Feature</b>
       <span class="ml-2 text-gray-600"
-        >UsersFeatureModule (User all list page - User details page - User
-        edition dialog)</span
+        ><b>ValidateUserModel</b> a singleton service provides user access token
+        validations</span
       >
     </li>
     <li>
       <b class="font-semibold">Infrastructure</b>
-      <span class="ml-2 text-gray-600"
-        >AuthInterceptor, UserDomainModel, AuthUser, UsersResponse</span
-      >
-    </li>
-    <li>
-      <b class="font-semibold">Auth</b>
-      <span class="ml-2 text-gray-600"
-        >AuthService, ValidateUserModel (Fake integration API with dummy server
-        data)</span
-      >
+      <span class="ml-2 text-gray-600">Interfaces</span>
     </li>
   </ul>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-3">⭐ Library Types</h2>
-  <ul class="list-disc pl-6 mb-8 space-y-1">
-    <li><strong>domain:</strong> Core business logic and domain models</li>
-    <li>
-      <strong>infrastructure:</strong> HTTP interceptors, guards, services, API
-      clients
-    </li>
-    <li><strong>features:</strong> Feature-specific functionality</li>
-    <li>
-      <strong>state:</strong> NgRx (actions, reducers, effects, selectors)
-    </li>
-    <li><strong>ui:</strong> Reusable presentational components</li>
-    <li><strong>utils:</strong> Shared helpers, pipes</li>
-    <li><strong>shared:</strong> Cross-cutting libraries</li>
-  </ul>
-
-  <h2 class="text-2xl font-semibold mt-8 mb-3">⭐ Suite Libraries</h2>
+  <h2 class="text-2xl font-semibold mt-8 mb-3">⭐ Lab Libraries</h2>
   <ul class="list-disc ml-4">
     <li>
       <b class="mb-6">Buttons | UI lib</b>
       <ul class="list-disc ml-4 mb-4">
         <li>
-          <i>SuiteMiniFabButton</i>
+          <i>LabMiniFabButton</i>
         </li>
         <li class="">
-          <i>SuiteButton</i>
+          <i>LabButton</i>
         </li>
       </ul>
     </li>

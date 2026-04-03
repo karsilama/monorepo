@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { DialogService } from '@suite/dialog/feature';
 import { UserDomainModel, UsersResponse } from '@users/infrastructure';
+import { DialogService } from 'libs/lab/dialog/feature/src';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import * as UsersActions from './users.actions';
 

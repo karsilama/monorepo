@@ -16,7 +16,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
-import { SuiteButton } from '@suite/buttons/ui';
+import { LabButton } from 'libs/lab/buttons/ui/src';
 import { saveUserById } from 'libs/users/+state/src';
 
 @Component({
@@ -25,7 +25,7 @@ import { saveUserById } from 'libs/users/+state/src';
   host: {
     class: 'block m-20',
   },
-  imports: [MatFormFieldModule, FormField, MatInputModule, SuiteButton],
+  imports: [MatFormFieldModule, FormField, MatInputModule, LabButton],
   templateUrl: './edit-dialog.html',
 })
 export class UserEditDialog {

@@ -1,9 +1,0 @@
-{
-  "generators": {
-    "feature-route-module": {
-      "factory": "./src/lib/feature-route-module/feature-route-module",
-      "schema": "./src/lib/feature-route-module/schema.json",
-      "description": "feature-route-module generator"
-    }
-  }
-}

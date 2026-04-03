@@ -1,10 +1,10 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { isDevMode, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthInterceptor } from '@auth/domain';
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { AuthInterceptor } from '@users/infrastructure';
 import { fromUsers, UsersEffects } from 'libs/users/+state/src';
 import { UsersRoutes } from './users.routes';
 
