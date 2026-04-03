@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'users-state',
+  displayName: 'auth-domain',
   preset: 'jest-preset-angular',
   testPathIgnorePatterns: [
     '<rootDir>/node_modules/',
@@ -22,15 +22,11 @@ export default {
     'jest-preset-angular/build/serializers/html-comment',
   ],
   moduleNameMapper: {
-    '^@users/state/(.*)$': '<rootDir>/src/lib/$1',
-    '^@users/domain$': '<rootDir>/../../domain/src/index.ts',
-    '^@users/domain/(.*)$': '<rootDir>/../../domain/src/lib/$1',
-    '^@users/infrastructure$': '<rootDir>/../../infrastructure/src/index.ts',
-    '^@users/infrastructure/(.*)$': '<rootDir>/../../infrastructure/src/lib/$1',
-    '^@lab/dialog/feature$': '<rootDir>/../../lab/dialog/feature/src/index.ts',
+    '^@auth/domain$': '<rootDir>/src/index.ts',
+    '^@auth/domain/(.*)$': '<rootDir>/src/lib/$1',
   },
   transformIgnorePatterns: [
     'node_modules/(?!(@ngrx|@angular|rxjs)/)',
   ],
-  coverageDirectory: '../../coverage/libs/users/+state',
+  coverageDirectory: '../../coverage/libs/auth/domain',
 };

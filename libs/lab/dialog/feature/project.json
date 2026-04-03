@@ -4,7 +4,7 @@
   "sourceRoot": "lab/dialog/feature/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:shared", "type:feature"],
+  "tags": ["scope:lab", "type:feature"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

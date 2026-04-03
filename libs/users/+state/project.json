@@ -1,7 +1,7 @@
 {
   "name": "users-state",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "users/state/src",
+  "sourceRoot": "libs/users/+state/src",
   "prefix": "lib",
   "projectType": "library",
   "tags": ["scope:users", "type:state"],
@@ -10,7 +10,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/users/state/jest.config.ts",
+        "jestConfig": "libs/users/+state/jest.config.ts",
         "passWithNoTests": true
       }
     },

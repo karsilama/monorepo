@@ -17,61 +17,65 @@ export default [
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
             {
-              sourceTag: 'type:app',
-              onlyDependOnLibsWithTags: [
-                'type:feature',
-                'type:ui',
-                'type:util',
-              ],
+              sourceTag: 'type:domain',
+              onlyDependOnLibsWithTags: ['type:util'],
+            },
+            {
+              sourceTag: 'type:ui',
+              onlyDependOnLibsWithTags: ['type:ui', 'type:util', 'type:domain'],
             },
             {
               sourceTag: 'type:infrastructure',
+              onlyDependOnLibsWithTags: ['type:domain', 'type:util'],
+            },
+            {
+              sourceTag: 'type:state',
               onlyDependOnLibsWithTags: [
-                'type:ui',
                 'type:domain',
                 'type:util',
                 'type:infrastructure',
-                'type:feature',
-                'type:state',
               ],
             },
             {
               sourceTag: 'type:feature',
               onlyDependOnLibsWithTags: [
-                'type:ui',
                 'type:domain',
+                'type:ui',
                 'type:util',
-                'type:feature',
                 'type:infrastructure',
                 'type:state',
               ],
             },
             {
-              sourceTag: 'type:state',
+              sourceTag: 'type:app',
               onlyDependOnLibsWithTags: [
-                'type:ui',
-                'type:domain',
-                'type:util',
-                'type:state',
-                'type:infrastructure',
                 'type:feature',
+                'type:ui',
+                'type:util',
+                'type:domain',
+                'type:infrastructure',
+                'type:state',
               ],
-            },
-            {
-              sourceTag: 'type:ui',
-              onlyDependOnLibsWithTags: ['type:ui', 'type:util'],
             },
             {
               sourceTag: 'type:util',
               onlyDependOnLibsWithTags: ['type:util'],
             },
             {
+              sourceTag: 'scope:users',
+              onlyDependOnLibsWithTags: ['scope:users', 'scope:auth', 'scope:lab', 'type:util'],
+            },
+            {
+              sourceTag: 'scope:auth',
+              onlyDependOnLibsWithTags: ['scope:auth', 'scope:users', 'scope:lab', 'type:util'],
+            },
+            {
+              sourceTag: 'scope:lab',
+              onlyDependOnLibsWithTags: ['scope:lab', 'type:util'],
+            },
+            {
               sourceTag: 'scope:shared',
-              onlyDependOnLibsWithTags: [
-                'scope:shared',
-                'scope:users',
-                'type:util',
-              ],
+              onlyDependOnLibsWithTags: ['scope:shared', 'type:util'],
             },
           ],
         },

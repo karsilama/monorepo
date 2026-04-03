@@ -4,7 +4,7 @@
   "sourceRoot": "lab/buttons/ui/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:shared", "type:ui"],
+  "tags": ["scope:lab", "type:ui"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

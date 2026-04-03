@@ -1,66 +1,63 @@
-import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
+  HttpHandlerFn,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
+import { Injector, runInInjectionContext } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 import { AuthInterceptor } from './auth-interceptor';
 import { AuthService } from './auth-service';
 
-class MockAuthService extends AuthService {
-  override getToken(): string | null {
-    return null;
-  }
-}
-
 describe('AuthInterceptor', () => {
-  let httpClient: HttpClient;
-  let httpMock: HttpTestingController;
-  let mockAuthService: MockAuthService;
+  let authService: AuthService;
+  let injector: Injector;
 
   beforeEach(() => {
-    mockAuthService = new MockAuthService();
-
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
-        { provide: AuthService, useValue: mockAuthService },
         {
-          provide: HTTP_INTERCEPTORS,
-          useClass: AuthInterceptor,
-          multi: true,
+          provide: AuthService,
+          useValue: {
+            getAuthToken: jest.fn(() => null),
+          },
         },
       ],
     });
 
-    httpClient = TestBed.inject(HttpClient);
-    httpMock = TestBed.inject(HttpTestingController);
-  });
-
-  afterEach(() => {
-    httpMock.verify();
+    authService = TestBed.inject(AuthService);
+    injector = TestBed.inject(Injector);
   });
 
   it('should add Authorization header when token exists', () => {
-    mockAuthService.getToken = jest.fn(() => 'test-token');
+    (authService.getAuthToken as jest.Mock).mockReturnValue({
+      accessToken: 'test-token',
+    });
 
-    httpClient.get('/api/test').subscribe();
+    const req = new HttpRequest('GET', '/api/test');
+    const next: HttpHandlerFn = (nextReq) => {
+      expect(nextReq.headers.has('X-Authentication-Token')).toBe(true);
+      expect(nextReq.headers.get('X-Authentication-Token')).toBe('test-token');
+      return of(new HttpResponse({ status: 200, body: {} }));
+    };
 
-    const req = httpMock.expectOne('/api/test');
-    expect(req.request.headers.has('Authorization')).toBe(true);
-    expect(req.request.headers.get('Authorization')).toBe('Bearer test-token');
-
-    req.flush({});
+    runInInjectionContext(injector, () => {
+      AuthInterceptor(req, next).subscribe();
+    });
   });
 
   it('should not add Authorization header when token is null', () => {
-    mockAuthService.getToken = jest.fn(() => null);
+    (authService.getAuthToken as jest.Mock).mockReturnValue(null);
 
-    httpClient.get('/api/test').subscribe();
+    const req = new HttpRequest('GET', '/api/test');
+    const next: HttpHandlerFn = (nextReq) => {
+      expect(nextReq.headers.has('X-Authentication-Token')).toBe(true);
+      expect(nextReq.headers.get('X-Authentication-Token')).toBe('');
+      return of(new HttpResponse({ status: 200, body: {} }));
+    };
 
-    const req = httpMock.expectOne('/api/test');
-    expect(req.request.headers.has('Authorization')).toBe(false);
-
-    req.flush({});
+    runInInjectionContext(injector, () => {
+      AuthInterceptor(req, next).subscribe();
+    });
   });
 });

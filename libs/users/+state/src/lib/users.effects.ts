@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UserDomainModel, UsersResponse } from '@users/infrastructure';
-import { DialogService } from 'libs/lab/dialog/feature/src';
+import { DialogService } from '@lab/dialog/feature';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import * as UsersActions from './users.actions';
 
