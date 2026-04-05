@@ -12,38 +12,11 @@ Open project ->
 nx serve app/profile --open
 ```
 
-## ⭐ Lab Libraries
-
-
-### Buttons | UI lib
-- LabMiniFabButton - **MatMiniFabButton** *wrapper*
-- LabButton - **MatButton**  *wrapper*
-
-
-
-
-### Dialog | Feature lib
-- DialogService -> *Register dialogs and interact with it*
-
-### Schematics | Schematic lib
--  generators -> *ex: feature-route-module*
-
-
+The profile import User Feature. A simple Users mat-list wrapper with User details and mat-dialog wrapper for edition. Exploring signal store and signals forms.
 
 ## ⭐ User Lib
 
 Use case -> User edition
 - User list / details page -> *Api rest & signals integrations*
 - User dialog edition -> *Lab Integration* **Dialog**
-
-
-
-## ⭐ Auth Lib
-Use case -> User authorizaion
-- **CanActivate** / **CanMatch** by requesting user token validation
-- **domain** Core business logic and domain models
-- **infrastructure** interfaces
-- **feature** Smart and reactive components
-- **+state** NgRx (actions, reducers, effects, selectors)
-
-
+- Http request -> *Auth Integration* **AuthInterceptors**
