@@ -18,15 +18,18 @@
     "types": ["jest"],
     "baseUrl": ".",
     "paths": {
-      "@lab/buttons/ui": ["libs/lab/buttons/ui/src/index.ts"],
-      "@lab/util": ["libs/lab/util/src/index.ts"],
-      "@lab/dialog/feature": ["libs/lab/dialog/feature/src/index.ts"],
       "@users/domain": ["libs/users/domain/src/index.ts"],
       "@users/+state": ["libs/users/+state/src/index.ts"],
       "@users/feature": ["libs/users/feature/src/index.ts"],
       "@users/infrastructure": ["libs/users/infrastructure/src/index.ts"],
       "@auth/domain": ["libs/auth/domain/src/index.ts"],
-      "@lab/schematics": ["libs/lab/schematics/src/index.ts"]
+      "@lab/buttons/ui": ["libs/lab/buttons/ui/src/index.ts"],
+      "@lab/util": ["libs/lab/util/src/index.ts"],
+      "@lab/dialog/feature": ["libs/lab/dialog/feature/src/index.ts"],
+      "@lab/schematics": ["libs/lab/schematics/src/index.ts"],
+      "@lab/list-page/ui": ["libs/lab/list-page/ui/src/index.ts"],
+      "@lab/list-page/feature": ["libs/lab/list-page/feature/src/index.ts"],
+      "@monorepo/lab/utils": ["libs/lab/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

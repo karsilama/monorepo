@@ -1,0 +1,13 @@
+{
+  "name": "lab/utils",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/lab/utils/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:lab", "type:utils"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

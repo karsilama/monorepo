@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
-import { LabMiniFabButton } from 'libs/lab/buttons/ui/src';
+import { ListPage } from '@lab/list-page/feature';
 import { UsersFacade } from 'libs/users/+state/src';
 
 @Component({
   selector: 'users-all',
-  imports: [MatListModule, RouterModule, LabMiniFabButton],
+  imports: [RouterModule, ListPage],
   templateUrl: './user-all.html',
   host: {
     class: 'flex justify-center items-center',
@@ -25,6 +24,10 @@ export class UserAll {
   public users = this.user.all;
   public error = this.user.error;
   public loaded = this.user.loaded;
+
+  public listPageData = computed(() => ({
+    ...users();
+  }))
 
   /**
    * Navigate to de User edition page

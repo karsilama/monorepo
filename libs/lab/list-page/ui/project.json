@@ -1,0 +1,13 @@
+{
+  "name": "lab-list-page-ui",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/lab/list-page/ui/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:lab", "type:ui"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

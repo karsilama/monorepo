@@ -8,25 +8,5 @@
 <div class="text-red-600">Error loading users</div>
 }}
 
-<mat-list class="w-full md:w-[640px]">
-  @for (user of users(); track user.id) {
-  <mat-list-item (click)="navigateUserEdit(user.id!)">
-    <div matListItemAvatar>
-      <img [src]="user.image" alt="avatar" />
-    </div>
-    <div matListItemTitle>{{ user.firstName }} {{ user.lastName }}</div>
-    <div matListItemLine>
-      CODE {{ user?.address?.postalCode }}, - {{ user?.address?.address }}, - {{
-      user?.address?.city }}, - {{ user?.address?.country }}, {{
-      user?.address?.state }}, -
-    </div>
-
-    <div matListItemMeta>
-      <ng-content matListItemAction>
-        <lab-mini-fab-button icon="edit" arialLabel="Edit user">
-        </lab-mini-fab-button>
-      </ng-content>
-    </div>
-  </mat-list-item>
-  }
-</mat-list>
+<lab-list-page [data]="listPageData()" (executed)="navigateUserEdit(user.id!)">
+</lab-list-page>

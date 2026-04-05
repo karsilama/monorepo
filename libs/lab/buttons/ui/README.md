@@ -1,7 +1,4 @@
-# lab-ui
-
-This library was generated with [Nx](https://nx.dev) as a **UI component library** for Angular applications. It provides reusable, configurable, and accessible UI components following Angular decoupling best practices.
-
+# lab-buttons-ui
 
 Open project ->
 
@@ -9,12 +6,11 @@ Open project ->
 nx serve app/profile --open
 ```
 
-
 ---
 
 ## 🧩 Overview
 
-`lab-ui` contains a set of **standalone Angular components** and utilities designed to accelerate frontend development:
+`lab-buttons-ui` contains a set of **standalone Angular dumb components** designed to accelerate frontend development:
 
 - **Abstract** (`AbstractButton`)
   - Inputs / Output signals
