@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     './apps/**/*.{html,ts}',
-    "./**/src/lib/**/*.{html,ts}",
+    "./libs/**/src/lib/**/*.{html,ts}",
   ],
   theme: {
     screens: {

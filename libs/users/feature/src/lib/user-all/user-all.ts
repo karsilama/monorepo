@@ -45,7 +45,7 @@ export class UserAll {
         >;
         return {
           id: String(row.id),
-          columns: Object.entries(rowData)
+          lines: Object.entries(rowData)
             .slice(0, 3)
             .map(([key, value]) => ({
               key,

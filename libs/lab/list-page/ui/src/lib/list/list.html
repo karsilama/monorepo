@@ -1,21 +1,11 @@
-<!--
-  Sticky list headers
- -->
-<mat-list class="w-full">
-  @for(column of columns(); track column.key) {
-  <div matListItemLine>{{column.value}}</div>
-  }
-</mat-list>
-
-<mat-list class="w-full">
+@if(data()) {
+<mat-list class="flex flex-1">
   @for (row of data().rows; track row.id) {
-  <mat-list-item (click)="onClick(row)">
-    @if(row.columns[0]) {
-    <div matListItemTitle>{{row.columns[0].value}}</div>
-    } @for(column of row.columns; track column.key) { @if($index > 0) {
+  <mat-list-item class="w-full" (click)="onClick(row)">
+    @for(line of row.lines; track line.key) { @if($index > 0) {
 
     <div matListItemLine>
-      @if(!!column?.value) { {{column.value}} } @else if( !!column?.component) {
+      @if(!!line?.value) { {{line.value}} } @else if( !!line?.component) {
 
       <!--
           Dynamic component rendering by user ViewContainerRef
@@ -23,7 +13,7 @@
       <ng-container
         labRender
         [context]="row"
-        [component]="column.component"
+        [component]="line.component"
       ></ng-container>
 
       }
@@ -39,3 +29,4 @@
   </mat-list-item>
   }
 </mat-list>
+}

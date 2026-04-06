@@ -1,12 +1,12 @@
 import { Type } from '@angular/core';
-export interface ListColumn {
+export interface ListLine {
   key: string;
   value?: string;
   component?: Type<unknown>;
 }
 export interface ListRow {
   id: string;
-  columns: ListColumn[];
+  lines: ListLine[];
   [key: string]: unknown;
 }
 export interface List {

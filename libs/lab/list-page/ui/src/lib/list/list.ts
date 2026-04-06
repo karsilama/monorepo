@@ -14,16 +14,16 @@ import { Render } from 'libs/lab/list-page/utils/src';
   imports: [MatListModule, Render, LabMiniFabButton],
   templateUrl: './list.html',
   host: {
-    class: 'flex flex-1 h-full md:w-[640px] m-auto',
+    class: 'flex flex-1 h-full',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LabList {
   public data = input.required<List>();
 
-  public columns = computed(() => {
+  public lines = computed(() => {
     const data = this.data();
-    return !!data?.rows.length ? data.rows[0].columns : [];
+    return !!data?.rows.length ? data.rows[0].lines : [];
   });
 
   public executed = output<ListRow>();
