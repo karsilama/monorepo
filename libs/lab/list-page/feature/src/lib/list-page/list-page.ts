@@ -4,21 +4,22 @@ import {
   input,
   output,
 } from '@angular/core';
-import { MatListModule } from '@angular/material/list';
-import { LabMiniFabButton } from 'libs/lab/buttons/ui/src';
-import { ListField, ListPageModel } from './list-page.model';
+import { List, ListRow } from '@lab/list-page-infrastructure';
+import { LabList } from '@lab/list-page/ui';
 
 @Component({
-  selector: 'lib-list-page',
-  imports: [LabMiniFabButton, MatListModule],
+  selector: 'lab-list-page',
+  imports: [LabList],
   templateUrl: './list-page.html',
-  styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListPage {
-  public data = input<ListPageModel>();
-  public executed = output<ListField>();
-  public onClick(e: ListField) {
+  public listItemContent = input();
+  public data = input<List>();
+
+  public executed = output<ListRow>();
+
+  public onExecuted(e: ListRow) {
     this.executed.emit(e);
   }
 }

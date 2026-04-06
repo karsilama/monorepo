@@ -11,6 +11,5 @@ nx serve app/profile --open
 
 `lab-list-page ui` contains a set of **standalone Angular dumps components** designed to accelerate frontend development:
 
-- **ListPage**
-  - Inputs / Output signals
+- **ListPage** a MatList wrapper with signals
 ---

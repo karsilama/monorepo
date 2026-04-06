@@ -14,4 +14,5 @@ nx serve app/profile --open
 - **ListPage**
   - Inputs / Output signals
   - **List** -> dumb component
+  - Dynamic component rendering by using **ViewContainerRef**
 ---

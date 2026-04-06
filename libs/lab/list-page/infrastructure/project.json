@@ -1,0 +1,13 @@
+{
+  "name": "lab-list-page-infrastructure",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/lab/list-page/infrastructure/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:lab", "type:infrastructure"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

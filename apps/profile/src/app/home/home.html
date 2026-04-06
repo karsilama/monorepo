@@ -19,7 +19,10 @@
   <div class="flex items-center gap-2">
     <p><b>Use case</b> -> User information update</p>
     @if (user.value()?.accessToken) {
-    <button mat-button routerLink="/users">Ir a Users page</button>
+    <div class="inline-flex items-center">
+      👉🏽👉🏽👉🏽<button mat-button routerLink="/users">Ir a Users page</button>
+      👈🏽👈🏽👈🏽
+    </div>
     } @else {
     <button mat-button>Loading..</button>
     }

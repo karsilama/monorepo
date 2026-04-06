@@ -1,1 +1,41 @@
-<p>list works!</p>
+<!--
+  Sticky list headers
+ -->
+<mat-list class="w-full">
+  @for(column of columns(); track column.key) {
+  <div matListItemLine>{{column.value}}</div>
+  }
+</mat-list>
+
+<mat-list class="w-full">
+  @for (row of data().rows; track row.id) {
+  <mat-list-item (click)="onClick(row)">
+    @if(row.columns[0]) {
+    <div matListItemTitle>{{row.columns[0].value}}</div>
+    } @for(column of row.columns; track column.key) { @if($index > 0) {
+
+    <div matListItemLine>
+      @if(!!column?.value) { {{column.value}} } @else if( !!column?.component) {
+
+      <!--
+          Dynamic component rendering by user ViewContainerRef
+             -->
+      <ng-container
+        labRender
+        [context]="row"
+        [component]="column.component"
+      ></ng-container>
+
+      }
+    </div>
+    } }
+
+    <div matListItemMeta>
+      <ng-content matListItemAction>
+        <lab-mini-fab-button icon="edit" arialLabel="Edit">
+        </lab-mini-fab-button>
+      </ng-content>
+    </div>
+  </mat-list-item>
+  }
+</mat-list>

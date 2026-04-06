@@ -46,7 +46,7 @@ export interface UserFormModel {
 }
 
 export interface UserDomainModel {
-  id?: number;
+  id: number;
   firstName?: string;
   lastName?: string;
   maidenName?: string;

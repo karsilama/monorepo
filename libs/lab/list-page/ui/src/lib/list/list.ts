@@ -1,14 +1,33 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  output,
+} from '@angular/core';
+import { MatListModule } from '@angular/material/list';
+import { LabMiniFabButton } from '@lab/buttons/ui';
+import { List, ListRow } from '@lab/list-page-infrastructure';
+import { Render } from 'libs/lab/list-page/utils/src';
 @Component({
-  selector: 'lab-list-page',
-  imports: [],
+  selector: 'lab-list',
+  imports: [MatListModule, Render, LabMiniFabButton],
   templateUrl: './list.html',
-  styles: `
-    :host {
-      display: block;
-    }
-  `,
+  host: {
+    class: 'flex flex-1 h-full md:w-[640px] m-auto',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class List {}
+export class LabList {
+  public data = input.required<List>();
+
+  public columns = computed(() => {
+    const data = this.data();
+    return !!data?.rows.length ? data.rows[0].columns : [];
+  });
+
+  public executed = output<ListRow>();
+  public onClick(e: ListRow) {
+    this.executed.emit(e);
+  }
+}

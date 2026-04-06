@@ -1,24 +1,6 @@
-<mat-list class="w-full md:w-[640px]">
-  @for (item of data()?.fields; track item.id) {
-  <mat-list-item (click)="onClick(item)">
-    <ng-container *></ng-container>
-
-    <div matListItemAvatar>
-      <img [src]="item.image" alt="avatar" />
-    </div>
-    <div matListItemTitle>{{ item.firstName }} {{ item.lastName }}</div>
-    <div matListItemLine>
-      CODE {{ user?.address?.postalCode }}, - {{ item?.address?.address }}, - {{
-      item?.address?.city }}, - {{ item?.address?.country }}, {{
-      item?.address?.state }}, -
-    </div>
-
-    <div matListItemMeta>
-      <ng-content matListItemAction>
-        <lab-mini-fab-button icon="edit" arialLabel="Edit">
-        </lab-mini-fab-button>
-      </ng-content>
-    </div>
-  </mat-list-item>
-  }
-</mat-list>
+<!--
+  Scrollable List
+ -->
+<div class="flex flex-1 overflow-hidden">
+  <lab-list [data]="data()" (executed)="onExecuted($event)"></lab-list>
+</div>

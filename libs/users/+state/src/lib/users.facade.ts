@@ -40,7 +40,7 @@ export class UsersFacade {
    * Actions
    * * */
 
-  public navigateUserEdit(id: number): void {
+  public navigateUserEdit(id: string): void {
     this.store.dispatch(UsersActions.navigateUserEdit({ id }));
   }
 
@@ -48,7 +48,7 @@ export class UsersFacade {
     this.store.dispatch(UsersActions.navigateUserAll());
   }
 
-  public getUserById(id: number): void {
+  public getUserById(id: string): void {
     this.store.dispatch(UsersActions.getUserById({ id }));
   }
 

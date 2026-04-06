@@ -36,7 +36,7 @@ export class UserEdit {
      */
     const id = this.route.snapshot.params['id'];
     if (id) {
-      this.user.getUserById(+id);
+      this.user.getUserById(id);
     }
 
     /**

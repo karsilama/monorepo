@@ -7,13 +7,13 @@ export const navigateUserAll = createAction('[Users/API] Navigate user all');
 
 export const navigateUserEdit = createAction(
   '[Users/API] Navigate user edit',
-  props<{ id: number }>(),
+  props<{ id: string }>(),
 );
 
 export const getUserById = createAction(
   '[Users/API] Get UserDomainModel by id',
   props<{
-    id: number;
+    id: string;
   }>(),
 );
 

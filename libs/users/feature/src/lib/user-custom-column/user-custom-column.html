@@ -1,0 +1,7 @@
+<lab-avatar [src]="context().image ?? defaultAvatar"></lab-avatar>
+<div matListItemTitle>{{ context().firstName }} {{ context().lastName }}</div>
+<div matListItemLine>
+  CODE {{ context().address?.postalCode }}, - {{ context().address?.address }},
+  - {{ context().address?.city }}, - {{ context().address?.country }}, {{
+  context().address?.state }}, -
+</div>

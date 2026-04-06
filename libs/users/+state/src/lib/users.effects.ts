@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { DialogService } from '@lab/dialog/feature';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UserDomainModel, UsersResponse } from '@users/infrastructure';
-import { DialogService } from '@lab/dialog/feature';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import * as UsersActions from './users.actions';
 
@@ -26,7 +26,6 @@ export class UsersEffects {
           this.http.get<UsersResponse>('https://dummyjson.com/users').pipe(
             map(({ users }) => UsersActions.loadUsersSuccess({ users })),
             catchError((error) => {
-              debugger;
               return of(
                 UsersActions.loadUsersFailure({
                   error,
