@@ -12,7 +12,7 @@ const getValue = (
     .split('.')
     .reduce<unknown>(
       (current: unknown, prop: string) =>
-        current !== null && current !== undefined && typeof current === 'object'
+        !!current && typeof current === 'object'
           ? (current as Record<string, unknown>)[prop]
           : undefined,
       obj,
@@ -38,13 +38,13 @@ export const getUserAllLines = (
       lines.push({ key: field, value: getValue(userRecord, field) });
     } else if (Array.isArray(field)) {
       field.forEach((nestedField) => {
-        lines.push({ key: nestedField, value: getValue(userRecord, nestedField) });
+        lines.push({
+          key: nestedField,
+          value: getValue(userRecord, nestedField),
+        });
       });
     }
   });
-
-  console.log(displayFields);
-  console.log(entries);
 
   return lines;
 };
