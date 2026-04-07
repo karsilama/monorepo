@@ -45,6 +45,11 @@ export interface UserFormModel {
   email: string;
 }
 
+export interface UserDomainFilteredModel {
+  name?: string;
+  email?: string;
+  company?: Company;
+}
 export interface UserDomainModel {
   id: number;
   firstName?: string;

@@ -21,6 +21,11 @@ export const selectUsersLoaded = createSelector(
   (state: UsersState) => state.loaded,
 );
 
+export const selectDisplayFields = createSelector(
+  selectUsersState,
+  (state: UsersState) => state.displayFields,
+);
+
 export const selectUsersError = createSelector(
   selectUsersState,
   (state: UsersState) => state.error,

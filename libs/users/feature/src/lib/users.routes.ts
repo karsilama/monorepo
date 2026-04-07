@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
 import { UserAll } from './user-all/user-all';
 import { canActivateTeam } from './user-all/user-all.guard';
-import { UserEdit } from './user-edit/user-edit';
-import { canActivateEdition } from './user-edit/user-edit.guard';
+import { UserById } from './user-by-id/user-by-id';
+import { canActivateEdition } from './user-by-id/user-by-id.guard';
 
 export const UsersRoutes: Route[] = [
   {
@@ -13,6 +13,6 @@ export const UsersRoutes: Route[] = [
   {
     path: ':id',
     canActivate: [canActivateEdition],
-    loadComponent: () => UserEdit,
+    loadComponent: () => UserById,
   },
 ];

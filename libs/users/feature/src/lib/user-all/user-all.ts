@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { ListRow } from '@lab/list-page-infrastructure';
 import { ListPage } from '@lab/list-page/feature';
 import { Divider } from '@lab/ui';
+import { getUserAllLines } from '@users/domain';
 import { UsersFacade } from 'libs/users/+state/src';
 import { USERS_LIST_PAGE_ID } from './user-all.constant';
 
@@ -19,14 +20,14 @@ export class UserAll {
   /**
    * The User facade service for store interactions
    */
-  public user = inject(UsersFacade);
+  public userFacade = inject(UsersFacade);
 
   /**
    * Reactive selectors from signal store
    */
-  public users = this.user.all;
-  public error = this.user.error;
-  public loaded = this.user.loaded;
+  public users = this.userFacade.all;
+  public error = this.userFacade.error;
+  public loaded = this.userFacade.loaded;
 
   /**
    * Mapping users data in order to fit
@@ -35,32 +36,22 @@ export class UserAll {
 
   public listPageData = computed(() => {
     const users = this.users();
-    console.log(users);
+    const displayFields = this.userFacade.displayFields();
+
     return {
       id: USERS_LIST_PAGE_ID,
-      rows: users.map((row) => {
-        const rowData: Record<string, unknown> = row as unknown as Record<
-          string,
-          unknown
-        >;
-        return {
-          id: String(row.id),
-          lines: Object.entries(rowData)
-            .slice(0, 3)
-            .map(([key, value]) => ({
-              key,
-              value: String(value),
-            })),
-        } as ListRow;
-      }),
+      rows: users.map((row) => ({
+        id: String(row.id),
+        lines: getUserAllLines(row, displayFields),
+      })),
     };
   });
 
   /**
    * Navigate to de User edition page
-   * @param row  list row with user id
+   * @param {ListRow} row  list row with user id
    */
   public navigateUserEdit(row: ListRow): void {
-    this.user.navigateUserEdit(row.id);
+    this.userFacade.navigateUserEdit(row.id);
   }
 }

@@ -5,10 +5,10 @@ import { UserDomainModel, UserFormModel } from '@users/infrastructure';
 import * as UsersActions from './users.actions';
 
 export const USERS_FEATURE_KEY = 'users';
-
 export interface UsersState extends EntityState<UserDomainModel> {
   selectedId?: string | number;
   selectedUser: UserDomainModel | null;
+  displayFields: (string | string[])[];
   loaded: boolean;
   userByIdLoading: boolean;
   error?: string | null;
@@ -26,6 +26,12 @@ export const initialUsersState: UsersState = usersAdapter.getInitialState({
   loaded: false,
   userByIdLoading: false,
   selectedUser: null,
+
+  /**
+   * Must be requested
+   * @todo
+   */
+  displayFields: [['company.name', 'company.title'], 'email'],
 });
 
 const reducer = createReducer(
@@ -58,10 +64,13 @@ const reducer = createReducer(
     ...state,
     userByIdLoading: true,
   })),
-  on(UsersActions.saveUserById, (state, { user }) => {
+  on(UsersActions.saveUserById, (state) => {
     return {
       ...state,
-      selectedUser: formToDomainModel(user, state.selectedUser),
+      /**
+       * @todo
+       * Real user by id update
+       */
       isUserByIdLoading: true,
     };
   }),

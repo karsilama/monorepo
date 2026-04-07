@@ -69,7 +69,7 @@ export class UserEditDialog {
   public saveUser() {
     this.store.dispatch(
       saveUserById({
-        user: this.userModel(),
+        formModel: this.userModel(),
       }),
     );
   }

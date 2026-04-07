@@ -18,9 +18,9 @@ export const getUserById = createAction(
 );
 
 export const saveUserById = createAction(
-  '[Users/API] Save UserDomainModel by id',
+  '[Users/API] Save UserFormModel by id',
   props<{
-    user: UserFormModel;
+    formModel: UserFormModel;
   }>(),
 );
 
