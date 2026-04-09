@@ -1,6 +1,6 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { isDevMode, NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { AuthInterceptor } from '@auth/domain';
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
@@ -9,7 +9,6 @@ import { fromUsers, UsersEffects } from 'libs/users/+state/src';
 import { UsersRoutes } from './users.routes';
 
 @NgModule({
-  imports: [RouterModule.forChild(UsersRoutes)],
   providers: [
     provideState(fromUsers.USERS_FEATURE_KEY, fromUsers.usersReducer),
     provideEffects(UsersEffects),
@@ -19,6 +18,7 @@ import { UsersRoutes } from './users.routes';
       autoPause: true,
       trace: false,
     }),
+    provideRouter(UsersRoutes),
     provideHttpClient(withInterceptors([AuthInterceptor])),
   ],
 })
