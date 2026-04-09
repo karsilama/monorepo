@@ -38,6 +38,48 @@ Lab is an experimental module libraries aims to exploring the newest front end t
 - **utils**: Shared helper functions, utilities, and custom pipes
 - **shared**: Cross-cutting libraries and shared resources
 
+```bash
+┌─────────────────────────────────────────────────────────────────┐
+│                      MONOREPO (NX)                              │
+│                    Angular 21 + Signals                         │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                ┌─────────────┴──────────────┐
+                │                            │
+         ┌──────▼──────┐          ┌─────────▼──────┐
+         │    APPS     │          │      LIBS      │
+         └─────────────┘          └────────────────┘
+                │                         │
+                │                         ├─── AUTH
+                │                         │     └── domain/
+    ┌───────────▼────────────┐           │
+    │                        │           ├─── USERS
+    │   profile              │           │     ├── +state/       (NgRx)
+    │   ├── src/             │           │     ├── feature/      (Orquestación - Smart Components)
+    │   ├── angular.json     │           │     ├── infrastructure/ (interfaces, types, contratos)
+    │   └── env config       │           │     └── domain/       (lógica negocio)
+    │                        │           │
+    └────────────────────────┘           ├─── LAB (Experimental)
+                 ▲                        │     ├── ui/           (Dumbs component)
+                 │                        │     ├── buttons/      (UI)
+                 │                        │     ├── dialog/       (UI)
+                 │                        │     ├── list-page/    (Feature)
+                 │                        │     └── schematics/   (Angular schematics)
+                 │                        │
+                 │                        └─── MICRO
+                 │                              └── notifications/
+                 │
+    ┌────────────┘
+    │
+    │ DEPENDENCIES (consume)
+    │
+    └─→ Signals, Signal-based Forms
+    └─→ RxResource, Resources
+    └─→ Angular Material
+    └─→ Guards & Interceptors
+```
+
+
 ```typescript
     _                      _                 ____ _     ___
     / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
