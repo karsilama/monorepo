@@ -1,4 +1,4 @@
-import { ListLine } from '@lab/list-page-infrastructure';
+import { ListLine } from '@lab/list-page/infrastructure';
 import { UserDomainModel } from '@users/infrastructure';
 
 /**

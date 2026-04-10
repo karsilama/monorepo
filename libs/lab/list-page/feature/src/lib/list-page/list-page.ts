@@ -4,7 +4,7 @@ import {
   input,
   output,
 } from '@angular/core';
-import { List, ListRow } from '@lab/list-page-infrastructure';
+import { List, ListRow } from '@lab/list-page/infrastructure';
 import { LabList } from '@lab/list-page/ui';
 
 @Component({

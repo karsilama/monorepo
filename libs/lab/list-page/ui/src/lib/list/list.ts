@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { LabMiniFabButton } from '@lab/buttons/ui';
-import { List, ListRow } from '@lab/list-page-infrastructure';
+import { List, ListRow } from '@lab/list-page/infrastructure';
 import { Render } from 'libs/lab/list-page/utils/src';
 @Component({
   selector: 'lab-list',

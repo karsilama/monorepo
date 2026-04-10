@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfigurationService } from '@configuration/domain';
 import { DialogService } from '@lab/dialog/feature';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UserDomainModel, UsersResponse } from '@users/infrastructure';
-import { catchError, map, mergeMap, of, tap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 import * as UsersActions from './users.actions';
 
 @Injectable()
@@ -13,6 +14,7 @@ export class UsersEffects {
   private http = inject(HttpClient);
   private router = inject(Router);
   private dialog = inject(DialogService);
+  private configurationService = inject(ConfigurationService);
 
   /**
    * Request dummy Users all
@@ -22,17 +24,21 @@ export class UsersEffects {
     () =>
       this.actions$.pipe(
         ofType(UsersActions.requestUsers),
-        mergeMap(() =>
-          this.http.get<UsersResponse>('https://dummyjson.com/users').pipe(
-            map(({ users }) => UsersActions.loadUsersSuccess({ users })),
-            catchError((error) => {
-              return of(
-                UsersActions.loadUsersFailure({
-                  error,
-                }),
-              );
-            }),
-          ),
+        switchMap(() =>
+          this.http
+            .get<UsersResponse>(
+              `${this.configurationService.getBaseConfiguration().api.url}/users`,
+            )
+            .pipe(
+              map(({ users }) => UsersActions.loadUsersSuccess({ users })),
+              catchError((error) => {
+                return of(
+                  UsersActions.loadUsersFailure({
+                    error,
+                  }),
+                );
+              }),
+            ),
         ),
       ),
     { dispatch: true },
@@ -47,7 +53,7 @@ export class UsersEffects {
     () =>
       this.actions$.pipe(
         ofType(UsersActions.getUserById),
-        mergeMap(({ id }) =>
+        switchMap(({ id }) =>
           this.http
             .get<UserDomainModel>(
               `https://dummyjson.com/users/${+id}?t=${Date.now()}`,

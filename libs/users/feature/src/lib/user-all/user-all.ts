@@ -1,7 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ListRow } from '@lab/list-page-infrastructure';
 import { ListPage } from '@lab/list-page/feature';
+import { ListRow } from '@lab/list-page/infrastructure';
 import { Divider } from '@lab/ui';
 import { getUserAllLines } from '@users/domain';
 import { UsersFacade } from 'libs/users/+state/src';

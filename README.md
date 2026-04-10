@@ -2,7 +2,7 @@
 
 ✨ NX monorepo / Multi App ✨.
 
-In the Profile App, you'll find some Angular 21 feature techniques form modeling reactive. Serve the project by running' `nx serve apps/profile --open` and explore what was created. Now, let's get you up to speed!
+In the Profile App, you'll find some Angular 21 feature techniques form modeling reactive. Serve the project by running' `nx serve profile --open` and explore what was created. Now, let's get you up to speed!
 
 ## ⭐ Apps libraries
 
@@ -59,15 +59,15 @@ Lab is an experimental module libraries aims to exploring the newest front end t
     │   ├── angular.json     │           │     ├── infrastructure/ (interfaces, types, contratos)
     │   └── env config       │           │     └── domain/       (lógica negocio)
     │                        │           │
-    └────────────────────────┘           ├─── LAB (Experimental)
+    └────────────────────────┘           ├─── LAB (Shared Library - Material wrappers)
                  ▲                        │     ├── ui/           (Dumbs component)
                  │                        │     ├── buttons/      (UI)
                  │                        │     ├── dialog/       (UI)
                  │                        │     ├── list-page/    (Feature)
                  │                        │     └── schematics/   (Angular schematics)
                  │                        │
-                 │                        └─── MICRO
-                 │                              └── notifications/
+                 │                        └─── n
+                 │                              
                  │
     ┌────────────┘
     │

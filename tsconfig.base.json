@@ -18,6 +18,10 @@
     "types": ["jest"],
     "baseUrl": ".",
     "paths": {
+      "@configuration/domain": ["libs/configuration/domain/src/index.ts"],
+      "@configuration/infrastructure": [
+        "libs/configuration/infrastructure/src/index.ts"
+      ],
       "@users/domain": ["libs/users/domain/src/index.ts"],
       "@users/+state": ["libs/users/+state/src/index.ts"],
       "@users/feature": ["libs/users/feature/src/index.ts"],
@@ -30,7 +34,7 @@
       "@lab/list-page/ui": ["libs/lab/list-page/ui/src/index.ts"],
       "@lab/list-page/utils": ["libs/lab/list-page/utils/src/index.ts"],
       "@lab/ui": ["libs/lab/ui/src/index.ts"],
-      "@lab/list-page-infrastructure": [
+      "@lab/list-page/infrastructure": [
         "libs/lab/list-page/infrastructure/src/index.ts"
       ]
     }
