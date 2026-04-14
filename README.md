@@ -4,6 +4,104 @@
 
 In the Profile App, you'll find some Angular 21 feature techniques form modeling reactive. Serve the project by running' `nx serve profile --open` and explore what was created. Now, let's get you up to speed!
 
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 22.22.2+
+- npm 10.9.7+
+
+### Installation
+
+```bash
+npm install
+```
+
+### Run Applications
+
+**Profile App** - Main application
+```bash
+nx serve profile --open
+```
+
+**API Server** - NestJS backend
+```bash
+nx serve api
+```
+
+### Build for Production
+
+```bash
+nx build profile
+nx build api
+```
+
+### Run Tests
+
+```bash
+nx test          # Run all tests
+nx test users    # Run specific library tests
+```
+
+### Code Generation
+
+Generate new features using Nx schematics:
+
+```bash
+nx generate @schematics/angular:component my-component --project=profile
+```
+
+## 📚 Swagger API Documentation
+
+The API includes interactive **OpenAPI/Swagger** documentation powered by **@nestjs/swagger**.
+
+### Access Swagger UI
+
+Once the API is running:
+
+```bash
+nx serve api
+```
+
+Open your browser and navigate to: `http://localhost:3000/docs`
+
+### Features
+
+- **Interactive API Explorer** - Try endpoints directly from the browser
+- **Request/Response Models** - See request and response schemas
+- **Authentication** - Bearer token support for protected endpoints
+- **Automatic Documentation** - Generated from NestJS decorators
+
+### Swagger Configuration
+
+Swagger is configured in [apps/api/src/app/swagger.config.ts](apps/api/src/app/swagger.config.ts):
+
+```typescript
+const config = new DocumentBuilder()
+  .setTitle('Users API')
+  .setDescription('Users management API')
+  .setVersion('1.0')
+  .addBearerAuth()
+  .build();
+
+SwaggerModule.setup('docs', app, document);
+```
+
+### Adding API Documentation to Endpoints
+
+Use NestJS Swagger decorators:
+
+```typescript
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+
+@ApiOperation({ summary: 'Get all users' })
+@ApiResponse({ status: 200, description: 'List of users' })
+@Get()
+findAll() {
+  // Implementation
+}
+```
+
 ## ⭐ Apps libraries
 
 Contains application entry points used to explore and validate new features in Angular (e.g., Signals, Signal-based Forms, Resources, RxResource, and others). These apps act as sandboxes and integration layers for experimentation.
