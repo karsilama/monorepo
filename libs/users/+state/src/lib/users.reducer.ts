@@ -74,7 +74,6 @@ const reducer = createReducer(
   on(UsersActions.saveUserByIdFailure, (state) => {
     return {
       ...state,
-      selectedUser: null,
       userByIdLoading: false,
     };
   }),
