@@ -23,6 +23,7 @@
     "@nestjs/core": "^11.0.0",
     "@nestjs/mongoose": "^11.0.4",
     "@nestjs/platform-express": "^11.0.0",
+    "@nestjs/swagger": "^11.2.7",
     "@ngrx/component-store": "^21.0.0",
     "@ngrx/effects": "^21.1.0",
     "@ngrx/entity": "^21.0.0",
@@ -33,7 +34,9 @@
     "mongoimport": "^1.0.6",
     "mongoose": "^9.4.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "~7.8.0"
+    "rxjs": "~7.8.0",
+    "swagger-ui-dist": "^5.32.3",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@angular-devkit/core": "~21.2.0",

@@ -1,9 +1,11 @@
 import { Component, inject, resource } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '@auth/domain';
 
-const matModules = [MatButtonModule];
+const matModules = [MatButtonModule, MatTabsModule, MatIconModule];
 @Component({
   selector: 'app-home',
   imports: [matModules, RouterLink],

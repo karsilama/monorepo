@@ -1,194 +1,380 @@
-<div class="max-w-2xl mx-auto p-8 bg-white rounded-xl shadow-md font-sans">
-  <!-- Header -->
-  <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
-    <h1
-      class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-    >
-      ✨ NX Monorepo / Multi App ✨
-    </h1>
-    <p class="text-lg text-gray-700 mb-3">
-      Profile is an Angular 21 monorepo with reactive modeling
-    </p>
-    <p class="text-gray-600 mb-3">
-      Libraries I use to explore and validate new technologies.
-      Being experimental, you might also find @todos or fake integrations :)
-    </p>
-    <div class="bg-blue-50 p-4 rounded-lg mt-4 text-sm border-l-4 border-blue-500">
-      <p class="text-gray-700"><b>Tech Stack:</b> Angular 21 | RxJS | NgRx Signals | Material Design | Tailwind CSS</p>
-      <p class="text-gray-600 mt-2"><b>Architecture:</b> Nx monorepo with shared libraries | Domain-driven design | Feature modules | Lazy loading</p>
-      <p class="text-gray-600 mt-2"><b>Backend:</b> NestJS API | MongoDB | REST endpoints</p>
-    </div>
-  </div>
-
-  <h2 class="text-2xl font-semibold mt-8 mb-3">⭐ Users Library</h2>
-  <p class="text-gray-600 mb-4">
-    Complete integration with Users REST API using reactive signals and modern Angular patterns
-  </p>
-  <div class="flex items-center gap-2 mb-4">
-    <p><b>Use case</b> -> User information management (CRUD)</p>
-    @if (user.value()?.accessToken) {
-    <div class="inline-flex items-center">
-      👉🏽👉🏽👉🏽<button mat-button routerLink="/users">Go to Users page</button>
-      👈🏽👈🏽👈🏽
-    </div>
-    } @else {
-    <button mat-button>Loading..</button>
-    }
-  </div>
-
-  <ul class="list-disc my-2 mx-4">
-    <li>
-      <b>Users API Service</b> -> CRUD operations with typed HTTP client (endpoints documented in Swagger)
-    </li>
-    <li>
-      User list page and user details page ->
-      <b>REST API & signals integrations</b> (reactive data loading with Angular signals)
-    </li>
-    <li>User dialog edition -> <b>Lab Integration / Dialog</b> for inline user editing</li>
-    <li>
-      <b>State Management</b> -> @ngrx/signals with reducers and selectors for users
-    </li>
-    <li>
-      <b>HTTP Interceptors</b> -> Automatic token handling, caching and retry policies
-    </li>
-    <li>
-      <b>Reactive Forms</b> -> Real-time validation with CustomValidators
-    </li>
-  </ul>
-
-  <h2 class="text-2xl font-semibold mt-8 mb-3">⭐ Auth Library</h2>
-  <p class="text-gray-600 mb-4">
-    Centralized authentication and authorization with token validation, guards and role-based access control
-  </p>
-  <ul class="list-disc my-2 mx-4">
-    <li>
-      <b class="font-semibold">Feature library</b> ->
-      <span class="ml-2 text-gray-600"
-        ><b>ValidateUserModel</b> singleton service that validates access tokens, refresh tokens and expiration</span
+<div class="min-h-screen bg-gradient-to-br from-white via-gray-50 to-white p-4">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <!-- Header -->
+    <div class="bg-white rounded-sm shadow-md p-4 mb-4 ">
+      <h1
+        class="text-3xl font-bold mb-3 text-gray-900"
       >
-    </li>
-    <li>
-      <b>Route Guards</b> -> CanActivate guards to protect routes based on roles and permissions
-    </li>
-    <li>
-      <b>HTTP Auth Interceptor</b> -> Automatically injects Bearer tokens in Authorization headers and handles token refresh
-    </li>
-    <li>
-      <b class="font-semibold">Infrastructure library</b> ->
-      <span class="ml-2 text-gray-600">Interfaces and types: AuthToken, UserCredentials, AuthResponse, PermissionModel</span>
-    </li>
-    <li>
-      <b>JWT Decoder</b> -> Utility to decode and validate JWT token structure
-    </li>
-    <li>
-      <b>Role-based Access Control (RBAC)</b> -> Permission validation at component and service level
-    </li>
-  </ul>
-
-  <h2 class="text-2xl font-semibold mt-8 mb-3">⭐ Lab Libraries</h2>
-  <ul class="list-disc ml-4">
-    <li>
-      <b class="mb-6">Buttons | UI lib</b>
-      <ul class="list-disc ml-4 mb-4">
-        <li><i>LabMiniFabButton</i> -> <b>MatMiniFabButton</b> wrapper with extended properties (color, disabled, loading state)</li>
-        <li><i>LabButton</i> -> <b>MatButton</b> wrapper with ripple effects, themes and accessible aria labels</li>
-        <li><i>Standalone Components</i> -> Components without modules for simplified imports</li>
-      </ul>
-    </li>
-    <li>
-      <b class="mb-6">Dialog | Feature lib</b>
-      <ul class="list-disc ml-4 mb-4">
-        <li><i>DialogService</i> -> <b>MatDialog</b> wrapper with generic types for passed data and results</li>
-        <li><i>ConfirmDialog</i> -> Reusable dialog for confirmations with customizable buttons</li>
-        <li><i>DialogConfig</i> -> Centralized configuration of width, position, backdrop, animations</li>
-      </ul>
-    </li>
-    <li>
-      <b class="mb-6">Schematics | Feature Schematics</b>
-      <ul class="list-disc ml-4 mb-4">
-        <li>
-          <i>FeatureRouteModule</i> -> Generates a <b>FeatureModule</b> with <b>Routes</b>, components and lazy loading configured
-        </li>
-        <li>
-          <i>Component Schematic</i> -> Creates standalone components with selector, template and structured styles
-        </li>
-        <li>
-          <i>Service Schematic</i> -> Generates services with providedIn: 'root' and generic types
-        </li>
-      </ul>
-    </li>
-    <li>
-      <b class="mb-6">Utilities & Helpers</b>
-      <ul class="list-disc ml-4 mb-4">
-        <li><i>Type Guards</i> -> Functions for type narrowing and runtime type checking</li>
-        <li><i>Pipe Utilities</i> -> Custom pipes for data transformation (date formatting, currency, etc)</li>
-        <li><i>RxJS Operators</i> -> Custom operators for common patterns (shareReplay, takeUntilDestroyed)</li>
-      </ul>
-    </li>
-  </ul>
-
-  <h2 class="text-2xl font-semibold mt-8 mb-3">📐 Architecture & Patterns</h2>
-  <div class="grid grid-cols-2 gap-4 mb-8">
-    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-      <p class="font-semibold text-gray-800 mb-2">Folder Structure</p>
-      <ul class="text-sm text-gray-600 space-y-1">
-        <li>libs/users/feature - UI and feature logic</li>
-        <li>libs/users/+state - NgRx signals and reducer</li>
-        <li>libs/users/data-access - API services</li>
-        <li>libs/users/ui - Presentational components</li>
-        <li>libs/auth/infrastructure - Types and interfaces</li>
-      </ul>
+        ✨ NX Monorepo Multi-App ✨
+      </h1>
+      <p class="text-xs text-gray-700 mb-3">
+        Angular 21 monorepo with reactive modeling, NestJS backend & MongoDB
+      </p>
+      <p class="text-gray-600 mb-3">
+        Experimental playground exploring new technologies with domain-driven design architecture
+      </p>
     </div>
-    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-      <p class="font-semibold text-gray-800 mb-2">Design Patterns</p>
-      <ul class="text-sm text-gray-600 space-y-1">
-        <li>Smart/Dumb Components</li>
-        <li>Observable Data Services</li>
-        <li>Singleton Services (Auth, API)</li>
-        <li>Reactive Forms Pattern</li>
-        <li>Error Boundary Components</li>
-      </ul>
+
+    <!-- Quick Start Hero Section -->
+    <div class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-sm shadow-md p-4 mb-4 text-gray-900">
+      <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+        🚀 Quick Start
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white rounded-sm p-4 border border-gray-200">
+          <p class="text-sm font-semibold text-gray-700 mb-4">Frontend</p>
+          <code class="block bg-gray-50 text-gray-900 p-3 rounded-sm text-sm font-mono mb-4">$ nx serve profile</code>
+          <a href="http://localhost:4200" target="_blank" rel="noopener noreferrer"
+             class="text-gray-600 hover:text-gray-900 underline text-sm">→ localhost:4200</a>
+        </div>
+
+        <div class="bg-white rounded-sm p-4 border border-gray-200">
+          <p class="text-sm font-semibold text-gray-700 mb-4">Backend API Server</p>
+          <code class="block bg-gray-50 text-gray-900 p-3 rounded-sm text-sm font-mono mb-4">$ nx serve api</code>
+          <p class="text-xs text-gray-600 mb-3">API runs on:</p>
+          <a href="http://localhost:3001" target="_blank" rel="noopener noreferrer"
+             class="text-gray-600 hover:text-gray-900 underline text-sm">localhost:3001</a>
+        </div>
+
+        <div class="bg-white rounded-sm p-4 border border-gray-200">
+          <p class="text-sm font-semibold text-gray-700 mb-4">Swagger UI (same server)</p>
+          <p class="text-xs text-gray-600 mb-4">After running <code class="text-gray-700">nx serve api</code>, visit:</p>
+          <a href="http://localhost:3001/docs" target="_blank" rel="noopener noreferrer"
+             class="text-gray-600 hover:text-gray-900 underline text-sm font-semibold">localhost:3001/docs</a>
+          <p class="text-xs text-gray-600 mt-3">(Interactive API documentation)</p>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500 mb-8">
-    <p class="text-sm text-gray-700"><b>Performance Optimizations:</b> OnPush change detection | Lazy-loaded modules | RxJS shareReplay caching | @defer for deferred rendering with placeholders | Tree-shaking compatible</p>
-  </div>
+    <!-- Users Library Hero CTA -->
+    <div class="bg-white rounded-sm shadow-md p-4 mb-4  text-center">
+      <h2 class="text-lg font-bold mb-3 text-gray-900">⭐ Explore Users Library</h2>
+      <p class="text-gray-600 mb-3">Complete CRUD integration with REST API using reactive signals</p>
+      @if (user.value()?.accessToken) {
+        <button type="button" mat-raised-button color="accent" routerLink="/users"
+                class="!text-base !px-6 !py-2 !rounded-sm shadow-lg hover:shadow-xl transition-all">
+          👉 Go to Users Page 👈
+        </button>
+      } @else {
+        <button type="button" mat-raised-button disabled class="!text-base !px-6 !py-2">
+          ⏳ Loading user session...
+        </button>
+      }
+    </div>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-3">🛠️ Backend: NestJS & MongoDB</h2>
-  <p class="text-gray-600 mb-4">
-    REST API built with NestJS and data persistence in MongoDB using Mongoose ODM
-  </p>
-  <ul class="list-disc my-2 mx-4">
-    <li>
-      <b>NestJS Controllers</b> -> REST routes for user CRUD, authentication and input validation
-    </li>
-    <li>
-      <b>MongoDB + Mongoose</b> -> Typed schemas, schema-level validation, indexing for optimized queries
-    </li>
-    <li>
-      <b>JWT Authentication</b> -> Passport JWT strategy for token validation on protected endpoints
-    </li>
-    <li>
-      <b>DTOs (Data Transfer Objects)</b> -> Validation with class-validator for request payloads
-    </li>
-    <li>
-      <b>Middleware & Guards</b> -> AuthGuard and ValidationPipe for security and data transformation
-    </li>
-    <li>
-      <b>Error Handling & Security</b> -> Centralized exception filters, CORS, helmet headers, rate limiting
-    </li>
-    <li>
-      <b>OpenAPI/Swagger</b> -> Automatic endpoint documentation at <a href="/api/docs" class="text-blue-600 hover:underline">/api/docs</a>
-    </li>
-  </ul>
+    <!-- Libraries Tabs -->
+    <div class="bg-white/90 rounded-sm shadow-md overflow-hidden">
+      <mat-tab-group animationDuration="300" class="library-tabs">
 
-  <pre class="bg-gray-100 p-6 rounded-lg text-sm overflow-x-auto my-8">
+        <!-- Users Library Tab -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span class="flex items-center gap-2 text-base">⭐ Users Library</span>
+          </ng-template>
+          <div class="p-3">
+            <p class="text-gray-600 mb-3 text-xs">
+              Complete integration with Users REST API using reactive signals and modern Angular patterns
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-3">
+                <h3 class="font-bold text-base text-gray-900 mb-3">Key Features</h3>
+                <ul class="list-disc list-inside space-y-3 text-gray-700">
+                  <li><b>REST API Integration</b> - Typed HTTP client with CRUD operations</li>
+                  <li><b>Reactive Data Loading</b> - Angular signals for state management</li>
+                  <li><b>Smart/Dumb Components</b> - Separated UI and business logic</li>
+                  <li><b>HTTP Interceptors</b> - Token handling & caching</li>
+                  <li><b>Reactive Forms</b> - Real-time validation with custom validators</li>
+                </ul>
+              </div>
+              <div class="bg-gray-50 p-6 rounded-sm">
+                <h3 class="font-bold text-base text-gray-900 mb-3">Architecture</h3>
+                <div class="space-y-3 text-sm text-gray-700">
+                  <p><span class="font-semibold">libs/users/feature</span> - UI and feature logic</p>
+                  <p><span class="font-semibold">libs/users/+state</span> - NgRx signals & reducers</p>
+                  <p><span class="font-semibold">libs/users/data-access</span> - API services</p>
+                  <p><span class="font-semibold">libs/users/ui</span> - Presentational components</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+
+        <!-- Auth Library Tab -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span class="flex items-center gap-2 text-base">⭐ Auth Library</span>
+          </ng-template>
+          <div class="p-3">
+            <p class="text-gray-600 mb-3 text-xs">
+              Simple authentication service with localStorage token storage
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-3">
+                <h3 class="font-bold text-base text-gray-900 mb-3">Features</h3>
+                <ul class="list-disc list-inside space-y-3 text-gray-700">
+                  <li><b>AuthService</b> - User login and token management</li>
+                  <li><b>ValidateUserModel</b> - User data interface</li>
+                  <li><b>HTTP Interceptor</b> - Bearer token injection</li>
+                  <li><b>Token Storage</b> - localStorage based persistence</li>
+                </ul>
+              </div>
+              <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-sm">
+                <h3 class="font-bold text-base text-gray-900 mb-3">Implementation</h3>
+                <div class="space-y-3 text-sm text-gray-700">
+                  <p><span class="font-semibold">AuthService</span> - Login and token retrieval</p>
+                  <p><span class="font-semibold">AuthTokens</span> - Token injection tokens</p>
+                  <p><span class="font-semibold">AuthInterceptor</span> - HTTP token injection</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+
+        <!-- User Domain Model Tab -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span class="flex items-center gap-2 text-base">⭐ User Domain Model</span>
+          </ng-template>
+          <div class="p-3">
+            <p class="text-gray-600 mb-3 text-xs">
+              Complete user data model with comprehensive properties for managing user information across the platform
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-3">
+                <h3 class="font-bold text-base text-gray-900 mb-3">Core Properties</h3>
+                <div class="bg-gray-50 p-3 rounded-sm space-y-3 text-sm text-gray-700">
+                  <p><span class="font-semibold">id</span> - number - Unique identifier</p>
+                  <p><span class="font-semibold">firstName</span> - string - First name</p>
+                  <p><span class="font-semibold">lastName</span> - string - Last name</p>
+                  <p><span class="font-semibold">email</span> - string - Email address</p>
+                  <p><span class="font-semibold">username</span> - string - Username</p>
+                  <p><span class="font-semibold">password</span> - string - Password hash</p>
+                  <p><span class="font-semibold">phone</span> - string - Phone number</p>
+                  <p><span class="font-semibold">role</span> - 'admin' | 'moderator' | 'user'</p>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <h3 class="font-bold text-base text-gray-900 mb-3">Personal Info</h3>
+                <div class="bg-gray-50 p-3 rounded-sm space-y-3 text-sm text-gray-700">
+                  <p><span class="font-semibold">age</span> - number - Age in years</p>
+                  <p><span class="font-semibold">birthDate</span> - string - Birth date</p>
+                  <p><span class="font-semibold">gender</span> - 'male' | 'female'</p>
+                  <p><span class="font-semibold">maidenName</span> - string - Maiden name</p>
+                  <p><span class="font-semibold">image</span> - string - Profile image URL</p>
+                  <p><span class="font-semibold">bloodGroup</span> - string - Blood group</p>
+                  <p><span class="font-semibold">height</span> - number - Height in cm</p>
+                  <p><span class="font-semibold">weight</span> - number - Weight in kg</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+              <div class="space-y-3">
+                <h3 class="font-bold text-base text-gray-900 mb-3">Physical & Medical</h3>
+                <div class="bg-gray-50 p-3 rounded-sm space-y-3 text-sm text-gray-700">
+                  <p><span class="font-semibold">eyeColor</span> - string - Eye color</p>
+                  <p><span class="font-semibold">hair</span> - Hair object</p>
+                  <p class="text-xs text-gray-600 ml-4">├─ color: string</p>
+                  <p class="text-xs text-gray-600 ml-4">└─ type: string</p>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <h3 class="font-bold text-base text-gray-900 mb-3">Location & Network</h3>
+                <div class="bg-gray-50 p-3 rounded-sm space-y-3 text-sm text-gray-700">
+                  <p><span class="font-semibold">address</span> - Address object</p>
+                  <p class="text-xs text-gray-600 ml-4">├─ address, city, state, country</p>
+                  <p class="text-xs text-gray-600 ml-4">├─ coordinates (lat, lng)</p>
+                  <p class="text-xs text-gray-600 ml-4">└─ postalCode</p>
+                  <p><span class="font-semibold">ip</span> - string - IP address</p>
+                  <p><span class="font-semibold">macAddress</span> - string - MAC address</p>
+                  <p><span class="font-semibold">userAgent</span> - string - User agent string</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+              <div class="space-y-3">
+                <h3 class="font-bold text-base text-gray-900 mb-3">Professional & Financial</h3>
+                <div class="bg-gray-50 p-3 rounded-sm space-y-3 text-sm text-gray-700">
+                  <p><span class="font-semibold">company</span> - Company object</p>
+                  <p class="text-xs text-gray-600 ml-4">├─ name, department, title</p>
+                  <p class="text-xs text-gray-600 ml-4">└─ address</p>
+                  <p><span class="font-semibold">university</span> - string - University name</p>
+                  <p><span class="font-semibold">bank</span> - Bank object</p>
+                  <p class="text-xs text-gray-600 ml-4">├─ cardNumber, cardType</p>
+                  <p class="text-xs text-gray-600 ml-4">├─ cardExpire, currency</p>
+                  <p class="text-xs text-gray-600 ml-4">└─ iban</p>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <h3 class="font-bold text-base text-gray-900 mb-3">Legal & Crypto</h3>
+                <div class="bg-gray-50 p-3 rounded-sm space-y-3 text-sm text-gray-700">
+                  <p><span class="font-semibold">ssn</span> - string - Social Security Number</p>
+                  <p><span class="font-semibold">ein</span> - string - Employer ID Number</p>
+                  <p><span class="font-semibold">crypto</span> - Crypto object</p>
+                  <p class="text-xs text-gray-600 ml-4">├─ coin (bitcoin, ethereum...)</p>
+                  <p class="text-xs text-gray-600 ml-4">├─ wallet address</p>
+                  <p class="text-xs text-gray-600 ml-4">└─ network</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 p-3 rounded-sm mt-6 ">
+              <h3 class="font-bold text-gray-900 mb-4">Usage Notes</h3>
+              <ul class="text-sm text-gray-700 space-y-3">
+                <li>• All properties are optional (<code class="bg-white px-2 rounded-sm">?</code>)</li>
+                <li>• Nested objects allow hierarchical data organization</li>
+                <li>• Used throughout Users library (state, services, components)</li>
+                <li>• Forms filter with <code class="bg-white px-2 rounded-sm">UserFormModel</code> (firstName, lastName, email only)</li>
+                <li>• Filtering with <code class="bg-white px-2 rounded-sm">UserDomainFilteredModel</code></li>
+                <li>• API response type: <code class="bg-white px-2 rounded-sm">UsersResponse</code> (array of UserDomainModel)</li>
+              </ul>
+            </div>
+          </div>
+        </mat-tab>
+
+        <!-- Lab Libraries Tab -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span class="flex items-center gap-2 text-base">⭐ Lab Libraries</span>
+          </ng-template>
+          <div class="p-3">
+            <p class="text-gray-600 mb-3 text-xs">
+              Experimental UI components, schematics and utilities for enhanced development experience
+            </p>
+            <div class="space-y-3">
+              <div class="bg-gray-50 p-6 rounded-sm border-l-4 border-gray-200">
+                <h3 class="font-bold text-base text-gray-700 mb-4">🎨 Buttons | UI Library</h3>
+                <ul class="list-disc list-inside space-y-3 text-gray-700 text-sm">
+                  <li><i>LabMiniFabButton</i> - MatMiniFabButton wrapper with extended properties</li>
+                  <li><i>LabButton</i> - MatButton wrapper with ripple effects and themes</li>
+                  <li><i>Standalone Components</i> - Simplified imports without modules</li>
+                </ul>
+              </div>
+
+              <div class="bg-gray-50 p-6 rounded-sm border-l-4 border-gray-200">
+                <h3 class="font-bold text-base text-gray-700 mb-4">💬 Dialog | Feature Library</h3>
+                <ul class="list-disc list-inside space-y-3 text-gray-700 text-sm">
+                  <li><i>DialogService</i> - MatDialog wrapper with generic types</li>
+                  <li><i>ConfirmDialog</i> - Reusable confirmation dialog component</li>
+                  <li><i>DialogConfig</i> - Centralized configuration management</li>
+                </ul>
+              </div>
+
+              <div class="bg-gray-50 p-6 rounded-sm border-l-4 border-gray-200">
+                <h3 class="font-bold text-base text-gray-700 mb-4">⚙️ Schematics | Feature Schematics</h3>
+                <ul class="list-disc list-inside space-y-3 text-gray-700 text-sm">
+                  <li><i>FeatureRouteModule</i> - Generate FeatureModule with routes and lazy loading</li>
+                  <li><i>Component Schematic</i> - Create standalone components with template and styles</li>
+                  <li><i>Service Schematic</i> - Generate services with providedIn:'root'</li>
+                </ul>
+              </div>
+
+              <div class="bg-gray-50 p-6 rounded-sm border-l-4 border-gray-200">
+                <h3 class="font-bold text-base text-gray-700 mb-4">🛠️ Utilities & Helpers</h3>
+                <ul class="list-disc list-inside space-y-3 text-gray-700 text-sm">
+                  <li><i>Type Guards</i> - Type narrowing and runtime type checking</li>
+                  <li><i>Pipe Utilities</i> - Custom pipes for data transformation</li>
+                  <li><i>RxJS Operators</i> - Custom operators for common patterns</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+
+
+      </mat-tab-group>
+    </div>
+
+    <!-- Architecture & Backend Section -->
+    <div class="bg-white rounded-sm shadow-md overflow-hidden mt-8">
+      <div class="p-3">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900">📐 Architecture & Backend</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
+          <div>
+            <h3 class="font-bold text-base text-gray-900 mb-3">Frontend Architecture</h3>
+            <div class="bg-gray-50 p-3 rounded-sm">
+              <p class="font-semibold text-gray-700 mb-4">Folder Structure</p>
+              <ul class="text-sm space-y-3 text-gray-700">
+                <li>• libs/users/feature - UI & feature logic</li>
+                <li>• libs/users/+state - NgRx signals & reducer</li>
+                <li>• libs/users/data-access - API services</li>
+                <li>• libs/users/ui - Presentational components</li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-base text-gray-900 mb-3">Design Patterns</h3>
+            <div class="bg-gray-50 p-3 rounded-sm">
+              <p class="font-semibold text-gray-700 mb-4">Patterns Used</p>
+              <ul class="text-sm space-y-3 text-gray-700">
+                <li>✓ Smart/Dumb Components</li>
+                <li>✓ Observable Data Services</li>
+                <li>✓ Singleton Services (Auth, API)</li>
+                <li>✓ Reactive Forms Pattern</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-sm  mb-4">
+          <h3 class="font-bold text-lg text-gray-900 mb-4">🚀 Backend: NestJS & MongoDB</h3>
+          <p class="text-gray-600 mb-3 text-sm">REST API with MongoDB persistence and OpenAPI documentation</p>
+          <div class="grid grid-cols-2 gap-4 text-sm text-gray-700 mb-3">
+            <div>✓ NestJS Controllers & Services</div>
+            <div>✓ MongoDB + Mongoose</div>
+            <div>✓ DTOs & Validation</div>
+            <div>✓ OpenAPI/Swagger Docs</div>
+          </div>
+
+        </div>
+
+        <div class="bg-gray-50 p-3 rounded-sm ">
+          <p class="text-sm text-gray-700">
+            <b>Performance Optimizations:</b> &#64;defer deferred rendering | Lazy-loaded modules | OnPush change detection | Angular signals | Tailwind CSS | Standalone components
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Art -->
+    <div class="text-center mt-4 mb-4">
+      <pre class="bg-gray-50 p-6 rounded-sm text-xs overflow-x-auto inline-block">
  ███╗   ██╗██╗  ██╗    ███╗   ███╗ ██████╗ ███╗   ██╗ ██████╗ ██████╗ ███████╗██████╗  ██████╗
  ████╗  ██║╚██╗██╔╝    ████╗ ████║██╔═══██╗████╗  ██║██╔═══██╗██╔══██╗██╔════╝██╔══██╗██╔═══██╗
  ██╔██╗ ██║ ╚███╔╝     ██╔████╔██║██║   ██║██╔██╗ ██║██║   ██║██║  ██║█████╗  ██████╔╝██║   ██║
  ██║╚██╗██║ ██╔██╗     ██║╚██╔╝██║██║   ██║██║╚██╗██║██║   ██║██║  ██║██╔══╝  ██╔══██╗██║   ██║
  ██║ ╚████║██╔╝ ██╗    ██║ ╚═╝ ██║╚██████╔╝██║ ╚████║╚██████╔╝██████╔╝███████╗██║  ██║╚██████╔╝
  ╚═╝  ╚═══╝╚═╝  ╚═╝    ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝
-  </pre>
+      </pre>
+    </div>
+  </div>
 </div>
+
+<style>
+  :host ::ng-deep {
+    .library-tabs .mdc-tab {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .library-tabs .mat-mdc-tab-label-content {
+      padding: 12px 24px !important;
+    }
+
+    .library-tabs .mdc-tab__content {
+      gap: 8px;
+    }
+
+    .library-tabs .mdc-tab-indicator__content--underline {
+      border-bottom-color: #7c3aed;
+      border-bottom-width: 3px;
+    }
+  }
+</style>
