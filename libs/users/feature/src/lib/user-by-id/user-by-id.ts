@@ -24,7 +24,7 @@ export interface UseData {
   templateUrl: './user-by-id.html',
   imports: [MatCardModule, LabButton],
   host: {
-    class: 'block w-full md:max-w-[300px] m-auto',
+    class: 'block w-full md:max-w-[300px] m-auto p-4',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

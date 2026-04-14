@@ -42,7 +42,7 @@ const reducer = createReducer(
     error: null,
   })),
   on(UsersActions.loadUsersSuccess, (state, { users }) =>
-    usersAdapter.setAll(users, { ...state, loaded: true, selectedUser: null }),
+    usersAdapter.setAll(users, { ...state, loaded: true }),
   ),
   on(UsersActions.loadUsersFailure, (state, { error }) => ({
     ...state,

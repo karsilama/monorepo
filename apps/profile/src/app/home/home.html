@@ -7,20 +7,28 @@
       ✨ NX Monorepo / Multi App ✨
     </h1>
     <p class="text-lg text-gray-700 mb-3">
-      Profile es un monorepo Angular 21 con modelado reactivo
+      Profile is an Angular 21 monorepo with reactive modeling
     </p>
     <p class="text-gray-600 mb-3">
-      Son librerías que utilizo para explorar y validar las nuevas tecnologías.
-      Al ser experimental también encontrás @todos o integraciones fake :)
+      Libraries I use to explore and validate new technologies.
+      Being experimental, you might also find @todos or fake integrations :)
     </p>
+    <div class="bg-blue-50 p-4 rounded-lg mt-4 text-sm border-l-4 border-blue-500">
+      <p class="text-gray-700"><b>Tech Stack:</b> Angular 21 | RxJS | NgRx Signals | Material Design | Tailwind CSS</p>
+      <p class="text-gray-600 mt-2"><b>Architecture:</b> Nx monorepo with shared libraries | Domain-driven design | Feature modules | Lazy loading</p>
+      <p class="text-gray-600 mt-2"><b>Backend:</b> NestJS API | MongoDB | REST endpoints</p>
+    </div>
   </div>
 
   <h2 class="text-2xl font-semibold mt-8 mb-3">⭐ Users Library</h2>
-  <div class="flex items-center gap-2">
-    <p><b>Use case</b> -> User information update</p>
+  <p class="text-gray-600 mb-4">
+    Complete integration with Users REST API using reactive signals and modern Angular patterns
+  </p>
+  <div class="flex items-center gap-2 mb-4">
+    <p><b>Use case</b> -> User information management (CRUD)</p>
     @if (user.value()?.accessToken) {
     <div class="inline-flex items-center">
-      👉🏽👉🏽👉🏽<button mat-button routerLink="/users">Ir a Users page</button>
+      👉🏽👉🏽👉🏽<button mat-button routerLink="/users">Go to Users page</button>
       👈🏽👈🏽👈🏽
     </div>
     } @else {
@@ -30,24 +38,50 @@
 
   <ul class="list-disc my-2 mx-4">
     <li>
-      User list page and user details page ->
-      <b>Api rest & signals integrations</b>
+      <b>Users API Service</b> -> CRUD operations with typed HTTP client (endpoints documented in Swagger)
     </li>
-    <li>User dialog edition -> <b>Lab Integration / Dialog</b></li>
+    <li>
+      User list page and user details page ->
+      <b>REST API & signals integrations</b> (reactive data loading with Angular signals)
+    </li>
+    <li>User dialog edition -> <b>Lab Integration / Dialog</b> for inline user editing</li>
+    <li>
+      <b>State Management</b> -> @ngrx/signals with reducers and selectors for users
+    </li>
+    <li>
+      <b>HTTP Interceptors</b> -> Automatic token handling, caching and retry policies
+    </li>
+    <li>
+      <b>Reactive Forms</b> -> Real-time validation with CustomValidators
+    </li>
   </ul>
 
   <h2 class="text-2xl font-semibold mt-8 mb-3">⭐ Auth Library</h2>
+  <p class="text-gray-600 mb-4">
+    Centralized authentication and authorization with token validation, guards and role-based access control
+  </p>
   <ul class="list-disc my-2 mx-4">
     <li>
       <b class="font-semibold">Feature library</b> ->
       <span class="ml-2 text-gray-600"
-        ><b>ValidateUserModel</b> a singleton service provides user access token
-        validations</span
+        ><b>ValidateUserModel</b> singleton service that validates access tokens, refresh tokens and expiration</span
       >
     </li>
     <li>
+      <b>Route Guards</b> -> CanActivate guards to protect routes based on roles and permissions
+    </li>
+    <li>
+      <b>HTTP Auth Interceptor</b> -> Automatically injects Bearer tokens in Authorization headers and handles token refresh
+    </li>
+    <li>
       <b class="font-semibold">Infrastructure library</b> ->
-      <span class="ml-2 text-gray-600">Interfaces</span>
+      <span class="ml-2 text-gray-600">Interfaces and types: AuthToken, UserCredentials, AuthResponse, PermissionModel</span>
+    </li>
+    <li>
+      <b>JWT Decoder</b> -> Utility to decode and validate JWT token structure
+    </li>
+    <li>
+      <b>Role-based Access Control (RBAC)</b> -> Permission validation at component and service level
     </li>
   </ul>
 
@@ -56,24 +90,96 @@
     <li>
       <b class="mb-6">Buttons | UI lib</b>
       <ul class="list-disc ml-4 mb-4">
-        <li><i>LabMiniFabButton</i> -> <b>MatMiniFabButton</b> wrapper</li>
-        <li class=""><i>LabButton</i>-> <b>MatButton</b> wrapper</li>
+        <li><i>LabMiniFabButton</i> -> <b>MatMiniFabButton</b> wrapper with extended properties (color, disabled, loading state)</li>
+        <li><i>LabButton</i> -> <b>MatButton</b> wrapper with ripple effects, themes and accessible aria labels</li>
+        <li><i>Standalone Components</i> -> Components without modules for simplified imports</li>
       </ul>
     </li>
     <li>
       <b class="mb-6">Dialog | Feature lib</b>
       <ul class="list-disc ml-4 mb-4">
-        <li><i>DialogService</i> -> <b>MatDialog</b> wrapper</li>
+        <li><i>DialogService</i> -> <b>MatDialog</b> wrapper with generic types for passed data and results</li>
+        <li><i>ConfirmDialog</i> -> Reusable dialog for confirmations with customizable buttons</li>
+        <li><i>DialogConfig</i> -> Centralized configuration of width, position, backdrop, animations</li>
       </ul>
     </li>
     <li>
       <b class="mb-6">Schematics | Feature Schematics</b>
-      <ul class="list-disc ml-4">
+      <ul class="list-disc ml-4 mb-4">
         <li>
-          <i>FeatureRouteModule</i> -> create a ng <b>FeatureModule</b> with
-          <b>Routes</b>
+          <i>FeatureRouteModule</i> -> Generates a <b>FeatureModule</b> with <b>Routes</b>, components and lazy loading configured
+        </li>
+        <li>
+          <i>Component Schematic</i> -> Creates standalone components with selector, template and structured styles
+        </li>
+        <li>
+          <i>Service Schematic</i> -> Generates services with providedIn: 'root' and generic types
         </li>
       </ul>
+    </li>
+    <li>
+      <b class="mb-6">Utilities & Helpers</b>
+      <ul class="list-disc ml-4 mb-4">
+        <li><i>Type Guards</i> -> Functions for type narrowing and runtime type checking</li>
+        <li><i>Pipe Utilities</i> -> Custom pipes for data transformation (date formatting, currency, etc)</li>
+        <li><i>RxJS Operators</i> -> Custom operators for common patterns (shareReplay, takeUntilDestroyed)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold mt-8 mb-3">📐 Architecture & Patterns</h2>
+  <div class="grid grid-cols-2 gap-4 mb-8">
+    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <p class="font-semibold text-gray-800 mb-2">Folder Structure</p>
+      <ul class="text-sm text-gray-600 space-y-1">
+        <li>libs/users/feature - UI and feature logic</li>
+        <li>libs/users/+state - NgRx signals and reducer</li>
+        <li>libs/users/data-access - API services</li>
+        <li>libs/users/ui - Presentational components</li>
+        <li>libs/auth/infrastructure - Types and interfaces</li>
+      </ul>
+    </div>
+    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <p class="font-semibold text-gray-800 mb-2">Design Patterns</p>
+      <ul class="text-sm text-gray-600 space-y-1">
+        <li>Smart/Dumb Components</li>
+        <li>Observable Data Services</li>
+        <li>Singleton Services (Auth, API)</li>
+        <li>Reactive Forms Pattern</li>
+        <li>Error Boundary Components</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500 mb-8">
+    <p class="text-sm text-gray-700"><b>Performance Optimizations:</b> OnPush change detection | Lazy-loaded modules | RxJS shareReplay caching | @defer for deferred rendering with placeholders | Tree-shaking compatible</p>
+  </div>
+
+  <h2 class="text-2xl font-semibold mt-8 mb-3">🛠️ Backend: NestJS & MongoDB</h2>
+  <p class="text-gray-600 mb-4">
+    REST API built with NestJS and data persistence in MongoDB using Mongoose ODM
+  </p>
+  <ul class="list-disc my-2 mx-4">
+    <li>
+      <b>NestJS Controllers</b> -> REST routes for user CRUD, authentication and input validation
+    </li>
+    <li>
+      <b>MongoDB + Mongoose</b> -> Typed schemas, schema-level validation, indexing for optimized queries
+    </li>
+    <li>
+      <b>JWT Authentication</b> -> Passport JWT strategy for token validation on protected endpoints
+    </li>
+    <li>
+      <b>DTOs (Data Transfer Objects)</b> -> Validation with class-validator for request payloads
+    </li>
+    <li>
+      <b>Middleware & Guards</b> -> AuthGuard and ValidationPipe for security and data transformation
+    </li>
+    <li>
+      <b>Error Handling & Security</b> -> Centralized exception filters, CORS, helmet headers, rate limiting
+    </li>
+    <li>
+      <b>OpenAPI/Swagger</b> -> Automatic endpoint documentation at <a href="/api/docs" class="text-blue-600 hover:underline">/api/docs</a>
     </li>
   </ul>
 

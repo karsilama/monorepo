@@ -1,14 +1,21 @@
-@if (loaded()) {
-<lab-list-page [data]="listPageData()" (executed)="navigateUserEdit($event)">
-</lab-list-page>
-} @else if(listPageData()) {
-<div class="animate-pulse space-y-4">
-  <div class="h-4 bg-gray-200 rounded w-3/4"></div>
-  <div class="h-4 bg-gray-200 rounded"></div>
-  <div class="h-4 bg-gray-200 rounded w-5/6"></div>
-</div>
-
-} @else if (error()) {
-<lab-divider></lab-divider>
-<div class="flex justify-center text-red-600">Error loading users</div>
+@if (error()) {
+  <lab-divider></lab-divider>
+  <div class="flex justify-center text-red-600">Error loading users</div>
+} @else if (loaded()) {
+  @defer (on viewport) {
+    <lab-list-page [data]="listPageData()" (executed)="navigateUserEdit($event)">
+    </lab-list-page>
+  } @placeholder {
+    <div class="animate-pulse space-y-4">
+      <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+      <div class="h-4 bg-gray-200 rounded"></div>
+      <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+    </div>
+  }
+} @else {
+  <div class="animate-pulse space-y-4">
+    <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+    <div class="h-4 bg-gray-200 rounded"></div>
+    <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+  </div>
 }
