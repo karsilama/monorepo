@@ -1,7 +1,11 @@
-<lab-avatar [src]="context().image ?? defaultAvatar"></lab-avatar>
-<div matListItemTitle>{{ context().firstName }} {{ context().lastName }}</div>
-<div matListItemLine>
-  CODE {{ context().address?.postalCode }}, - {{ context().address?.address }},
-  - {{ context().address?.city }}, - {{ context().address?.country }}, {{
-  context().address?.state }}, -
-</div>
+<mat-list-item>
+  <div matListItemAvatar>
+    <img [src]="user().image ?? defaultAvatar" alt="avatar" />
+  </div>
+  <div matListItemTitle>{{ user().firstName }} {{ user().lastName }}</div>
+  <div matListItemLine>
+    CODE {{ user().address?.postalCode }}, - {{ user().address?.address }}, - {{
+    user().address?.city }}, - {{ user().address?.country }}, {{
+    user().address?.state }}, -
+  </div>
+</mat-list-item>

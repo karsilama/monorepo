@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { LabAvatar } from '@lab/ui';
+import { MatListModule } from '@angular/material/list';
 import { UserDomainModel } from '@users/infrastructure';
 import { DEFAULT_AVATAR } from './user-custom-column.constant';
 
@@ -7,9 +7,9 @@ import { DEFAULT_AVATAR } from './user-custom-column.constant';
   selector: 'users-custom-column',
   templateUrl: './user-custom-column.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LabAvatar],
+  imports: [MatListModule],
 })
 export class UserCustomColumn {
-  public context = input.required<UserDomainModel>();
+  public user = input.required<UserDomainModel>();
   public defaultAvatar = DEFAULT_AVATAR;
 }

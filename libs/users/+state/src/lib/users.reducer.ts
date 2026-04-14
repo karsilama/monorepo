@@ -1,7 +1,7 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { UserDomainModel, UserFormModel } from '@users/infrastructure';
+import { UserDomainModel } from '@users/infrastructure';
 import * as UsersActions from './users.actions';
 
 export const USERS_FEATURE_KEY = 'users';
@@ -40,7 +40,6 @@ const reducer = createReducer(
     ...state,
     loaded: false,
     error: null,
-    selectedUser: null,
   })),
   on(UsersActions.loadUsersSuccess, (state, { users }) =>
     usersAdapter.setAll(users, { ...state, loaded: true, selectedUser: null }),
@@ -48,7 +47,6 @@ const reducer = createReducer(
   on(UsersActions.loadUsersFailure, (state, { error }) => ({
     ...state,
     error,
-    selectedUser: null,
   })),
   on(UsersActions.getUserByIdSuccess, (state, { user }) => ({
     ...state,
@@ -57,7 +55,6 @@ const reducer = createReducer(
   })),
   on(UsersActions.getUserByIdFailure, (state) => ({
     ...state,
-    selectedUser: null,
     userByIdLoading: false,
   })),
   on(UsersActions.getUserById, (state) => ({
@@ -71,20 +68,20 @@ const reducer = createReducer(
        * @todo
        * Real user by id update
        */
-      isUserByIdLoading: true,
+      userByIdLoading: true,
     };
   }),
   on(UsersActions.saveUserByIdFailure, (state) => {
     return {
       ...state,
       selectedUser: null,
-      isUserByIdLoading: false,
+      userByIdLoading: false,
     };
   }),
   on(UsersActions.saveUserByIdSuccess, (state) => {
     return {
       ...state,
-      isUserByIdLoading: false,
+      userByIdLoading: false,
     };
   }),
 );
@@ -92,14 +89,3 @@ const reducer = createReducer(
 export function usersReducer(state: UsersState | undefined, action: Action) {
   return reducer(state, action);
 }
-
-const formToDomainModel = (
-  user: UserFormModel,
-  selectedUser: UserDomainModel | null,
-): UserDomainModel | null =>
-  selectedUser
-    ? {
-        ...selectedUser,
-        ...user,
-      }
-    : null;

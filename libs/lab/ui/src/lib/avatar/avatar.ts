@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  input,
+} from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 
 @Component({
@@ -9,4 +14,9 @@ import { MatListModule } from '@angular/material/list';
 })
 export class LabAvatar {
   public src = input.required<string>();
+  constructor() {
+    effect(() => {
+      console.log(this.src());
+    });
+  }
 }

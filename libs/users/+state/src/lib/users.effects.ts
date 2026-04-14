@@ -30,7 +30,7 @@ export class UsersEffects {
               `${this.configurationService.getBaseConfiguration().api.url}/users`,
             )
             .pipe(
-              map(({ users }) => UsersActions.loadUsersSuccess({ users })),
+              map((users) => UsersActions.loadUsersSuccess({ users })),
               catchError((error) => {
                 return of(
                   UsersActions.loadUsersFailure({
@@ -56,7 +56,7 @@ export class UsersEffects {
         switchMap(({ id }) =>
           this.http
             .get<UserDomainModel>(
-              `https://dummyjson.com/users/${+id}?t=${Date.now()}`,
+              `${this.configurationService.getBaseConfiguration().api.url}/users/${+id}`,
             )
             .pipe(
               map((user) => UsersActions.getUserByIdSuccess({ user })),

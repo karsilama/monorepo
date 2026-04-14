@@ -81,12 +81,7 @@ export interface UserDomainModel {
   role?: 'admin' | 'moderator' | 'user';
 }
 
-export interface UsersResponse {
-  users: UserDomainModel[];
-  total: number;
-  skip: number;
-  limit: number;
-}
+export type UsersResponse = UserDomainModel[];
 
 export interface SelectUserResponse {
   selectedUser: UserDomainModel;

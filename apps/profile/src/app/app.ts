@@ -1,5 +1,6 @@
-import { Component, DestroyRef, inject, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Location } from '@angular/common';
+import { Component, effect, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,18 +20,31 @@ export class App {
   public showBackButton = signal(false);
 
   private router = inject(Router);
-  private destroyRef = inject(DestroyRef);
+  private location = inject(Location);
+
+  private navigationEnd$ = toSignal(
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)),
+    { initialValue: null }
+  );
+
+  /**
+   * Go to the parent segment
+   * * */
+  public goBack() {
+    if (window.history.length > 1) {
+      this.location.back();
+    } else {
+      const segments = this.router.url.split('/').filter(Boolean);
+      if (segments.length > 0) {
+        this.router.navigate([`/${segments[0]}`]);
+      }
+    }
+  }
 
   constructor() {
-    this.router.events
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-        filter((event) => event instanceof NavigationEnd),
-      )
-      .subscribe(() => {
-        this.showBackButton.set(
-          this.router.url === '/users' && window.history.length > 1,
-        );
-      });
+    effect(() => {
+      this.navigationEnd$();
+      this.showBackButton.set(this.router.url !== '/');
+    });
   }
 }

@@ -3,7 +3,7 @@
     <mat-card-header>
       <mat-card-title>
         @if(showBackButton()) {
-        <button mat-button routerLink="/">
+        <button mat-button (click)="goBack()">
           Back
           <mat-icon>chevron_left</mat-icon>
         </button>

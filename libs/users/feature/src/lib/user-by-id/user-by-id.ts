@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+} from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
 import { LabButton } from 'libs/lab/buttons/ui/src';
@@ -27,6 +33,8 @@ export class UserById {
   private user = inject(UsersFacade);
   private route = inject(ActivatedRoute);
 
+  public params = toSignal(this.route.paramMap);
+
   public readonly selectedUser = this.user.selectedUser;
   public readonly isLoading = this.user.isUserByIdLoading;
 
@@ -38,14 +46,16 @@ export class UserById {
    * @constructor
    */
   constructor() {
-    const id = this.route.snapshot.params['id'];
-    if (id) {
-      this.user.getUserById(id);
-    }
-
     this.dialog.register({
       id: USER_BY_ID_DIALOG,
       component: UserEditDialog,
+    });
+
+    effect(() => {
+      const id = this.params()?.get('id');
+      if (id) {
+        this.user.getUserById(id);
+      }
     });
   }
 
