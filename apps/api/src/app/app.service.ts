@@ -1,16 +1,14 @@
 import { Injectable } from '@nestjs/common';
-
+import { UsersRepository } from './users.repository';
 @Injectable()
 export class AppService {
+  constructor(private users: UsersRepository) {}
+
   public getUsers() {
-    return {
-      users: [],
-    };
+    return this.users.findAll();
   }
 
-  public getUserById(id: string) {
-    return {
-      users: [],
-    };
+  public getUserById(id: number) {
+    return this.users.findById(id);
   }
 }

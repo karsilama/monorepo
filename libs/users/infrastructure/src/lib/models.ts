@@ -51,7 +51,7 @@ export interface UserDomainFilteredModel {
   company?: Company;
 }
 export interface UserDomainModel {
-  id: number;
+  id?: number;
   firstName?: string;
   lastName?: string;
   maidenName?: string;

@@ -7,12 +7,11 @@ export class AppController {
 
   @Get()
   getUsers(@Req() request: Request) {
-    console.log(request);
     return this.appService.getUsers();
   }
 
   @Get(':id')
-  getUserById(@Param('id') id: string) {
+  getUserById(@Param('id') id: number) {
     return this.appService.getUserById(id);
   }
 }

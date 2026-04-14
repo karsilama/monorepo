@@ -19,6 +19,7 @@
     "@angular/router": "~21.2.0",
     "@nestjs/axios": "^4.0.1",
     "@nestjs/common": "^11.0.0",
+    "@nestjs/config": "^4.0.4",
     "@nestjs/core": "^11.0.0",
     "@nestjs/mongoose": "^11.0.4",
     "@nestjs/platform-express": "^11.0.0",
@@ -28,6 +29,8 @@
     "@ngrx/router-store": "^21.0.0",
     "@ngrx/store": "^21.1.0",
     "axios": "^1.15.0",
+    "mongodb": "^7.1.1",
+    "mongoimport": "^1.0.6",
     "mongoose": "^9.4.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0"

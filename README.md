@@ -81,7 +81,8 @@ Lab is an experimental module libraries aims to exploring the newest front end t
 
 
 ```typescript
-    _                      _                 ____ _     ___
+
+     _                      _                 ____ _     ___
     / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
    / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
   / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
@@ -89,34 +90,86 @@ Lab is an experimental module libraries aims to exploring the newest front end t
                 |___/
     
 
-Angular CLI       : 21.2.5
-Angular           : 21.2.6
-Node.js           : 20.19.0
-Package Manager   : npm 10.8.2
+Angular CLI       : 21.2.7
+Angular           : 21.2.8
+Node.js           : 22.22.2
+Package Manager   : npm 10.9.7
 Operating System  : darwin arm64
 
 ┌───────────────────────────────────┬───────────────────┬───────────────────┐
 │ Package                           │ Installed Version │ Requested Version │
 ├───────────────────────────────────┼───────────────────┼───────────────────┤
-│ @angular-devkit/core              │ 21.2.5            │ ~21.2.0           │
-│ @angular-devkit/schematics        │ 21.2.5            │ ~21.2.0           │
-│ @angular/animations               │ 21.2.6            │ ^21.2.5           │
-│ @angular/build                    │ 21.2.5            │ ~21.2.0           │
-│ @angular/cdk                      │ 21.2.4            │ ^21.2.3           │
-│ @angular/cli                      │ 21.2.5            │ ~21.2.0           │
-│ @angular/common                   │ 21.2.6            │ ~21.2.0           │
-│ @angular/compiler                 │ 21.2.6            │ ~21.2.0           │
-│ @angular/compiler-cli             │ 21.2.6            │ ~21.2.0           │
-│ @angular/core                     │ 21.2.6            │ ~21.2.0           │
-│ @angular/forms                    │ 21.2.6            │ ~21.2.0           │
-│ @angular/language-service         │ 21.2.6            │ ~21.2.0           │
-│ @angular/material                 │ 21.2.4            │ ^21.2.3           │
-│ @angular/platform-browser         │ 21.2.6            │ ~21.2.0           │
-│ @angular/platform-browser-dynamic │ 21.2.6            │ ~21.2.0           │
-│ @angular/router                   │ 21.2.6            │ ~21.2.0           │
-│ @schematics/angular               │ 21.2.5            │ ~21.2.0           │
+│ @angular-devkit/core              │ 21.2.7            │ ~21.2.0           │
+│ @angular-devkit/schematics        │ 21.2.7            │ ~21.2.0           │
+│ @angular/animations               │ 21.2.8            │ ^21.2.5           │
+│ @angular/build                    │ 21.2.7            │ ~21.2.0           │
+│ @angular/cdk                      │ 21.2.6            │ ^21.2.3           │
+│ @angular/cli                      │ 21.2.7            │ ~21.2.0           │
+│ @angular/common                   │ 21.2.8            │ ~21.2.0           │
+│ @angular/compiler                 │ 21.2.8            │ ~21.2.0           │
+│ @angular/compiler-cli             │ 21.2.8            │ ~21.2.0           │
+│ @angular/core                     │ 21.2.8            │ ~21.2.0           │
+│ @angular/forms                    │ 21.2.8            │ ~21.2.0           │
+│ @angular/language-service         │ 21.2.8            │ ~21.2.0           │
+│ @angular/material                 │ 21.2.6            │ ^21.2.3           │
+│ @angular/platform-browser         │ 21.2.8            │ ~21.2.0           │
+│ @angular/platform-browser-dynamic │ 21.2.8            │ ~21.2.0           │
+│ @angular/router                   │ 21.2.8            │ ~21.2.0           │
+│ @schematics/angular               │ 21.2.7            │ ~21.2.0           │
 │ ng-packagr                        │ 21.2.2            │ ~21.2.0           │
 │ rxjs                              │ 7.8.2             │ ~7.8.0            │
 │ typescript                        │ 5.9.3             │ ~5.9.2            │
 └───────────────────────────────────┴───────────────────┴───────────────────┘
 ```
+
+## 📦 MongoDB Setup - Users
+
+Added **Mongoose** for MongoDB integration:
+
+```bash
+npm install @nestjs/mongoose mongoose
+```
+
+### Schema
+
+User schema is located at:
+
+- `libs/users/infrastructure/src/lib/users.schema.ts`
+
+Defines the `users` collection based on `UserDomainModel`.
+
+### Configuration
+
+MongoDB connection is configured in `apps/api/src/app/app.module.ts`:
+
+```typescript
+MongooseModule.forRoot('mongodb+srv://...')
+```
+
+### Usage
+
+Import in modules:
+
+```typescript
+import { User, UserSchema } from '@users/infrastructure';
+
+MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])
+```
+
+### Import from File
+
+Import users data from JSON file using mongoimport:
+
+```bash
+mongoimport --uri "mongodb+srv://<user>:<password>@cluster0.vbsabhz.mongodb.net/profile" \
+  --collection users \
+  --file scripts/users.json \
+  --jsonArray
+```
+
+**Parameters:**
+
+- `--uri`: MongoDB connection string
+- `--collection`: Target collection name
+- `--file`: Path to JSON file
+- `--jsonArray`: Parse file as JSON array
