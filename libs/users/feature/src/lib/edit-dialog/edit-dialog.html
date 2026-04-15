@@ -8,9 +8,11 @@
         [formField]="form.email"
         placeholder="Ex. user@domain.com"
       />
-      @for (error of form.email().errors(); track error) { @if (error.message) {
-      <mat-error>{{ error.message }}</mat-error>
-      } }
+      @for (error of form.email().errors(); track error) {
+        @if (error.message) {
+          <mat-error>{{ error.message }}</mat-error>
+        }
+      }
     </mat-form-field>
   </p>
   <p>
@@ -22,10 +24,11 @@
         [formField]="form.firstName"
         placeholder="Ex. Your name"
       />
-      @for (error of form.firstName().errors(); track error) { @if
-      (error.message) {
-      <mat-error>{{ error.message }}</mat-error>
-      } }
+      @for (error of form.firstName().errors(); track error) {
+        @if (error.message) {
+          <mat-error>{{ error.message }}</mat-error>
+        }
+      }
     </mat-form-field>
   </p>
   <p>
@@ -37,10 +40,11 @@
         [formField]="form.lastName"
         placeholder="Ex. Last name"
       />
-      @for (error of form.lastName().errors(); track error) { @if
-      (error.message) {
-      <mat-error>{{ error.message }}</mat-error>
-      } }
+      @for (error of form.lastName().errors(); track error) {
+        @if (error.message) {
+          <mat-error>{{ error.message }}</mat-error>
+        }
+      }
     </mat-form-field>
   </p>
 </form>

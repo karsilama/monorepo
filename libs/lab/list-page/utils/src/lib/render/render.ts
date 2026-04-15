@@ -6,10 +6,16 @@ import {
   reflectComponentType,
   Type,
   ViewContainerRef,
-} from '@angular/core';
+} from "@angular/core";
+
+/**
+ * Old way to load component programmatically
+ * Better by using ngComponentOutlet
+ *
+ */
 
 @Directive({
-  selector: '[labRender]',
+  selector: "[labRender]",
   standalone: true,
 })
 export class Render {

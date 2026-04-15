@@ -3,7 +3,10 @@
   <div class="flex justify-center text-red-600">Error loading users</div>
 } @else if (loaded()) {
   @defer (on viewport) {
-    <lab-list-page [data]="listPageData()" (executed)="navigateUserEdit($event)">
+    <lab-list-page
+      [data]="listPageData()"
+      (executed)="navigateUserEdit($event)"
+    >
     </lab-list-page>
   } @placeholder {
     <div class="animate-pulse space-y-4">

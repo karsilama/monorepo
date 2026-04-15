@@ -1,5 +1,5 @@
-import { ListLine } from '@lab/list-page/infrastructure';
-import { UserDomainModel } from '@users/infrastructure';
+import { ListLine } from "@lab/list-page/infrastructure";
+import { UserDomainModel } from "@users/infrastructure";
 
 /**
  * Gets nested value from object using dot notation (e.g., 'company.name')
@@ -9,10 +9,10 @@ const getValue = (
   path: string,
 ): string | undefined => {
   const value = path
-    .split('.')
+    .split(".")
     .reduce<unknown>(
       (current: unknown, prop: string) =>
-        !!current && typeof current === 'object'
+        !!current && typeof current === "object"
           ? (current as Record<string, unknown>)[prop]
           : undefined,
       obj,
@@ -29,12 +29,11 @@ export const getUserAllLines = (
   user: UserDomainModel,
   displayFields: (string | string[])[],
 ): ListLine[] => {
-  const entries = Object.entries(user);
   const lines: ListLine[] = [];
   const userRecord = user as unknown as Record<string, unknown>;
 
   displayFields.forEach((field) => {
-    if (typeof field === 'string') {
+    if (typeof field === "string") {
       lines.push({ key: field, value: getValue(userRecord, field) });
     } else if (Array.isArray(field)) {
       field.forEach((nestedField) => {

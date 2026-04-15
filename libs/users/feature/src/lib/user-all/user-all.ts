@@ -1,18 +1,19 @@
-import { Component, computed, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { ListPage } from '@lab/list-page/feature';
-import { ListRow } from '@lab/list-page/infrastructure';
-import { Divider } from '@lab/ui';
-import { getUserAllLines } from '@users/domain';
-import { UsersFacade } from 'libs/users/+state/src';
-import { USERS_LIST_PAGE_ID } from './user-all.constant';
+import { Component, computed, inject } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { ListPage } from "@lab/list-page/feature";
+import { List, ListRow } from "@lab/list-page/infrastructure";
+import { Divider } from "@lab/ui";
+import { getUserAllLines } from "@users/domain";
+import { UsersFacade } from "libs/users/+state/src";
+import { UserCustomColumn } from "../user-custom-column/user-custom-column";
+import { USERS_LIST_PAGE_ID } from "./user-all.constant";
 
 @Component({
-  selector: 'users-all',
+  selector: "users-all",
   imports: [RouterModule, ListPage, Divider],
-  templateUrl: './user-all.html',
+  templateUrl: "./user-all.html",
   host: {
-    class: 'flex justify-center items-center',
+    class: "flex justify-center items-center",
   },
   standalone: true,
 })
@@ -32,6 +33,8 @@ export class UserAll {
   /**
    * Mapping users data in order to fit
    * with the ListPage Api
+   *
+   * @Optional component List shows row key:value instead
    */
 
   public listPageData = computed(() => {
@@ -40,11 +43,13 @@ export class UserAll {
 
     return {
       id: USERS_LIST_PAGE_ID,
-      rows: users.map((row) => ({
-        id: String(row.id),
-        lines: getUserAllLines(row, displayFields),
+      rows: users.map((user) => ({
+        id: String(user.id),
+        lines: getUserAllLines(user, displayFields),
+        component: UserCustomColumn,
+        metadata: user,
       })),
-    };
+    } as List;
   });
 
   /**

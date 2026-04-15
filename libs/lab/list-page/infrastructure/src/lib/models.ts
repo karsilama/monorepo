@@ -1,13 +1,15 @@
-import { Type } from '@angular/core';
+import { Injector, Type } from "@angular/core";
 export interface ListLine {
   key: string;
-  value?: string;
-  component?: Type<unknown>;
+  value: string | undefined;
 }
+export type ListRowContext = Record<string, unknown>;
 export interface ListRow {
   id: string;
   lines: ListLine[];
-  [key: string]: unknown;
+  injector?: Injector | undefined;
+  component: Type<unknown> | null;
+  metadata: ListRowContext;
 }
 export interface List {
   rows: ListRow[];

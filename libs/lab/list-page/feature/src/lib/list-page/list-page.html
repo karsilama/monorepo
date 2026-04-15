@@ -1,5 +1,8 @@
-@if(data()) {
-<div class="flex flex-1 h-full overflow-hidden">
-  <lab-list [data]="data()" (executed)="onExecuted($event)"></lab-list>
-</div>
+@if (data()) {
+  <div class="flex flex-1 h-full overflow-hidden">
+    <lab-list
+      [data]="computedData()"
+      (executed)="onExecuted($event)"
+    ></lab-list>
+  </div>
 }

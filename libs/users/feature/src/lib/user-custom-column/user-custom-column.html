@@ -1,11 +1,14 @@
-<mat-list-item>
-  <div matListItemAvatar>
-    <img [src]="user().image ?? defaultAvatar" alt="avatar" />
-  </div>
-  <div matListItemTitle>{{ user().firstName }} {{ user().lastName }}</div>
-  <div matListItemLine>
-    CODE {{ user().address?.postalCode }}, - {{ user().address?.address }}, - {{
-    user().address?.city }}, - {{ user().address?.country }}, {{
-    user().address?.state }}, -
-  </div>
-</mat-list-item>
+<img
+  [src]="user.image ?? defaultAvatar"
+  class="w-10 h-10"
+  arial-label="Avatar"
+  alt="avatar"
+/>
+<div class="flex flex-1 justify-start flex-col p-2">
+  <small>{{ user.firstName }} {{ user.lastName }}</small>
+  <small class="truncate text-ellipsis min-w-0">
+    CODE {{ user.address?.postalCode }}, - {{ user.address?.address }}, -
+    {{ user.address?.city }}, - {{ user.address?.country }},
+    {{ user.address?.state }}, -
+  </small>
+</div>

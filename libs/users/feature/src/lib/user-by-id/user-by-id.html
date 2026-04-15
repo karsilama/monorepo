@@ -1,41 +1,43 @@
-@if(isLoading()) { Loading.. } @else {
-<mat-card class="example-card w-full" appearance="outlined">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title
-      >{{ selectedUser()?.firstName }} - {{ selectedUser()?.lastName
-      }}</mat-card-title
-    >
-    <mat-card-subtitle>
-      <small class="text-xs"> {{ selectedUser()?.email }} </small>
-    </mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content class="p-2 w-full">
-    <img
-      class="w-full box-border"
-      mat-card-image
-      [src]="selectedUser()?.image ?? ''"
-      alt="User avatar"
-      loading="lazy"
-    />
-    <p>
-      {{ selectedUser()?.company?.name }} - {{
-      selectedUser()?.address?.postalCode }}, {{
-      selectedUser()?.address?.address }}, {{ selectedUser()?.address?.state }}
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <div class="w-full hidden md:flex items-center justify-end gap-4">
-      <lab-button
-        (execute)="editUser()"
-        arialLabel="Edit user information"
-        color="primary"
-        icon="edit"
+@if (isLoading()) {
+  Loading..
+} @else {
+  <mat-card class="example-card w-full" appearance="outlined">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title
+        >{{ selectedUser()?.firstName }} -
+        {{ selectedUser()?.lastName }}</mat-card-title
       >
-        Edit User
-      </lab-button>
-    </div>
-  </mat-card-actions>
-</mat-card>
-
+      <mat-card-subtitle>
+        <small class="text-xs"> {{ selectedUser()?.email }} </small>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="p-2 w-full">
+      <img
+        class="w-full box-border"
+        mat-card-image
+        [src]="selectedUser()?.image ?? ''"
+        alt="User avatar"
+        loading="lazy"
+      />
+      <p>
+        {{ selectedUser()?.company?.name }} -
+        {{ selectedUser()?.address?.postalCode }},
+        {{ selectedUser()?.address?.address }},
+        {{ selectedUser()?.address?.state }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="w-full hidden md:flex items-center justify-end gap-4">
+        <lab-button
+          (execute)="editUser()"
+          arialLabel="Edit user information"
+          color="primary"
+          icon="edit"
+        >
+          Edit User
+        </lab-button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
 }

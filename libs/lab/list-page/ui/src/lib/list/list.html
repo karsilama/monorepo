@@ -1,32 +1,30 @@
-@if(data()) {
-<mat-list class="flex flex-1">
-  @for (row of data().rows; track row.id) {
-  <mat-list-item class="w-full" (click)="onClick(row)">
-    @for(line of row.lines; track line.key) { @if($index > 0) {
-
-    <div matListItemLine>
-      @if(!!line?.value) { {{line.value}} } @else if( !!line?.component) {
-
-      <!--
-          Dynamic component rendering by user ViewContainerRef
+@if (data()) {
+  <mat-list class="flex flex-1">
+    @for (row of data().rows; track row.id) {
+      <mat-list-item class="w-full !min-h-0 !h-fit" (click)="onClick(row)">
+        @if (!!row?.component) {
+          <!--
+          Dynamic component rendering
              -->
-      <ng-container
-        labRender
-        [context]="row"
-        [component]="line.component"
-      ></ng-container>
-
-      }
-    </div>
-    } }
-
-    <div matListItemMeta>
-      <ng-content matListItemAction>
-        <lab-mini-fab-button icon="edit" arialLabel="Edit">
-        </lab-mini-fab-button>
-      </ng-content>
-    </div>
-  </mat-list-item>
-  }
-</mat-list>
+          <div matListItemLine>
+            <ng-container
+              *ngComponentOutlet="row.component; injector: row.injector"
+            ></ng-container>
+          </div>
+        } @else {
+          @for (line of row.lines; track line.key) {
+            @if ($index > 0) {
+              {{ line.value }}
+            }
+          }
+        }
+        <div matListItemMeta>
+          <ng-content matListItemAction>
+            <lab-mini-fab-button icon="edit" arialLabel="Edit">
+            </lab-mini-fab-button>
+          </ng-content>
+        </div>
+      </mat-list-item>
+    }
+  </mat-list>
 }

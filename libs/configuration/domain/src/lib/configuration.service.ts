@@ -1,11 +1,11 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable } from "@angular/core";
 import {
   BASE_CONFIGURATION,
   BaseConfiguration,
-} from '@configuration/infrastructure';
+} from "@configuration/infrastructure";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class ConfigurationService {
   private baseConfiguration = inject(BASE_CONFIGURATION);
