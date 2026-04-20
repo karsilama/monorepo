@@ -11,16 +11,15 @@ export class TodayDate extends HTMLElement {
       <style>
         :host {
           position: fixed;
-          top: 10px;
-          right: 20px;
-          font-family: sans-serif;
-          font-size: 16px;
+          top: 0;
+          right: 4px;
           color: #333;
           background: white;
-          padding: 8px 12px;
+          padding: 4px 8px;
           border-radius: 6px;
           box-shadow: 0 2px 8px rgba(0,0,0,0.1);
           z-index: 1000;
+          font-size: 10px;
         }
       </style>
       <div id="datetime"></div>
