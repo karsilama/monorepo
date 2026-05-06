@@ -6,7 +6,6 @@ import {
   ApiParam,
   ApiTags,
 } from "@nestjs/swagger";
-import { AppService } from "./app.service";
 import {
   notFoundResponseUserById,
   okResponseUserAll,
@@ -14,18 +13,19 @@ import {
   operationsUserAll,
   operationUserById,
   paramUserById,
-} from "./users/constants";
+} from "./user-swagger.constants";
+import { UserService } from "./user.service";
 
 @ApiTags("users")
 @Controller("users")
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export class UserController {
+  constructor(private readonly userService: UserService) {}
 
   @Get()
   @ApiOperation(operationsUserAll)
   @ApiOkResponse(okResponseUserAll)
   public getUsers(@Req() _: Request) {
-    return this.appService.getUsers();
+    return this.userService.getUsers();
   }
 
   @Get(":id")
@@ -34,6 +34,6 @@ export class AppController {
   @ApiOkResponse(okResponseUserById)
   @ApiNotFoundResponse(notFoundResponseUserById)
   public getUserById(@Param("id") id: number) {
-    return this.appService.getUserById(id);
+    return this.userService.getUserById(id);
   }
 }

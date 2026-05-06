@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { User, UserDomainModel } from '@users/infrastructure';
-import { Model } from 'mongoose';
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { UserDomainModel } from "@users/infrastructure";
+import { Model } from "mongoose";
+import { User } from "./user.schema";
 
 @Injectable()
-export class UsersRepository {
+export class UserRepository {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
   /**
@@ -32,7 +33,7 @@ export class UsersRepository {
    * Find users by role
    */
   async findByRole(
-    role: 'admin' | 'moderator' | 'user',
+    role: "admin" | "moderator" | "user",
   ): Promise<UserDomainModel[]> {
     return this.userModel.find({ role }).lean().exec();
   }

@@ -1,8 +1,8 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
-import { UserDomainModel } from './models';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { UserDomainModel } from "@users/infrastructure";
+import { Document } from "mongoose";
 
-@Schema({ collection: 'users' })
+@Schema({ collection: "users" })
 export class User extends Document implements UserDomainModel {
   @Prop({ required: true, unique: true })
   id?: number;
@@ -19,8 +19,8 @@ export class User extends Document implements UserDomainModel {
   @Prop()
   age?: number;
 
-  @Prop({ enum: ['male', 'female'] })
-  gender?: 'male' | 'female';
+  @Prop({ enum: ["male", "female"] })
+  gender?: "male" | "female";
 
   @Prop()
   email?: string;
@@ -116,8 +116,8 @@ export class User extends Document implements UserDomainModel {
     network: string;
   };
 
-  @Prop({ enum: ['admin', 'moderator', 'user'] })
-  role?: 'admin' | 'moderator' | 'user';
+  @Prop({ enum: ["admin", "moderator", "user"] })
+  role?: "admin" | "moderator" | "user";
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
