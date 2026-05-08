@@ -1,3 +1,7 @@
-# forms-feature
+# Forms | feature lib
 
-This library was generated with [Nx](https://nx.dev).
+## Lab form search feature
+
+**LabFormSearch** Performs signal debounce before search
+
+
