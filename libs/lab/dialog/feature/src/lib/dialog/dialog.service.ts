@@ -1,14 +1,14 @@
-import { ComponentType } from '@angular/cdk/overlay';
-import { inject, Injectable } from '@angular/core';
+import { ComponentType } from "@angular/cdk/overlay";
+import { inject, Injectable } from "@angular/core";
 import {
   MatDialog,
   MatDialogConfig,
   MatDialogRef,
-} from '@angular/material/dialog';
-import { Dialog } from './models';
+} from "@angular/material/dialog";
+import { Dialog } from "./models";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class DialogService<TData = unknown, TResult = unknown> {
   readonly matDialog = inject(MatDialog);

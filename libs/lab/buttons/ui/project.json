@@ -2,7 +2,7 @@
   "name": "lab-buttons-ui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "lab/buttons/ui/src",
-  "prefix": "lib",
+  "prefix": "lab",
   "projectType": "library",
   "tags": ["scope:lab", "type:ui"],
   "targets": {

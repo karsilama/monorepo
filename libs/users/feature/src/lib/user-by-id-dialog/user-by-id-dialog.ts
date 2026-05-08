@@ -1,32 +1,32 @@
-import { Dialog } from '@angular/cdk/dialog';
+import { Dialog } from "@angular/cdk/dialog";
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
   signal,
-} from '@angular/core';
+} from "@angular/core";
 import {
   email,
   form,
   FormField,
   maxLength,
   required,
-} from '@angular/forms/signals';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { Store } from '@ngrx/store';
-import { LabButton } from 'libs/lab/buttons/ui/src';
-import { saveUserById } from 'libs/users/+state/src';
+} from "@angular/forms/signals";
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { Store } from "@ngrx/store";
+import { LabButton } from "libs/lab/buttons/ui/src";
+import { saveUserById } from "libs/users/+state/src";
 
 @Component({
-  selector: 'users-edit-dialog',
+  selector: "users-user-by-id-dialog",
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'block m-20',
+    class: "block m-20",
   },
   imports: [MatFormFieldModule, FormField, MatInputModule, LabButton],
-  templateUrl: './edit-dialog.html',
+  templateUrl: "./user-by-id-dialog.html",
 })
 export class UserEditDialog {
   private readonly data = inject(MAT_DIALOG_DATA);
@@ -38,9 +38,9 @@ export class UserEditDialog {
    */
 
   public userModel = signal({
-    firstName: this.data?.firstName ?? '',
-    lastName: this.data?.lastName ?? '',
-    email: this.data?.email ?? '',
+    firstName: this.data?.firstName ?? "",
+    lastName: this.data?.lastName ?? "",
+    email: this.data?.email ?? "",
   });
 
   /**
@@ -50,17 +50,17 @@ export class UserEditDialog {
     /**
      * Required fields
      */
-    required(schema.email, { message: 'Enter a valid email' });
+    required(schema.email, { message: "Enter a valid email" });
 
     /**
      * Validators
      */
     email(schema.email, {
-      message: 'Enter a valid email address',
+      message: "Enter a valid email address",
     });
 
     maxLength(schema.firstName, 200, {
-      message: 'Enter 200 characters length',
+      message: "Enter 200 characters length",
     });
 
     maxLength(schema.lastName, 200);

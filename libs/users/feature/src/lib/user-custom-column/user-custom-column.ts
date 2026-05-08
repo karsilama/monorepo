@@ -14,7 +14,4 @@ import { DEFAULT_AVATAR } from "./user-custom-column.constant";
 export class UserCustomColumn {
   public user = inject(LIST_ROW_CONTEXT) as UserDomainModel;
   public defaultAvatar = DEFAULT_AVATAR;
-  constructor() {
-    console.log(this.user);
-  }
 }

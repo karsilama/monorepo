@@ -1,7 +1,8 @@
 @if (data()) {
+  <lab-form-search (executed)="onSearchChanges($event)"></lab-form-search>
   <div class="flex flex-1 h-full overflow-hidden">
     <lab-list
-      [data]="computedData()"
+      [data]="filteredData()"
       (executed)="onExecuted($event)"
     ></lab-list>
   </div>

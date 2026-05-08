@@ -1,12 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { ConfigurationService } from '@configuration/domain';
-import { DialogService } from '@lab/dialog/feature';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { UserDomainModel, UsersResponse } from '@users/infrastructure';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
-import * as UsersActions from './users.actions';
+import { HttpClient } from "@angular/common/http";
+import { inject, Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { ConfigurationService } from "@configuration/domain";
+import { DialogService } from "@lab/dialog/feature";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { UserDomainModel, UsersResponse } from "@users/infrastructure";
+import { catchError, map, of, switchMap, tap } from "rxjs";
+import * as UsersActions from "./users.actions";
 
 @Injectable()
 export class UsersEffects {
@@ -126,7 +126,7 @@ export class UsersEffects {
       this.actions$.pipe(
         ofType(UsersActions.navigateUserAll),
         map(() => {
-          this.router.navigateByUrl('users');
+          this.router.navigateByUrl("users");
           return UsersActions.requestUsers({ pageSize: 5 });
         }),
       ),

@@ -3,15 +3,15 @@ import {
   Component,
   effect,
   inject,
-} from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { MatCardModule } from '@angular/material/card';
-import { ActivatedRoute } from '@angular/router';
-import { LabButton } from 'libs/lab/buttons/ui/src';
-import { DialogService } from 'libs/lab/dialog/feature/src';
-import { UsersFacade } from 'libs/users/+state/src';
-import { UserEditDialog } from '../edit-dialog/edit-dialog';
-import { USER_BY_ID_DIALOG } from './user-by-id.constant';
+} from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
+import { MatCardModule } from "@angular/material/card";
+import { ActivatedRoute } from "@angular/router";
+import { LabButton } from "libs/lab/buttons/ui/src";
+import { DialogService } from "libs/lab/dialog/feature/src";
+import { UsersFacade } from "libs/users/+state/src";
+import { UserEditDialog } from "../user-by-id-dialog/user-by-id-dialog";
+import { USER_BY_ID_DIALOG } from "./user-by-id.constant";
 
 export interface UseData {
   id: string;
@@ -20,11 +20,11 @@ export interface UseData {
 }
 
 @Component({
-  selector: 'users-by-id',
-  templateUrl: './user-by-id.html',
+  selector: "users-by-id",
+  templateUrl: "./user-by-id.html",
   imports: [MatCardModule, LabButton],
   host: {
-    class: 'block w-full md:max-w-[300px] m-auto p-4',
+    class: "block w-full md:max-w-[300px] m-auto p-4",
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -52,7 +52,7 @@ export class UserById {
     });
 
     effect(() => {
-      const id = this.params()?.get('id');
+      const id = this.params()?.get("id");
       if (id) {
         this.user.getUserById(id);
       }
@@ -71,6 +71,6 @@ export class UserById {
    * */
 
   public editUser() {
-    this.dialog.openDialog('user-edit', this.selectedUser());
+    this.dialog.openDialog(USER_BY_ID_DIALOG, this.selectedUser());
   }
 }

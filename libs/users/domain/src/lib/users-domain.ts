@@ -34,12 +34,12 @@ export const getUserAllLines = (
 
   displayFields.forEach((field) => {
     if (typeof field === "string") {
-      lines.push({ key: field, value: getValue(userRecord, field) });
+      lines.push({ key: field, value: getValue(userRecord, field) ?? "" });
     } else if (Array.isArray(field)) {
       field.forEach((nestedField) => {
         lines.push({
           key: nestedField,
-          value: getValue(userRecord, nestedField),
+          value: getValue(userRecord, nestedField) ?? "",
         });
       });
     }

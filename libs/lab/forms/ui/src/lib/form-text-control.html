@@ -1,0 +1,13 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{ label() }}</mat-label>
+  <input
+    matInput
+    placeholder="{{ placeholder() }}"
+    type="text"
+    [formField]="formField()"
+  />
+  @if (iconSuffix()) {
+    <mat-icon matSuffix>{{ iconSuffix() }}</mat-icon>
+  }
+  <mat-hint>{{ hint() }}</mat-hint>
+</mat-form-field>

@@ -1,7 +1,7 @@
 import { Injector, Type } from "@angular/core";
 export interface ListLine {
   key: string;
-  value: string | undefined;
+  value: string;
 }
 export type ListRowContext = Record<string, unknown>;
 export interface ListRow {

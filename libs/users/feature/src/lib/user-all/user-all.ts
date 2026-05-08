@@ -1,6 +1,6 @@
 import { Component, computed, inject } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { ListPage } from "@lab/list-page/feature";
+import { LabListPage } from "@lab/list-page/feature";
 import { List, ListRow } from "@lab/list-page/infrastructure";
 import { Divider } from "@lab/ui";
 import { getUserAllLines } from "@users/domain";
@@ -10,7 +10,7 @@ import { USERS_LIST_PAGE_ID } from "./user-all.constant";
 
 @Component({
   selector: "users-all",
-  imports: [RouterModule, ListPage, Divider],
+  imports: [RouterModule, LabListPage, Divider],
   templateUrl: "./user-all.html",
   host: {
     class: "flex justify-center items-center",

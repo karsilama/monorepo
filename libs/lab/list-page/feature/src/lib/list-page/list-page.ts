@@ -5,25 +5,34 @@ import {
   inject,
   Injector,
   input,
+  linkedSignal,
   output,
+  signal,
 } from "@angular/core";
+import { LabFormSearch } from "@lab/forms/feature";
 import { List, ListRow } from "@lab/list-page/infrastructure";
 import { LabList } from "@lab/list-page/ui";
 import { LIST_ROW_CONTEXT } from "../list-page-token";
 
 @Component({
   selector: "lab-list-page",
-  imports: [LabList],
+  imports: [LabList, LabFormSearch],
   host: {
     class: "flex flex-1 w-full md:max-w-[9200px] m-auto",
   },
   templateUrl: "./list-page.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListPage {
+export class LabListPage {
+  public searchTerm = signal<string>("");
+
   public data = input.required<List>();
 
-  public computedData = computed(() => {
+  /**
+   * Add injector context for each frow
+   */
+
+  public computedData = computed<List>(() => {
     const data = this.data();
     return {
       ...data,
@@ -34,7 +43,27 @@ export class ListPage {
     };
   });
 
+  /**
+   * Derivate signal by filtering rows
+   */
+
+  public filteredData = linkedSignal<List>(() => {
+    const computedData = this.computedData();
+    return {
+      ...computedData,
+      rows: computedData.rows.filter((x) =>
+        x.lines.some((line) =>
+          new RegExp(this.searchTerm(), "i").test(line.value?.toLowerCase()),
+        ),
+      ),
+    };
+  });
+
   public executed = output<ListRow>();
+
+  public onSearchChanges(e: string) {
+    this.searchTerm.set(e);
+  }
 
   public onExecuted(e: ListRow) {
     this.executed.emit(e);

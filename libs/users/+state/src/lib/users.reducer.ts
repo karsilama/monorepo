@@ -1,10 +1,10 @@
-import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
-import { Action, createReducer, on } from '@ngrx/store';
+import { EntityAdapter, EntityState, createEntityAdapter } from "@ngrx/entity";
+import { Action, createReducer, on } from "@ngrx/store";
 
-import { UserDomainModel } from '@users/infrastructure';
-import * as UsersActions from './users.actions';
+import { UserDomainModel } from "@users/infrastructure";
+import * as UsersActions from "./users.actions";
 
-export const USERS_FEATURE_KEY = 'users';
+export const USERS_FEATURE_KEY = "users";
 export interface UsersState extends EntityState<UserDomainModel> {
   selectedId?: string | number;
   selectedUser: UserDomainModel | null;
@@ -31,7 +31,7 @@ export const initialUsersState: UsersState = usersAdapter.getInitialState({
    * Must be requested
    * @todo
    */
-  displayFields: [['company.name', 'company.title'], 'email'],
+  displayFields: [["company.name", "company.title"], "email"],
 });
 
 const reducer = createReducer(
@@ -61,13 +61,20 @@ const reducer = createReducer(
     ...state,
     userByIdLoading: true,
   })),
-  on(UsersActions.saveUserById, (state) => {
+  on(UsersActions.saveUserById, (state, formModel) => {
     return {
       ...state,
       /**
        * @todo
        * Real user by id update
+       * Meanwhile, optimistic update
        */
+      selectedUser: {
+        ...state.selectedUser,
+        firstName: formModel.formModel.firstName,
+        lastName: formModel.formModel.lastName,
+        email: formModel.formModel.email,
+      },
       userByIdLoading: true,
     };
   }),
