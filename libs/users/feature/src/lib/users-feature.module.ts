@@ -1,12 +1,12 @@
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { isDevMode, NgModule } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { AuthInterceptor } from '@auth/domain';
-import { provideEffects } from '@ngrx/effects';
-import { provideState } from '@ngrx/store';
-import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { fromUsers, UsersEffects } from 'libs/users/+state/src';
-import { UsersRoutes } from './users.routes';
+import { provideHttpClient, withInterceptors } from "@angular/common/http";
+import { isDevMode, NgModule } from "@angular/core";
+import { provideRouter } from "@angular/router";
+import { AuthInterceptor, ErrorInterceptor } from "@auth/domain";
+import { provideEffects } from "@ngrx/effects";
+import { provideState } from "@ngrx/store";
+import { provideStoreDevtools } from "@ngrx/store-devtools";
+import { fromUsers, UsersEffects } from "libs/users/+state/src";
+import { UsersRoutes } from "./users.routes";
 
 @NgModule({
   providers: [
@@ -19,7 +19,7 @@ import { UsersRoutes } from './users.routes';
       trace: false,
     }),
     provideRouter(UsersRoutes),
-    provideHttpClient(withInterceptors([AuthInterceptor])),
+    provideHttpClient(withInterceptors([AuthInterceptor, ErrorInterceptor])),
   ],
 })
 export class UsersFeatureModule {}

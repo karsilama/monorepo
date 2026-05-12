@@ -1,2 +1,3 @@
-export * from './lib/auth/src/auth-service';
-export * from './lib/auth/src/auth-interceptor';
+export * from "./lib/auth/auth-interceptor";
+export * from "./lib/auth/auth-service";
+export * from "./lib/error/error-interceptor";
