@@ -18,7 +18,7 @@ import { LIST_ROW_CONTEXT } from "../list-page-token";
   selector: "lab-list-page",
   imports: [LabList, LabFormSearch],
   host: {
-    class: "flex flex-1 w-full md:max-w-[9200px] m-auto",
+    class: "flex flex-1 w-full md:max-w-[920px] m-auto",
   },
   templateUrl: "./list-page.html",
   changeDetection: ChangeDetectionStrategy.OnPush,

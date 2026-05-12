@@ -1,3 +1,9 @@
-# forms-ui
+# Forms | UI lib
 
-This library was generated with [Nx](https://nx.dev).
+## Dumb **LabFormTextControl** component
+
+Inputs
+- label: String
+- placeholder: String
+- inputSuffix: String
+- hint: String
