@@ -153,9 +153,9 @@ Lab is an experimental module libraries aims to exploring the newest front end t
     ┌───────────▼────────────┐           │
     │                        │           ├─── USERS
     │   profile              │           │     ├── +state/       (NgRx)
-    │   ├── src/             │           │     ├── feature/      (Orquestación - Smart Components)
-    │   ├── angular.json     │           │     ├── infrastructure/ (interfaces, types, contratos)
-    │   └── env config       │           │     └── domain/       (lógica negocio)
+    │   ├── src/             │           │     ├── feature/      (Presentational - Smart Components)
+    │   ├── angular.json     │           │     ├── infrastructure/ (interfaces, types, contracts)
+    │   └── env config       │           │     └── domain/       (Business logic)
     │                        │           │
     └────────────────────────┘           ├─── LAB (Shared Library - Material wrappers)
                  ▲                        │     ├── ui/           (Dumbs component)
@@ -259,7 +259,7 @@ MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])
 Import users data from JSON file using mongoimport:
 
 ```bash
-mongoimport --uri "mongodb+srv://<user>:<password>@cluster0.vbsabhz.mongodb.net/profile" \
+mongoimport --uri "mongodb+srv://<user>:<password>@<cluster>.mongodb.net/profile" \
   --collection users \
   --file scripts/users.json \
   --jsonArray
