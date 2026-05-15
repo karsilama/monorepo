@@ -1,81 +1,91 @@
-import nx from '@nx/eslint-plugin';
+import nx from "@nx/eslint-plugin";
 
 export default [
-  ...nx.configs['flat/base'],
-  ...nx.configs['flat/typescript'],
-  ...nx.configs['flat/javascript'],
+  ...nx.configs["flat/base"],
+  ...nx.configs["flat/typescript"],
+  ...nx.configs["flat/javascript"],
   {
-    ignores: ['**/dist', '**/out-tsc'],
+    ignores: ["**/dist", "**/out-tsc", "**/vitest.config.*.timestamp*"],
   },
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
     rules: {
-      '@nx/enforce-module-boundaries': [
-        'error',
+      "@nx/enforce-module-boundaries": [
+        "error",
         {
           enforceBuildableLibDependency: true,
-          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
+          allow: ["^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$"],
           depConstraints: [
             {
-              sourceTag: 'type:domain',
-              onlyDependOnLibsWithTags: ['type:util'],
+              sourceTag: "type:domain",
+              onlyDependOnLibsWithTags: ["type:util"],
             },
             {
-              sourceTag: 'type:ui',
-              onlyDependOnLibsWithTags: ['type:ui', 'type:util', 'type:domain'],
+              sourceTag: "type:ui",
+              onlyDependOnLibsWithTags: ["type:ui", "type:util", "type:domain"],
             },
             {
-              sourceTag: 'type:infrastructure',
-              onlyDependOnLibsWithTags: ['type:domain', 'type:util'],
+              sourceTag: "type:infrastructure",
+              onlyDependOnLibsWithTags: ["type:domain", "type:util"],
             },
             {
-              sourceTag: 'type:state',
+              sourceTag: "type:state",
               onlyDependOnLibsWithTags: [
-                'type:domain',
-                'type:util',
-                'type:infrastructure',
+                "type:domain",
+                "type:util",
+                "type:infrastructure",
               ],
             },
             {
-              sourceTag: 'type:feature',
+              sourceTag: "type:feature",
               onlyDependOnLibsWithTags: [
-                'type:domain',
-                'type:ui',
-                'type:util',
-                'type:infrastructure',
-                'type:state',
+                "type:domain",
+                "type:ui",
+                "type:util",
+                "type:infrastructure",
+                "type:state",
               ],
             },
             {
-              sourceTag: 'type:app',
+              sourceTag: "type:app",
               onlyDependOnLibsWithTags: [
-                'type:feature',
-                'type:ui',
-                'type:util',
-                'type:domain',
-                'type:infrastructure',
-                'type:state',
+                "type:feature",
+                "type:ui",
+                "type:util",
+                "type:domain",
+                "type:infrastructure",
+                "type:state",
               ],
             },
             {
-              sourceTag: 'type:util',
-              onlyDependOnLibsWithTags: ['type:util'],
+              sourceTag: "type:util",
+              onlyDependOnLibsWithTags: ["type:util"],
             },
             {
-              sourceTag: 'scope:users',
-              onlyDependOnLibsWithTags: ['scope:users', 'scope:auth', 'scope:lab', 'type:util'],
+              sourceTag: "scope:users",
+              onlyDependOnLibsWithTags: [
+                "scope:users",
+                "scope:auth",
+                "scope:lab",
+                "type:util",
+              ],
             },
             {
-              sourceTag: 'scope:auth',
-              onlyDependOnLibsWithTags: ['scope:auth', 'scope:users', 'scope:lab', 'type:util'],
+              sourceTag: "scope:auth",
+              onlyDependOnLibsWithTags: [
+                "scope:auth",
+                "scope:users",
+                "scope:lab",
+                "type:util",
+              ],
             },
             {
-              sourceTag: 'scope:lab',
-              onlyDependOnLibsWithTags: ['scope:lab', 'type:util'],
+              sourceTag: "scope:lab",
+              onlyDependOnLibsWithTags: ["scope:lab", "type:util"],
             },
             {
-              sourceTag: 'scope:shared',
-              onlyDependOnLibsWithTags: ['scope:shared', 'type:util'],
+              sourceTag: "scope:shared",
+              onlyDependOnLibsWithTags: ["scope:shared", "type:util"],
             },
           ],
         },
@@ -84,24 +94,24 @@ export default [
   },
   {
     files: [
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.cts',
-      '**/*.mts',
-      '**/*.js',
-      '**/*.jsx',
-      '**/*.cjs',
-      '**/*.mjs',
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.cts",
+      "**/*.mts",
+      "**/*.js",
+      "**/*.jsx",
+      "**/*.cjs",
+      "**/*.mjs",
     ],
     // Override or add rules here
     rules: {},
   },
   {
-    files: ['**/*.json'],
+    files: ["**/*.json"],
     // Override or add rules here
     rules: {},
     languageOptions: {
-      parser: await import('jsonc-eslint-parser'),
+      parser: await import("jsonc-eslint-parser"),
     },
   },
 ];

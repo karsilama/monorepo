@@ -1,15 +1,22 @@
-import { inject, Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { inject, Injectable } from "@angular/core";
+import { Store } from "@ngrx/store";
 
-import { UserDomainModel, UserFormModel } from '@users/infrastructure';
-import * as UsersActions from './users.actions';
-import * as UsersSelectors from './users.selectors';
+import { UserDomainModel, UserFormModel } from "@users/infrastructure";
+import * as UsersActions from "./users.actions";
+import * as UsersSelectors from "./users.selectors";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UsersFacade {
   private store = inject(Store);
+
+  /**
+   * @return {string} List page searchTerm
+   */
+  public readonly searchTerm = this.store.selectSignal(
+    UsersSelectors.searchTerm,
+  );
 
   /**
    * @return {string[]} recursive key.value string ex: 'field.subField.anotherSubField'

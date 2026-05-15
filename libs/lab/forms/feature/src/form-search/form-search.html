@@ -2,5 +2,8 @@
   label="search"
   placeholder="search"
   hint="Find user"
+  iconSuffix="search"
+  [showClearField]="!!control().search.length"
+  (clearExecuted)="onCLearField()"
   [formField]="form.search"
 ></lab-form-text-control>

@@ -4,10 +4,7 @@
     "outDir": "../../../../dist/out-tsc",
     "declaration": true,
     "declarationMap": true,
-    "inlineSources": true,
-    "types": [],
-    "ignoreDeprecations": "6.0",
-    "module": "esnext"
+    "inlineSources": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"]

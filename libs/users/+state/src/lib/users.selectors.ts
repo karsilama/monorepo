@@ -1,10 +1,15 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { USERS_FEATURE_KEY, UsersState, usersAdapter } from './users.reducer';
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { USERS_FEATURE_KEY, UsersState, usersAdapter } from "./users.reducer";
 
 export const selectUsersState =
   createFeatureSelector<UsersState>(USERS_FEATURE_KEY);
 
 const { selectAll, selectEntities } = usersAdapter.getSelectors();
+
+export const searchTerm = createSelector(
+  selectUsersState,
+  (state: UsersState) => state.searchTerm,
+);
 
 export const userByIdLoading = createSelector(
   selectUsersState,

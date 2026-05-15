@@ -1,4 +1,4 @@
-<mat-form-field appearance="outline">
+<mat-form-field appearance="outline" class="relative">
   <mat-label>{{ label() }}</mat-label>
   <input
     matInput
@@ -10,4 +10,15 @@
     <mat-icon matSuffix>{{ iconSuffix() }}</mat-icon>
   }
   <mat-hint>{{ hint() }}</mat-hint>
+
+  @if (showClearField()) {
+    <button
+      matFab
+      class="absolute right-0"
+      aria-label="Clear text field"
+      (click)="onClearField()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  }
 </mat-form-field>

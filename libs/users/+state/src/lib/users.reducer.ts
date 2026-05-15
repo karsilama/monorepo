@@ -1,6 +1,7 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from "@ngrx/entity";
 import { Action, createReducer, on } from "@ngrx/store";
 
+import { searchTermChanges } from "@lab/list-page/feature";
 import { UserDomainModel } from "@users/infrastructure";
 import * as UsersActions from "./users.actions";
 
@@ -10,6 +11,7 @@ export interface UsersState extends EntityState<UserDomainModel> {
   selectedUser: UserDomainModel | null;
   displayFields: (string | string[])[];
   loaded: boolean;
+  searchTerm: string;
   userByIdLoading: boolean;
   error?: string | null;
 }
@@ -26,6 +28,7 @@ export const initialUsersState: UsersState = usersAdapter.getInitialState({
   loaded: false,
   userByIdLoading: false,
   selectedUser: null,
+  searchTerm: "",
 
   /**
    * Must be requested
@@ -40,6 +43,10 @@ const reducer = createReducer(
     ...state,
     loaded: false,
     error: null,
+  })),
+  on(searchTermChanges, (state, { value }) => ({
+    ...state,
+    searchTerm: value,
   })),
   on(UsersActions.loadUsersSuccess, (state, { users }) =>
     usersAdapter.setAll(users, { ...state, loaded: true }),

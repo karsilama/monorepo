@@ -38,7 +38,8 @@
         "libs/lab/list-page/infrastructure/src/index.ts"
       ],
       "@lab/forms/feature": ["libs/lab/forms/feature/src/index.ts"],
-      "@lab/forms/ui": ["libs/lab/forms/ui/src/index.ts"]
+      "@lab/forms/ui": ["libs/lab/forms/ui/src/index.ts"],
+      "@lab/util": ["libs/lab/util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

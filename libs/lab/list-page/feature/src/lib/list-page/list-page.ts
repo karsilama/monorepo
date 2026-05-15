@@ -12,7 +12,13 @@ import {
 import { LabFormSearch } from "@lab/forms/feature";
 import { List, ListRow } from "@lab/list-page/infrastructure";
 import { LabList } from "@lab/list-page/ui";
+import { createAction, props, Store } from "@ngrx/store";
 import { LIST_ROW_CONTEXT } from "../list-page-token";
+
+export const searchTermChanges = createAction(
+  "[List Page] Search Term Changes",
+  props<{ value: string }>(),
+);
 
 @Component({
   selector: "lab-list-page",
@@ -24,6 +30,8 @@ import { LIST_ROW_CONTEXT } from "../list-page-token";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LabListPage {
+  public store = inject(Store);
+
   public searchTerm = signal<string>("");
 
   public data = input.required<List>();
@@ -61,8 +69,13 @@ export class LabListPage {
 
   public executed = output<ListRow>();
 
-  public onSearchChanges(e: string) {
-    this.searchTerm.set(e);
+  public onSearchChanges(value: string) {
+    this.searchTerm.set(value);
+    this.store.dispatch(
+      searchTermChanges({
+        value,
+      }),
+    );
   }
 
   public onExecuted(e: ListRow) {

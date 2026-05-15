@@ -34,4 +34,11 @@ export class LabFormSearch {
   constructor() {
     effect(() => this.executed.emit(this.form().controlValue().search));
   }
+
+  /**
+   * Signal update
+   */
+  public onCLearField() {
+    this.control.update((control) => ({ ...control, search: "" }));
+  }
 }

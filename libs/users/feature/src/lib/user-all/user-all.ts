@@ -3,8 +3,8 @@ import { RouterModule } from "@angular/router";
 import { LabListPage } from "@lab/list-page/feature";
 import { List, ListRow } from "@lab/list-page/infrastructure";
 import { Divider } from "@lab/ui";
+import { UsersFacade } from "@users/+state";
 import { getUserAllLines } from "@users/domain";
-import { UsersFacade } from "libs/users/+state/src";
 import { UserCustomColumn } from "../user-custom-column/user-custom-column";
 import { USERS_LIST_PAGE_ID } from "./user-all.constant";
 
@@ -49,7 +49,7 @@ export class UserAll {
         component: UserCustomColumn,
         metadata: user,
       })),
-    } as List;
+    } as unknown as List;
   });
 
   /**

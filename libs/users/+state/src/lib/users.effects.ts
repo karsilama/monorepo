@@ -3,6 +3,7 @@ import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { ConfigurationService } from "@configuration/domain";
 import { DialogService } from "@lab/dialog/feature";
+import { searchTermChanges } from "@lab/list-page/feature";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { UserDomainModel, UsersResponse } from "@users/infrastructure";
 import { catchError, map, of, switchMap, tap } from "rxjs";
@@ -131,6 +132,17 @@ export class UsersEffects {
         }),
       ),
     { dispatch: true },
+  );
+
+  searchTermChanges$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(searchTermChanges),
+        tap(({ value }) => {
+          console.log(value);
+        }),
+      ),
+    { dispatch: false },
   );
 
   /**
