@@ -1,4 +1,4 @@
-import { Injector, InputSignal, Type } from "@angular/core";
+import { Injector, Type } from "@angular/core";
 export interface ListLine {
   key: string;
   value: string;
@@ -8,8 +8,7 @@ export interface ListRow {
   id: string;
   lines: ListLine[];
   injector?: Injector | undefined;
-  component?: Type<unknown> | null;
-  inputs?: Record<string, InputSignal<unknown>> | null;
+  component: Type<unknown> | null;
   metadata: ListRowContext;
 }
 export interface List {
