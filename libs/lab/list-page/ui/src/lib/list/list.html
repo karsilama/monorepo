@@ -2,7 +2,7 @@
   <mat-list class="flex flex-1">
     @for (row of data().rows; track row.id) {
       <mat-list-item
-        class="w-full !min-h-0 !h-fit hover:bg-neutral-100"
+        class="w-full !min-h-0 !h-fit !cursor-pointer hover:bg-neutral-100"
         (click)="onClick(row)"
       >
         @if (!!row?.component) {
