@@ -1,5 +1,5 @@
-import { Component, input, output } from "@angular/core";
-import { Field, FormField } from "@angular/forms/signals";
+import { Component, effect, input, output, signal } from "@angular/core";
+import { form, FormField, min } from "@angular/forms/signals";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
@@ -16,16 +16,27 @@ import { MatInputModule } from "@angular/material/input";
   templateUrl: "./form-text-control.html",
 })
 export class LabFormTextControl {
-  public readonly formField = input.required<Field<string, string | number>>();
   public readonly label = input.required<string>();
   public readonly placeholder = input.required<string>();
   public readonly hint = input.required<string>();
   public readonly iconSuffix = input<string>();
   public readonly showClearField = input<boolean>();
-  public clearExecuted = output<void>();
+
+  public onExecuted = output<string>();
+
+  public formSchema = signal({
+    inputValue: "",
+  });
+
+  public form = form(this.formSchema, (schema) => {
+    min(schema.inputValue, 1);
+  });
+
+  constructor() {
+    effect(() => this.onExecuted.emit(this.form().value().inputValue));
+  }
 
   public onClearField() {
-    console.log("click");
-    this.clearExecuted.emit();
+    this.form().reset();
   }
 }

@@ -3,7 +3,5 @@
   placeholder="search"
   hint="Find user"
   iconSuffix="search"
-  [showClearField]="!!control().search.length"
-  (clearExecuted)="onCLearField()"
-  [formField]="form.search"
+  (onExecuted)="onExecuted($event)"
 ></lab-form-text-control>

@@ -4,7 +4,7 @@
     matInput
     placeholder="{{ placeholder() }}"
     type="text"
-    [formField]="formField()"
+    [formField]="form.inputValue"
   />
   @if (iconSuffix()) {
     <mat-icon matSuffix>{{ iconSuffix() }}</mat-icon>

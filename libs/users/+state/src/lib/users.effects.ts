@@ -6,7 +6,7 @@ import { DialogService } from "@lab/dialog/feature";
 import { searchTermChanges } from "@lab/list-page/feature";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { UserDomainModel, UsersResponse } from "@users/infrastructure";
-import { catchError, map, of, switchMap, tap } from "rxjs";
+import { catchError, debounceTime, map, of, switchMap, tap } from "rxjs";
 import * as UsersActions from "./users.actions";
 
 @Injectable()
@@ -25,6 +25,7 @@ export class UsersEffects {
     () =>
       this.actions$.pipe(
         ofType(UsersActions.requestUsers),
+        debounceTime(1000), // loading dev-experience
         switchMap(() =>
           this.http
             .get<UsersResponse>(
