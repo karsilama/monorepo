@@ -1,15 +1,19 @@
+import { httpResource } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   effect,
   inject,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { MatCardModule } from "@angular/material/card";
+import { MatIconModule } from "@angular/material/icon";
 import { ActivatedRoute } from "@angular/router";
-import { LabButton } from "libs/lab/buttons/ui/src";
-import { DialogService } from "libs/lab/dialog/feature/src";
-import { UsersFacade } from "libs/users/+state/src";
+import { LabButton } from "@lab/buttons/ui";
+import { DialogService } from "@lab/dialog/feature";
+import { Divider } from "@lab/ui";
+import { UsersFacade } from "@users/+state";
 import { UserEditDialog } from "../user-by-id-dialog/user-by-id-dialog";
 import { USER_BY_ID_DIALOG } from "./user-by-id.constant";
 
@@ -22,7 +26,7 @@ export interface UseData {
 @Component({
   selector: "users-by-id",
   templateUrl: "./user-by-id.html",
-  imports: [MatCardModule, LabButton],
+  imports: [MatCardModule, LabButton, Divider, MatIconModule],
   host: {
     class: "block w-full md:max-w-[300px] m-auto p-4",
   },
@@ -37,6 +41,15 @@ export class UserById {
 
   public readonly selectedUser = this.user.selectedUser;
   public readonly isLoading = this.user.isUserByIdLoading;
+
+  public status = httpResource(() => "https://dummyjson.com/products/1", {
+    defaultValue: null,
+  });
+
+  public hasStock = computed(() => {
+    const value = this.status.value() as { stock: number };
+    return value.stock > 0;
+  });
 
   /**
    * Represents a User edition

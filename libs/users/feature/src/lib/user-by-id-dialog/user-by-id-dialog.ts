@@ -11,13 +11,16 @@ import {
   FormField,
   maxLength,
   required,
+  validate,
 } from "@angular/forms/signals";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { LabButton } from "@lab/buttons/ui";
 import { Store } from "@ngrx/store";
-import { LabButton } from "libs/lab/buttons/ui/src";
-import { saveUserById } from "libs/users/+state/src";
+import { saveUserById } from "@users/+state";
+
+const emailPattern = new RegExp("\.com$");
 
 @Component({
   selector: "users-user-by-id-dialog",
@@ -64,6 +67,15 @@ export class UserEditDialog {
     });
 
     maxLength(schema.lastName, 200);
+
+    validate(schema.email, ({ value }) => {
+      return !emailPattern.test(value() as string)
+        ? {
+            message: "Email domain error found.",
+            kind: "domain",
+          }
+        : null;
+    });
   });
 
   public saveUser() {
