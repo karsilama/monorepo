@@ -1,35 +1,35 @@
 {
-  "name": "schematics",
+  "name": "generators",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/lab/schematics/src",
+  "sourceRoot": "libs/lab/generators/src",
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/lab/schematics",
-        "main": "libs/lab/schematics/src/index.ts",
-        "tsConfig": "libs/lab/schematics/tsconfig.lib.json",
+        "outputPath": "dist/libs/lab/generators",
+        "main": "libs/lab/generators/src/index.ts",
+        "tsConfig": "libs/lab/generators/tsconfig.lib.json",
         "assets": [
-          "libs/lab/schematics/*.md",
+          "libs/lab/generators/*.md",
           {
-            "input": "./libs/lab/schematics/src",
+            "input": "./libs/lab/generators/src",
             "glob": "**/!(*.ts)",
             "output": "./src"
           },
           {
-            "input": "./libs/lab/schematics/src",
+            "input": "./libs/lab/generators/src",
             "glob": "**/*.d.ts",
             "output": "./src"
           },
           {
-            "input": "./libs/lab/schematics",
+            "input": "./libs/lab/generators",
             "glob": "generators.json",
             "output": "."
           },
           {
-            "input": "./libs/lab/schematics",
+            "input": "./libs/lab/generators",
             "glob": "executors.json",
             "output": "."
           }
@@ -40,7 +40,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/lab/schematics/jest.config.cts"
+        "jestConfig": "libs/lab/generators/jest.config.cts"
       }
     }
   }
