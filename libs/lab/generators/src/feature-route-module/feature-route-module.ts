@@ -1,6 +1,6 @@
-import { formatFiles, generateFiles, names, Tree } from '@nx/devkit';
-import * as path from 'path';
-import { FeatureRouteModuleGeneratorSchema } from './schema';
+import { formatFiles, generateFiles, names, Tree } from "@nx/devkit";
+import * as path from "path";
+import { FeatureRouteModuleGeneratorSchema } from "./schema";
 
 export async function featureRouteModuleGenerator(
   tree: Tree,
@@ -10,10 +10,10 @@ export async function featureRouteModuleGenerator(
 
   const projectRoot = `${options.directory}/${nameVariants.fileName}`;
 
-  generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {
+  generateFiles(tree, path.join(__dirname, "files"), projectRoot, {
     ...options,
     ...nameVariants,
-    tmpl: '',
+    tmpl: "",
   });
 
   await formatFiles(tree);

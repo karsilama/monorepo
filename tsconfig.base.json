@@ -15,7 +15,7 @@
     "skipLibCheck": true,
     "strict": true,
     "skipDefaultLibCheck": true,
-    "types": ["jest"],
+    "types": ["jest", "node"],
     "baseUrl": ".",
     "paths": {
       "@configuration/domain": ["libs/configuration/domain/src/index.ts"],

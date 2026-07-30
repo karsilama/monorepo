@@ -6,8 +6,8 @@
       "description": "feature-route-module generator"
     },
     "lazy-page": {
-      "factory": "./lazy-page/lazy-page",
-      "schema": "./lazy-page/schema.json",
+      "factory": "./src/lazy-page/lazy-page.ts",
+      "schema": "./src/lazy-page/schema.json",
       "description": "lazy-page generator"
     }
   }
