@@ -13,7 +13,6 @@ export async function lazyPageGenerator(
   generateFiles(tree, path.join(__dirname, "files"), projectRoot, {
     ...options,
     ...nameVariants,
-    tmpl: "",
   });
 
   await formatFiles(tree);
