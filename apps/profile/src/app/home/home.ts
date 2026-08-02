@@ -1,4 +1,4 @@
-import { Component, inject, resource } from '@angular/core';
+import { Component, inject, resource, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,6 +9,7 @@ const matModules = [MatButtonModule, MatTabsModule, MatIconModule];
 @Component({
   selector: 'app-home',
   imports: [matModules, RouterLink],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './home.html',
 })
 export class Home {

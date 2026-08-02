@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptors } from "@angular/common/http";
+import { provideHttpClient, withInterceptors, withXhr } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { provideRouter } from "@angular/router";
 import { AuthInterceptor, ErrorInterceptor } from "@auth/domain";
@@ -12,7 +12,7 @@ import { UsersRoutes } from "./users.routes";
     provideState(fromUsers.USERS_FEATURE_KEY, fromUsers.usersReducer),
     provideEffects(UsersEffects),
     provideRouter(UsersRoutes),
-    provideHttpClient(withInterceptors([AuthInterceptor, ErrorInterceptor])),
+    provideHttpClient(withXhr(), withInterceptors([AuthInterceptor, ErrorInterceptor])),
   ],
 })
 export class UsersFeatureModule {}

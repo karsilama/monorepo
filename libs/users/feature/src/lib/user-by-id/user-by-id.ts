@@ -1,12 +1,7 @@
-import { httpResource } from "@angular/common/http";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  inject,
-} from "@angular/core";
+import { AsyncPipe } from "@angular/common";
+import { Component, effect, inject, injectAsync, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { MatAnchor } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { ActivatedRoute } from "@angular/router";
@@ -26,30 +21,33 @@ export interface UseData {
 @Component({
   selector: "users-by-id",
   templateUrl: "./user-by-id.html",
-  imports: [MatCardModule, LabButton, Divider, MatIconModule],
+  imports: [
+    MatCardModule,
+    LabButton,
+    Divider,
+    MatIconModule,
+    AsyncPipe,
+    MatAnchor,
+  ],
   host: {
     class: "block w-full md:max-w-[300px] m-auto p-4",
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserById {
   private dialog = inject(DialogService<UseData>);
   private user = inject(UsersFacade);
   private route = inject(ActivatedRoute);
 
+  public stock = signal(0);
+
+  public userByIdService = injectAsync(() =>
+    import("./user-by-id.service").then((x) => x.UserByIdService),
+  );
+
   public params = toSignal(this.route.paramMap);
 
   public readonly selectedUser = this.user.selectedUser;
   public readonly isLoading = this.user.isUserByIdLoading;
-
-  public status = httpResource(() => "https://dummyjson.com/products/1", {
-    defaultValue: null,
-  });
-
-  public hasStock = computed(() => {
-    const value = this.status.value() as { stock: number };
-    return value.stock > 0;
-  });
 
   /**
    * Represents a User edition
@@ -85,5 +83,12 @@ export class UserById {
 
   public editUser() {
     this.dialog.openDialog(USER_BY_ID_DIALOG, this.selectedUser());
+  }
+
+  public async checkStock(): Promise<void> {
+    const service = await this.userByIdService();
+    const value = service.status.value() as { stock: number };
+    console.log(value?.stock ?? 0);
+    this.stock.set(value?.stock ?? 0);
   }
 }

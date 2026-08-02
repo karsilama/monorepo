@@ -1,4 +1,4 @@
-import { provideHttpClient } from "@angular/common/http";
+import { provideHttpClient, withXhr } from "@angular/common/http";
 import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(appRoutes),
-    provideHttpClient(),
+    provideHttpClient(withXhr()),
     provideStore(),
     {
       provide: BASE_CONFIGURATION,

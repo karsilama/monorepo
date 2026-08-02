@@ -1,4 +1,4 @@
-import { Component, computed, inject } from "@angular/core";
+import { Component, computed, inject, ChangeDetectionStrategy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { LabListPage } from "@lab/list-page/feature";
 import { List, ListRow } from "@lab/list-page/infrastructure";
@@ -15,6 +15,7 @@ import { USERS_LIST_PAGE_ID } from "./user-all.constant";
   host: {
     class: "flex justify-center items-center",
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class UserAll {

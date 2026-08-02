@@ -1,5 +1,12 @@
-import { Component, effect, input, output, signal } from "@angular/core";
-import { form, FormField, min } from "@angular/forms/signals";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  input,
+  output,
+  signal,
+} from "@angular/core";
+import { form, FormField } from "@angular/forms/signals";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
@@ -13,6 +20,7 @@ import { MatInputModule } from "@angular/material/input";
       display: block;
     }
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./form-text-control.html",
 })
 export class LabFormTextControl {
@@ -28,9 +36,7 @@ export class LabFormTextControl {
     inputValue: "",
   });
 
-  public form = form(this.formSchema, (schema) => {
-    min(schema.inputValue, 1);
-  });
+  public form = form(this.formSchema, (schema) => {});
 
   constructor() {
     effect(() => this.onExecuted.emit(this.form().value().inputValue));

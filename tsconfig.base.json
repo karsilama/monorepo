@@ -17,6 +17,7 @@
     "skipDefaultLibCheck": true,
     "types": ["jest", "node"],
     "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
     "paths": {
       "@configuration/domain": ["libs/configuration/domain/src/index.ts"],
       "@configuration/infrastructure": [
