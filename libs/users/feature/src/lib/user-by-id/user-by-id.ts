@@ -1,7 +1,12 @@
-import { AsyncPipe } from "@angular/common";
-import { Component, effect, inject, injectAsync, signal } from "@angular/core";
+import {
+  AfterContentInit,
+  Component,
+  effect,
+  inject,
+  injectAsync,
+  signal,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { MatAnchor } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { ActivatedRoute } from "@angular/router";
@@ -21,21 +26,14 @@ export interface UseData {
 @Component({
   selector: "users-by-id",
   templateUrl: "./user-by-id.html",
-  imports: [
-    MatCardModule,
-    LabButton,
-    Divider,
-    MatIconModule,
-    AsyncPipe,
-    MatAnchor,
-  ],
+  imports: [MatCardModule, LabButton, Divider, MatIconModule],
   host: {
     class: "block w-full md:max-w-[300px] m-auto p-4",
   },
 })
-export class UserById {
+export class UserById implements AfterContentInit {
+  public user = inject(UsersFacade);
   private dialog = inject(DialogService<UseData>);
-  private user = inject(UsersFacade);
   private route = inject(ActivatedRoute);
 
   public stock = signal(0);
@@ -67,7 +65,15 @@ export class UserById {
       if (id) {
         this.user.getUserById(id);
       }
+
+      if (this.user.loaded()) {
+        this.checkStock();
+      }
     });
+  }
+
+  public ngAfterContentInit() {
+    this.checkStock();
   }
 
   /**
@@ -85,10 +91,8 @@ export class UserById {
     this.dialog.openDialog(USER_BY_ID_DIALOG, this.selectedUser());
   }
 
-  public async checkStock(): Promise<void> {
+  private async checkStock() {
     const service = await this.userByIdService();
-    const value = service.status.value() as { stock: number };
-    console.log(value?.stock ?? 0);
-    this.stock.set(value?.stock ?? 0);
+    this.stock.set((service.status.value() as { stock: number })?.stock ?? 0);
   }
 }

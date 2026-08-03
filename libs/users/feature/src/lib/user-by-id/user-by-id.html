@@ -1,7 +1,6 @@
-@if (isLoading()) {
+@if (!user.loaded()) {
   Loading..
 } @else {
-  <button mat-button (click)="checkStock()">Check Stock</button>
   <div class="p-2 flex justify-center">
     @if (stock() > 0) {
       User has stock: <mat-icon class="text-green-600">check</mat-icon>
