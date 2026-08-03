@@ -1,6 +1,6 @@
 # App Profile
 
-Profile es un monorepo Angular 21 con modelado reactivo
+Profile es un monorepo Angular 22 con modelado reactivo
 
 Son librerías que las utilizo para explorar y validar nuevas features de Angular (Signals, Signal-based Forms, Resources, RxResource, etc.).
 
