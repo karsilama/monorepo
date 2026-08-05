@@ -1,15 +1,13 @@
 import {
-  AfterContentInit,
   Component,
   effect,
   inject,
   injectAsync,
-  signal,
+  input,
+  model,
 } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
-import { ActivatedRoute } from "@angular/router";
 import { LabButton } from "@lab/buttons/ui";
 import { DialogService } from "@lab/dialog/feature";
 import { Divider } from "@lab/ui";
@@ -31,18 +29,17 @@ export interface UseData {
     class: "block w-full md:max-w-[300px] m-auto p-4",
   },
 })
-export class UserById implements AfterContentInit {
+export class UserById {
   public user = inject(UsersFacade);
   private dialog = inject(DialogService<UseData>);
-  private route = inject(ActivatedRoute);
-
-  public stock = signal(0);
 
   public userByIdService = injectAsync(() =>
     import("./user-by-id.service").then((x) => x.UserByIdService),
   );
 
-  public params = toSignal(this.route.paramMap);
+  public id = input.required<string>();
+
+  public stock = model(0);
 
   public readonly selectedUser = this.user.selectedUser;
   public readonly isLoading = this.user.isUserByIdLoading;
@@ -61,19 +58,15 @@ export class UserById implements AfterContentInit {
     });
 
     effect(() => {
-      const id = this.params()?.get("id");
-      if (id) {
-        this.user.getUserById(id);
-      }
-
       if (this.user.loaded()) {
         this.checkStock();
       }
+      const id = this.id();
+      console.log(":::::id: ", id);
+      if (id) {
+        this.user.getUserById(id);
+      }
     });
-  }
-
-  public ngAfterContentInit() {
-    this.checkStock();
   }
 
   /**
