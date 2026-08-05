@@ -37,7 +37,9 @@ export class UserById {
     import("./user-by-id.service").then((x) => x.UserByIdService),
   );
 
-  public id = input.required<string>();
+  public id = input.required<string>({
+    transform: trimString,
+  });
 
   public stock = model(0);
 
