@@ -2,8 +2,9 @@
   Loading..
 } @else {
   <div class="p-2 flex justify-center">
-    @if (stock() > 0) {
-      User has stock: <mat-icon class="text-green-600">check</mat-icon>
+    @if (stock() ?? 0 > 0) {
+      User has stock ({{ stock() }})
+      <mat-icon class="text-green-600">check</mat-icon>
     } @else {
       User has not stock<mat-icon class="text-red-600">error_outline</mat-icon>
     }

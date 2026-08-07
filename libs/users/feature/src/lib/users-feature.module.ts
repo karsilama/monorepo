@@ -3,13 +3,15 @@ import {
   withInterceptors,
   withXhr,
 } from "@angular/common/http";
-import { NgModule } from "@angular/core";
+import { InjectionToken, NgModule } from "@angular/core";
 import { provideRouter, withComponentInputBinding } from "@angular/router";
 import { AuthInterceptor, ErrorInterceptor } from "@auth/domain";
 import { provideEffects } from "@ngrx/effects";
 import { provideState } from "@ngrx/store";
 import { fromUsers, UsersEffects } from "@users/+state";
 import { UsersRoutes } from "./users.routes";
+
+export const USER_ID = new InjectionToken<string>("USER_ID");
 
 @NgModule({
   providers: [

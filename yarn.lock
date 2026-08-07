@@ -3402,6 +3402,13 @@
   dependencies:
     tslib "^2.0.0"
 
+"@ngrx/component@^21.1.1":
+  version "21.1.1"
+  resolved "https://registry.yarnpkg.com/@ngrx/component/-/component-21.1.1.tgz#8f91b8c0b715ec6891a0eec34b6161ceaa8653ea"
+  integrity sha512-niA5tak4l4xQFm4b1Zpq/sdktQYPONMQO6U/krd2CpgXAbWK06jeMYPS/fv2dmg72VRWzvV24kJBKbf3SyMHVA==
+  dependencies:
+    tslib "^2.0.0"
+
 "@ngrx/effects@^21.1.0":
   version "21.1.1"
   resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-21.1.1.tgz#1372a05848cfe82859d116b1cb359fbc11b90f23"

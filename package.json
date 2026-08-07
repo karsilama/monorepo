@@ -36,7 +36,8 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",
     "swagger-ui-dist": "^5.32.3",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "@ngrx/component": "^21.1.1"
   },
   "devDependencies": {
     "@analogjs/vite-plugin-angular": "~2.1.2",
@@ -50,6 +51,7 @@
     "@eslint/js": "^9.8.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.0",
+    "@ngrx/component": "^21.1.1",
     "@ngrx/effects": "^21.1.0",
     "@ngrx/schematics": "^21.0.0",
     "@ngrx/store": "^21.1.0",

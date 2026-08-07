@@ -5,7 +5,15 @@ import { ConfigurationService } from "@configuration/domain";
 import { DialogService } from "@lab/dialog/feature";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { UserDomainModel, UsersResponse } from "@users/infrastructure";
-import { catchError, debounceTime, map, of, switchMap, tap } from "rxjs";
+import {
+  catchError,
+  debounceTime,
+  exhaustMap,
+  map,
+  of,
+  switchMap,
+  tap,
+} from "rxjs";
 import * as UsersActions from "./users.actions";
 
 @Injectable()
@@ -54,7 +62,7 @@ export class UsersEffects {
     () =>
       this.actions$.pipe(
         ofType(UsersActions.getUserById),
-        switchMap(({ id }) =>
+        exhaustMap(({ id }) =>
           this.http
             .get<UserDomainModel>(
               `${this.configurationService.getBaseConfiguration().api.url}/users/${+id}`,

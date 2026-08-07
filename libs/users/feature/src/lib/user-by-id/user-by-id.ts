@@ -3,16 +3,20 @@ import {
   effect,
   inject,
   injectAsync,
+  Injector,
   input,
-  model,
+  signal,
 } from "@angular/core";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { LabButton } from "@lab/buttons/ui";
 import { DialogService } from "@lab/dialog/feature";
 import { Divider } from "@lab/ui";
+import { trimString } from "@lab/util";
+import { PushPipe } from "@ngrx/component";
 import { UsersFacade } from "@users/+state";
 import { UserEditDialog } from "../user-by-id-dialog/user-by-id-dialog";
+import { USER_ID } from "../users-feature.module";
 import { USER_BY_ID_DIALOG } from "./user-by-id.constant";
 
 export interface UseData {
@@ -24,24 +28,27 @@ export interface UseData {
 @Component({
   selector: "users-by-id",
   templateUrl: "./user-by-id.html",
-  imports: [MatCardModule, LabButton, Divider, MatIconModule],
+  imports: [MatCardModule, LabButton, Divider, MatIconModule, PushPipe],
   host: {
     class: "block w-full md:max-w-[300px] m-auto p-4",
   },
 })
 export class UserById {
-  public user = inject(UsersFacade);
-  private dialog = inject(DialogService<UseData>);
-
-  public userByIdService = injectAsync(() =>
-    import("./user-by-id.service").then((x) => x.UserByIdService),
-  );
-
-  public id = input.required<string>({
+  public id = input.required({
     transform: trimString,
   });
 
-  public stock = model(0);
+  public user = inject(UsersFacade);
+
+  private dialog = inject(DialogService<UseData>);
+
+  private readonly parentInjector = inject(Injector);
+
+  public readonly stockService = injectAsync(() =>
+    import("./stock.service").then((x) => x.StockService),
+  );
+
+  protected readonly stock = signal<string | null>(null);
 
   public readonly selectedUser = this.user.selectedUser;
   public readonly isLoading = this.user.isUserByIdLoading;
@@ -59,18 +66,25 @@ export class UserById {
       component: UserEditDialog,
     });
 
-    effect(() => {
-      if (this.user.loaded()) {
-        this.checkStock();
-      }
+    effect(async () => {
       const id = this.id();
-      console.log(":::::id: ", id);
-      if (id) {
-        this.user.getUserById(id);
-      }
+
+      const injector = Injector.create({
+        parent: this.parentInjector,
+        providers: [
+          {
+            provide: USER_ID,
+            useValue: id,
+          },
+        ],
+      });
+
+      const service = await this.stockService();
+
+      this.stock.set(await service.getStock(injector));
+      this.user.getUserById(id);
     });
   }
-
   /**
    * Back main User list
    */
@@ -84,10 +98,5 @@ export class UserById {
 
   public editUser() {
     this.dialog.openDialog(USER_BY_ID_DIALOG, this.selectedUser());
-  }
-
-  private async checkStock() {
-    const service = await this.userByIdService();
-    this.stock.set((service.status.value() as { stock: number })?.stock ?? 0);
   }
 }
