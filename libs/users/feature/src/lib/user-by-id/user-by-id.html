@@ -2,11 +2,13 @@
   Loading..
 } @else {
   <div class="p-2 flex justify-center">
-    @if (stock() ?? 0 > 0) {
-      User has stock ({{ stock() }})
+    @if (notifications() ?? 0 > 0) {
+      User has stock ({{ notifications() }})
       <mat-icon class="text-green-600">check</mat-icon>
     } @else {
-      User has not stock<mat-icon class="text-red-600">error_outline</mat-icon>
+      User has not notifications<mat-icon class="text-red-600"
+        >error_outline</mat-icon
+      >
     }
   </div>
   <lab-divider></lab-divider>

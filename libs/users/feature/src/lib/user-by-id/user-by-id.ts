@@ -3,7 +3,6 @@ import {
   effect,
   inject,
   injectAsync,
-  Injector,
   input,
   signal,
 } from "@angular/core";
@@ -16,7 +15,6 @@ import { trimString } from "@lab/util";
 import { PushPipe } from "@ngrx/component";
 import { UsersFacade } from "@users/+state";
 import { UserEditDialog } from "../user-by-id-dialog/user-by-id-dialog";
-import { USER_ID } from "../users-feature.module";
 import { USER_BY_ID_DIALOG } from "./user-by-id.constant";
 
 export interface UseData {
@@ -42,13 +40,11 @@ export class UserById {
 
   private dialog = inject(DialogService<UseData>);
 
-  private readonly parentInjector = inject(Injector);
-
   public readonly stockService = injectAsync(() =>
-    import("./stock.service").then((x) => x.StockService),
+    import("./notifications.service").then((x) => x.StockService),
   );
 
-  protected readonly stock = signal<string | null>(null);
+  protected readonly notifications = signal<string | null>(null);
 
   public readonly selectedUser = this.user.selectedUser;
   public readonly isLoading = this.user.isUserByIdLoading;
@@ -69,19 +65,11 @@ export class UserById {
     effect(async () => {
       const id = this.id();
 
-      const injector = Injector.create({
-        parent: this.parentInjector,
-        providers: [
-          {
-            provide: USER_ID,
-            useValue: id,
-          },
-        ],
-      });
-
       const service = await this.stockService();
 
-      this.stock.set(await service.getStock(injector));
+      const notifications = await service.getNotifications(id);
+
+      this.notifications.set(notifications);
       this.user.getUserById(id);
     });
   }
