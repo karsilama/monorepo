@@ -6,7 +6,7 @@ export interface GetNotificationsResponse {
 }
 
 @Service()
-export class StockService {
+export class NotificationService {
   public http = inject(HttpClient);
   public getNotifications(id: string) {
     return this.http.get<GetNotificationsResponse>(

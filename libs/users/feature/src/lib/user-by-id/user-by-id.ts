@@ -7,7 +7,7 @@ import { Divider } from "@lab/ui";
 import { trimString } from "@lab/util";
 import { PushPipe } from "@ngrx/component";
 import { UsersFacade } from "@users/+state";
-import { map, Observable, tap } from "rxjs";
+import { map, Observable } from "rxjs";
 import { UserEditDialog } from "../user-by-id-dialog/user-by-id-dialog";
 import { USER_BY_ID_DIALOG } from "./user-by-id.constant";
 
@@ -34,8 +34,8 @@ export class UserById {
 
   private dialog = inject(DialogService<UseData>);
 
-  public readonly stockService = injectAsync(() =>
-    import("./notifications.service").then((x) => x.StockService),
+  public readonly notificationService = injectAsync(() =>
+    import("./notifications.service").then((x) => x.NotificationService),
   );
 
   protected notifications: Observable<number> = new Observable();
@@ -64,11 +64,8 @@ export class UserById {
   }
 
   public async getNotifications(id: string) {
-    const service = await this.stockService();
-    this.notifications = service.getNotifications(id).pipe(
-      tap((x) => console.log(x)),
-      map((x) => x.stock),
-    );
+    const service = await this.notificationService();
+    this.notifications = service.getNotifications(id).pipe(map((x) => x.stock));
   }
 
   /**
