@@ -1,11 +1,4 @@
-import {
-  Component,
-  effect,
-  inject,
-  injectAsync,
-  input,
-  signal,
-} from "@angular/core";
+import { Component, effect, inject, injectAsync, input } from "@angular/core";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { LabButton } from "@lab/buttons/ui";
@@ -14,6 +7,7 @@ import { Divider } from "@lab/ui";
 import { trimString } from "@lab/util";
 import { PushPipe } from "@ngrx/component";
 import { UsersFacade } from "@users/+state";
+import { map, Observable, tap } from "rxjs";
 import { UserEditDialog } from "../user-by-id-dialog/user-by-id-dialog";
 import { USER_BY_ID_DIALOG } from "./user-by-id.constant";
 
@@ -44,7 +38,7 @@ export class UserById {
     import("./notifications.service").then((x) => x.StockService),
   );
 
-  protected readonly notifications = signal<string | null>(null);
+  protected notifications: Observable<number> = new Observable();
 
   public readonly selectedUser = this.user.selectedUser;
   public readonly isLoading = this.user.isUserByIdLoading;
@@ -62,17 +56,21 @@ export class UserById {
       component: UserEditDialog,
     });
 
-    effect(async () => {
+    effect(() => {
       const id = this.id();
-
-      const service = await this.stockService();
-
-      const notifications = await service.getNotifications(id);
-
-      this.notifications.set(notifications);
       this.user.getUserById(id);
+      this.getNotifications(id);
     });
   }
+
+  public async getNotifications(id: string) {
+    const service = await this.stockService();
+    this.notifications = service.getNotifications(id).pipe(
+      tap((x) => console.log(x)),
+      map((x) => x.stock),
+    );
+  }
+
   /**
    * Back main User list
    */
