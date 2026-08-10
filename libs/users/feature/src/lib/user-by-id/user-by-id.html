@@ -1,9 +1,13 @@
 @if (!user.loaded()) {
   Loading..
 } @else {
+  <lab-button arialLabel="Get Notifications" (execute)="getNotifications()"
+    >Get notifications</lab-button
+  >
+
   <div class="p-2 flex justify-center">
-    @if (notifications | ngrxPush; as notifications) {
-      User has stock ({{ notifications }})
+    @if (notifications() > 0) {
+      User has notifications ({{ notifications() }})
       <mat-icon class="text-green-600">check</mat-icon>
     } @else {
       User has not notifications<mat-icon class="text-red-600"

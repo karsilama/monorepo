@@ -1,8 +1,4 @@
-import {
-  provideHttpClient,
-  withInterceptors,
-  withXhr,
-} from "@angular/common/http";
+import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { InjectionToken, NgModule } from "@angular/core";
 import { provideRouter, withComponentInputBinding } from "@angular/router";
 import { AuthInterceptor, ErrorInterceptor } from "@auth/domain";
@@ -18,10 +14,7 @@ export const USER_ID = new InjectionToken<string>("USER_ID");
     provideState(fromUsers.USERS_FEATURE_KEY, fromUsers.usersReducer),
     provideEffects(UsersEffects),
     provideRouter(UsersRoutes, withComponentInputBinding()),
-    provideHttpClient(
-      withXhr(),
-      withInterceptors([AuthInterceptor, ErrorInterceptor]),
-    ),
+    provideHttpClient(withInterceptors([AuthInterceptor, ErrorInterceptor])),
   ],
 })
 export class UsersFeatureModule {}
