@@ -1,0 +1,16 @@
+<text-control [(value)]="email" [options]="emailOptions"></text-control>
+<checkbox-control [(checked)]="policies"></checkbox-control>
+<button-filled
+  [options]="submitButton()"
+  (click)="submitHandler()"
+></button-filled>
+<br />
+
+<div class="flex flex-col">
+  <div>
+    {{ form.email().errors().map((x) => x.message) }}
+  </div>
+  <div>
+    {{ form.policies().errors().map((x) => x.message) }}
+  </div>
+</div>

@@ -3926,7 +3926,7 @@
   resolved "https://registry.yarnpkg.com/@nx/nx-win32-x64-msvc/-/nx-win32-x64-msvc-22.7.7.tgz#87cc09dc269e3582065d8cdd78741f53af345f0e"
   integrity sha512-AHVjXkreXjVKAKpMNCsF5nQC/et6lpQcERRm8AYOCncI59hTjYOLpdCMBLrIHA3hgc6SUYU8n5+tMAbv7zXXiQ==
 
-"@nx/playwright@^22.6.0":
+"@nx/playwright@22.7.7":
   version "22.7.7"
   resolved "https://registry.yarnpkg.com/@nx/playwright/-/playwright-22.7.7.tgz#a2fef3d5c609199fb2a5e61973ded2473376bf74"
   integrity sha512-veDWU+AGr6BdroUyNNru6ftFjHFXpo0roSj2ayS7DMA9KQ5VZkhD5rD8x2YXLX2wdd4S23U0Ju0jwKY4ZWj0aw==
