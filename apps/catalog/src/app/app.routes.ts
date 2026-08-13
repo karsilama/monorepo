@@ -7,6 +7,13 @@ export const appRoutes: Route[] = [
     component: LoginPage,
   },
   {
+    path: "product",
+    loadChildren: () =>
+      import("./page/product/product-page.module").then(
+        (x) => x.ProductPageModule,
+      ),
+  },
+  {
     path: "",
     pathMatch: "full",
     redirectTo: "login",

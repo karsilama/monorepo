@@ -6,7 +6,7 @@ import { ButtonDefinitions } from "../form/definitions/button-definition";
   selector: "button-filled",
   template: `
     <button
-      mat-button
+      mat-button="filled"
       [style.opacity.%]="options().disabled ? 20 : 100"
       [disabled]="options().disabled"
     >

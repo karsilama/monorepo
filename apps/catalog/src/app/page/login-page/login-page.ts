@@ -1,5 +1,6 @@
-import { Component, effect, signal } from "@angular/core";
+import { Component, effect, inject, signal } from "@angular/core";
 import { email, form, required } from "@angular/forms/signals";
+import { Router } from "@angular/router";
 import { ButtonFilled } from "../../core/button/button-filled";
 import { CheckboxControl } from "../../core/form/controls/check-control";
 import { TextControl } from "../../core/form/controls/text-control";
@@ -20,6 +21,8 @@ interface SubmissionSchema {
   imports: [ButtonFilled, CheckboxControl, TextControl],
 })
 export class LoginPage {
+  public readonly router = inject(Router);
+
   public email = signal("some@email.com");
   public policies = signal(false);
 
@@ -83,5 +86,6 @@ export class LoginPage {
   public submitHandler(): void {
     const value = this.form().value();
     console.log("::: Form submitted with value: ", value);
+    this.router.navigate(["product"]);
   }
 }
