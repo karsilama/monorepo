@@ -10,7 +10,7 @@ import { ProductAll } from "../product.constant";
 @Component({
   selector: "product-all-page",
   templateUrl: "./product-all.html",
-  imports: [ButtonFilled, MatListModule],
+  imports: [MatListModule, ButtonFilled],
 })
 export class ProductAllPage {
   public router = inject(Router);
@@ -18,10 +18,10 @@ export class ProductAllPage {
   public productAll = httpResource<ProductResource>(() => ProductAll);
 
   public navigateButton = signal<ButtonDefinitions.Filled>({
-    innerHtml: "Navigate to product id 1",
+    innerHtml: `View/Edit`,
   });
 
-  public navigateButtonHandler() {
-    this.router.navigate(["product/1"]);
+  public navigateTo(id: number) {
+    this.router.navigate([`product/${id}`]);
   }
 }
