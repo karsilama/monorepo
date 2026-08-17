@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { ProductAllPage } from "./all/product-all";
+import { canMatchDetailGuard } from "./can-match-detail.guard";
 import { ProductDetailPage } from "./detail/product-detail";
 
 export const productPageRoutes: Routes = [
@@ -12,6 +13,7 @@ export const productPageRoutes: Routes = [
       },
       {
         path: ":id",
+        canMatch: [canMatchDetailGuard],
         loadComponent: () => ProductDetailPage,
       },
       {

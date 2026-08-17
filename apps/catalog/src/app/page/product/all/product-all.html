@@ -1,18 +1,26 @@
 <h1 class="text-lg font-extrabold">Product all component !!!</h1>
-<mat-list>
-  @for (product of productAll.value()?.products; track product.id) {
-    <mat-list-item>
-      <span matListItemTitle>{{ product.title }}</span>
-      <span matListItemLine>{{ product.brand }} - ${{ product.price }}</span>
-      <div matListItemMeta>
-        <button-filled
-          mat-list-item
-          [options]="navigateButton()"
-          (click)="navigateTo(product.id)"
-        >
-          View/Edit
-        </button-filled>
-      </div>
-    </mat-list-item>
-  }
-</mat-list>
+@if (productAll.isLoading()) {
+  <div class="flex flex-col gap-1">
+    @for (row of [].constructor(10); track $index) {
+      <div class="w-full h-14 rounded animate-pulse bg-gray-200"></div>
+    }
+  </div>
+} @else {
+  <mat-list>
+    @for (product of productAll.value()?.products; track product.id) {
+      <mat-list-item>
+        <span matListItemTitle>{{ product.title }}</span>
+        <span matListItemLine>{{ product.brand }} - ${{ product.price }}</span>
+        <div matListItemMeta>
+          <button-filled
+            mat-list-item
+            [options]="navigateButton()"
+            (click)="navigateTo(product.id)"
+          >
+            View/Edit
+          </button-filled>
+        </div>
+      </mat-list-item>
+    }
+  </mat-list>
+}

@@ -1,1 +1,311 @@
-<h1>Product detail component N {{ id() }}!!!</h1>
+<h1>Product detail component # {{ id() }}</h1>
+
+@if (product.isLoading()) {
+  <div class="flex flex-col gap-6 p-6">
+    <!-- Image -->
+    <div class="h-72 w-full animate-pulse rounded-lg bg-gray-200"></div>
+
+    <!-- Title -->
+    <div class="h-7 w-3/4 animate-pulse rounded bg-gray-200"></div>
+
+    <!-- Description -->
+    <div class="flex flex-col gap-3">
+      <div class="h-4 w-full animate-pulse rounded bg-gray-200"></div>
+      <div class="h-4 w-5/6 animate-pulse rounded bg-gray-200"></div>
+      <div class="h-4 w-2/3 animate-pulse rounded bg-gray-200"></div>
+    </div>
+
+    <!-- Price -->
+    <div class="h-6 w-1/4 animate-pulse rounded bg-gray-200"></div>
+
+    <!-- Metadata -->
+    <div class="flex gap-4">
+      <div class="h-10 w-24 animate-pulse rounded bg-gray-200"></div>
+      <div class="h-10 w-24 animate-pulse rounded bg-gray-200"></div>
+    </div>
+
+    <!-- Button -->
+    <div class="h-12 w-full animate-pulse rounded bg-gray-200"></div>
+  </div>
+} @else {
+  <main class="mx-auto max-w-7xl p-6">
+    @if (product.value(); as product) {
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
+        <!-- Images -->
+        <section class="space-y-4">
+          <div class="aspect-square overflow-hidden rounded-2xl bg-white">
+            <img
+              [src]="product.images[0]"
+              alt="Product image"
+              class="h-full w-full object-contain"
+            />
+          </div>
+
+          @if (product.images.length > 1) {
+            <div class="grid grid-cols-5 gap-3">
+              @for (image of product.images; track image) {
+                <div
+                  class="aspect-square overflow-hidden rounded-lg border bg-white p-2"
+                >
+                  <img
+                    [src]="image"
+                    alt="Product image"
+                    class="h-full w-full object-contain"
+                  />
+                </div>
+              }
+            </div>
+          }
+        </section>
+
+        <!-- Product information -->
+        <section class="flex flex-col gap-6">
+          <!-- Category -->
+          <span
+            class="w-fit rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600"
+          >
+            {{ product.category }}
+          </span>
+
+          <!-- Title -->
+          <div>
+            <h1 class="text-3xl font-bold tracking-tight">
+              {{ product.title }}
+            </h1>
+
+            @if (product.brand) {
+              <p class="mt-2 text-sm text-gray-500">
+                {{ product.brand }}
+              </p>
+            }
+          </div>
+
+          <!-- Rating -->
+          <div class="flex items-center gap-3">
+            <span class="text-lg font-semibold"> ★ {{ product.rating }} </span>
+
+            <span class="text-sm text-gray-500">
+              {{ product.reviews.length }} reviews
+            </span>
+          </div>
+
+          <!-- Description -->
+          <p class="leading-7 text-gray-600">
+            {{ product.description }}
+          </p>
+
+          <!-- Price -->
+          <div class="flex items-end gap-3">
+            <span class="text-3xl font-bold"> ${{ product.price }} </span>
+
+            <span class="text-lg text-gray-400 line-through">
+              ${{ product.price / (1 - product.discountPercentage / 100) }}
+            </span>
+
+            <span
+              class="rounded bg-green-100 px-2 py-1 text-sm font-medium text-green-700"
+            >
+              -{{ product.discountPercentage }}%
+            </span>
+          </div>
+
+          <!-- Availability -->
+          <div class="flex items-center gap-2">
+            <span
+              class="h-2.5 w-2.5 rounded-full"
+              [class.bg-green-500]="product.stock > 0"
+              [class.bg-red-500]="product.stock === 0"
+            ></span>
+
+            <span class="text-sm font-medium">
+              {{ product.availabilityStatus }}
+            </span>
+
+            <span class="text-sm text-gray-500">
+              {{ product.stock }} units
+            </span>
+          </div>
+
+          <!-- Quantity -->
+          <div>
+            <label class="mb-2 block text-sm font-medium"> Quantity </label>
+
+            <div
+              class="flex w-fit items-center overflow-hidden rounded-lg border bg-white"
+            >
+              <button class="h-11 w-11 text-lg hover:bg-gray-50">−</button>
+
+              <span class="flex h-11 w-14 items-center justify-center border-x">
+                {{ product.minimumOrderQuantity }}
+              </span>
+
+              <button class="h-11 w-11 text-lg hover:bg-gray-50">+</button>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <button
+            class="h-12 rounded-lg bg-black px-6 font-medium text-white transition hover:bg-gray-800"
+          >
+            Add to cart
+          </button>
+
+          <!-- Shipping / Warranty / Returns -->
+          <div class="grid grid-cols-1 gap-4 border-y py-5 sm:grid-cols-2">
+            <div>
+              <p class="text-sm font-medium">Shipping</p>
+
+              <p class="mt-1 text-sm text-gray-500">
+                {{ product.shippingInformation }}
+              </p>
+            </div>
+
+            <div>
+              <p class="text-sm font-medium">Warranty</p>
+
+              <p class="mt-1 text-sm text-gray-500">
+                {{ product.warrantyInformation }}
+              </p>
+            </div>
+
+            <div>
+              <p class="text-sm font-medium">Returns</p>
+
+              <p class="mt-1 text-sm text-gray-500">
+                {{ product.returnPolicy }}
+              </p>
+            </div>
+
+            <div>
+              <p class="text-sm font-medium">Minimum order</p>
+
+              <p class="mt-1 text-sm text-gray-500">
+                {{ product.minimumOrderQuantity }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Product data -->
+          <dl class="space-y-3 text-sm">
+            <div class="flex justify-between">
+              <dt class="text-gray-500">SKU</dt>
+              <dd class="font-medium">{{ product.sku }}</dd>
+            </div>
+
+            <div class="flex justify-between">
+              <dt class="text-gray-500">Brand</dt>
+              <dd class="font-medium">{{ product.brand }}</dd>
+            </div>
+
+            <div class="flex justify-between">
+              <dt class="text-gray-500">Weight</dt>
+              <dd class="font-medium">{{ product.weight }}</dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+
+      <!-- Details -->
+      <section class="mt-16">
+        <h2 class="mb-6 text-2xl font-bold">Product details</h2>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <!-- Dimensions -->
+          <div class="rounded-xl bg-white p-6">
+            <h3 class="mb-4 font-semibold">Dimensions</h3>
+
+            <dl class="space-y-3 text-sm">
+              <div class="flex justify-between">
+                <dt class="text-gray-500">Width</dt>
+                <dd>{{ product.dimensions.width }}</dd>
+              </div>
+
+              <div class="flex justify-between">
+                <dt class="text-gray-500">Height</dt>
+                <dd>{{ product.dimensions.height }}</dd>
+              </div>
+
+              <div class="flex justify-between">
+                <dt class="text-gray-500">Depth</dt>
+                <dd>{{ product.dimensions.depth }}</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Meta -->
+          <div class="rounded-xl bg-white p-6">
+            <h3 class="mb-4 font-semibold">Product information</h3>
+
+            <dl class="space-y-3 text-sm">
+              <div class="flex justify-between gap-4">
+                <dt class="text-gray-500">Barcode</dt>
+                <dd class="text-right">{{ product.meta.barcode }}</dd>
+              </div>
+
+              <div class="flex justify-between gap-4">
+                <dt class="text-gray-500">Created</dt>
+                <dd class="text-right">{{ product.meta.createdAt }}</dd>
+              </div>
+
+              <div class="flex justify-between gap-4">
+                <dt class="text-gray-500">Updated</dt>
+                <dd class="text-right">{{ product.meta.updatedAt }}</dd>
+              </div>
+
+              <div class="flex justify-between gap-4">
+                <dt class="text-gray-500">Barcode</dt>
+                <dd class="text-right">{{ product.meta.barcode }}</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tags -->
+      <section class="mt-10">
+        <h2 class="mb-4 text-xl font-bold">Tags</h2>
+
+        <div class="flex flex-wrap gap-2">
+          @for (tag of product.tags; track tag) {
+            <span class="rounded-full bg-gray-100 px-3 py-1 text-sm">
+              {{ tag }}
+            </span>
+          }
+        </div>
+      </section>
+
+      <!-- Reviews -->
+      <section class="mt-16">
+        <div class="mb-6 flex items-center justify-between">
+          <h2 class="text-2xl font-bold">Reviews</h2>
+
+          <span class="text-sm text-gray-500"> {{ product.rating }} / 5 </span>
+        </div>
+
+        <div class="divide-y rounded-xl bg-white">
+          @for (review of product.reviews; track review.reviewerEmail) {
+            <article class="p-6">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold">
+                    {{ review.reviewerName }}
+                  </h3>
+
+                  <p class="text-sm text-gray-500">
+                    {{ review.reviewerEmail }}
+                  </p>
+                </div>
+
+                <span class="font-medium"> ★ {{ review.rating }} </span>
+              </div>
+
+              <p class="mt-4 text-gray-600">
+                {{ review.comment }}
+              </p>
+            </article>
+          }
+        </div>
+      </section>
+    }
+  </main>
+}

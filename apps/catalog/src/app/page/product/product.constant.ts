@@ -1,6 +1,1 @@
-export const ProductAll = {
-  url: `https://dummyjson.com/products`,
-  headers: {
-    Authorization: "Bearer %token%",
-  },
-};
+export const productAllUrl = `https://dummyjson.com/products`;
