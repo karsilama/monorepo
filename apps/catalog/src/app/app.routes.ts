@@ -1,10 +1,10 @@
 import { Route } from "@angular/router";
-import { LoginPage } from "./page/login-page/login-page";
+import { Login } from "./page/login/login";
 
 export const appRoutes: Route[] = [
   {
     path: "login",
-    component: LoginPage,
+    component: Login,
   },
   {
     path: "product",

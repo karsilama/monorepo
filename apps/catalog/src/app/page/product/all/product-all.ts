@@ -8,11 +8,11 @@ import { ButtonDefinitions } from "../../../core/form/definitions/button-definit
 import { productAllUrl } from "../product.constant";
 
 @Component({
-  selector: "product-all-page",
+  selector: "product-all",
   templateUrl: "./product-all.html",
   imports: [MatListModule, ButtonFilled],
 })
-export class ProductAllPage {
+export class ProductAll {
   public router = inject(Router);
 
   public productAll = httpResource<ProductsResponse>(() => ({

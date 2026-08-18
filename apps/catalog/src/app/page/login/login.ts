@@ -13,14 +13,14 @@ interface SubmissionSchema {
 }
 
 @Component({
-  selector: "login-page",
-  templateUrl: "./login-page.html",
+  selector: "login",
+  templateUrl: "./login.html",
   host: {
     style: "display: block; height: 100%;",
   },
   imports: [ButtonFilled, CheckboxControl, TextControl],
 })
-export class LoginPage {
+export class Login {
   public readonly router = inject(Router);
 
   public email = signal("some@email.com");
@@ -57,11 +57,6 @@ export class LoginPage {
       const email = this.email();
       const policies = this.policies();
       const currentSchema = this.schema();
-
-      const newSchema: SubmissionSchema = {
-        email: "",
-        policies: false,
-      };
 
       if (
         email === currentSchema.email &&
