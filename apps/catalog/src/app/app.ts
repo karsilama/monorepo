@@ -7,8 +7,9 @@ import {
   Renderer2,
   signal,
 } from "@angular/core";
+import { MatButtonAppearance } from "@angular/material/button";
 import { RouterModule } from "@angular/router";
-import { ButtonFilled } from "./core/button/button-filled";
+import { AppButton } from "./core/button/button";
 
 enum appTheme {
   dark = "dark-mode",
@@ -16,7 +17,7 @@ enum appTheme {
 }
 
 @Component({
-  imports: [RouterModule, ButtonFilled],
+  imports: [RouterModule, AppButton],
   selector: "app-root",
   templateUrl: "./app.html",
   styleUrl: "./app.scss",
@@ -29,6 +30,7 @@ export class App {
   public themeButton = computed(() => {
     return {
       innerHtml: `Change to ${this.theme() === appTheme.light ? "dark" : "dark"} mode`,
+      type: "filled" as MatButtonAppearance,
     };
   });
 

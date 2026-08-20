@@ -1,10 +1,7 @@
-export namespace ButtonDefinitions {
-  export interface ButtonBase {
-    innerHtml: string;
-    disabled?: boolean;
-  }
+import { MatButtonAppearance } from "@angular/material/button";
 
-  export interface Filled extends ButtonBase {}
-
-  export type Buttons = Filled;
+export interface ButtonDefinitions {
+  type: MatButtonAppearance;
+  innerHtml: string;
+  disabled?: boolean;
 }

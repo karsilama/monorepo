@@ -1,9 +1,6 @@
 <text-control [(value)]="email" [options]="emailOptions"></text-control>
 <checkbox-control [(checked)]="policies"></checkbox-control>
-<button-filled
-  [options]="submitButton()"
-  (click)="submitHandler()"
-></button-filled>
+<app-button [options]="submitButton()" (click)="submitHandler()"></app-button>
 <br />
 
 <div class="flex flex-col">

@@ -1,0 +1,27 @@
+<form class="flex flex-col gap-6">
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input matInput aria-label="Title" [value]="product.title" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      aria-label="Description"
+      rows="5"
+      [value]="product.description"
+    ></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Price</mat-label>
+    <input matInput aria-label="Price" type="number" [value]="product.price" />
+  </mat-form-field>
+
+  <div class="flex gap-3">
+    <button mat-flat-button type="submit">Save</button>
+
+    <button mat-button type="button">Cancel</button>
+  </div>
+</form>

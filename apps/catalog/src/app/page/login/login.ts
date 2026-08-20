@@ -1,7 +1,7 @@
 import { Component, effect, inject, signal } from "@angular/core";
 import { email, form, required } from "@angular/forms/signals";
 import { Router } from "@angular/router";
-import { ButtonFilled } from "../../core/button/button-filled";
+import { AppButton } from "../../core/button/button";
 import { CheckboxControl } from "../../core/form/controls/check-control";
 import { TextControl } from "../../core/form/controls/text-control";
 import { ButtonDefinitions } from "../../core/form/definitions/button-definition";
@@ -18,7 +18,7 @@ interface SubmissionSchema {
   host: {
     style: "display: block; height: 100%;",
   },
-  imports: [ButtonFilled, CheckboxControl, TextControl],
+  imports: [AppButton, CheckboxControl, TextControl],
 })
 export class Login {
   public readonly router = inject(Router);
@@ -47,9 +47,10 @@ export class Login {
     });
   });
 
-  public submitButton = signal<ButtonDefinitions.Filled>({
+  public submitButton = signal<ButtonDefinitions>({
     innerHtml: "Send",
     disabled: true,
+    type: "filled",
   });
 
   constructor() {

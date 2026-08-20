@@ -1,7 +1,4 @@
 <div class="flex justify-end">
-  <button-filled
-    [options]="themeButton()"
-    (click)="toggleTheme()"
-  ></button-filled>
+  <app-button [options]="themeButton()" (click)="toggleTheme()"></app-button>
 </div>
 <router-outlet></router-outlet>

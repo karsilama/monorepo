@@ -37,7 +37,8 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",
     "swagger-ui-dist": "^5.32.3",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "@ngrx/signals": "^21.1.1"
   },
   "devDependencies": {
     "@analogjs/vite-plugin-angular": "~2.1.2",
@@ -54,6 +55,7 @@
     "@ngrx/component": "^21.1.1",
     "@ngrx/effects": "^21.1.0",
     "@ngrx/schematics": "^21.0.0",
+    "@ngrx/signals": "^21.1.1",
     "@ngrx/store": "^21.1.0",
     "@ngrx/store-devtools": "^21.0.0",
     "@nx/angular": "22.6.0",

@@ -3,10 +3,10 @@ import { MatButtonModule } from "@angular/material/button";
 import { ButtonDefinitions } from "../form/definitions/button-definition";
 
 @Component({
-  selector: "button-filled",
+  selector: "app-button",
   template: `
     <button
-      matButton="filled"
+      [matButton]="options().type"
       [style.opacity.%]="options().disabled ? 20 : 100"
       [disabled]="options().disabled"
     >
@@ -15,6 +15,6 @@ import { ButtonDefinitions } from "../form/definitions/button-definition";
   `,
   imports: [MatButtonModule],
 })
-export class ButtonFilled {
-  public options = input.required<ButtonDefinitions.Filled>();
+export class AppButton {
+  public options = input.required<ButtonDefinitions>();
 }

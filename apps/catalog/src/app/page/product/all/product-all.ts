@@ -3,14 +3,14 @@ import { Component, inject, signal } from "@angular/core";
 import { MatListModule } from "@angular/material/list";
 import { Router } from "@angular/router";
 import { ProductsResponse } from "../ product.model";
-import { ButtonFilled } from "../../../core/button/button-filled";
+import { AppButton } from "../../../core/button/button";
 import { ButtonDefinitions } from "../../../core/form/definitions/button-definition";
 import { productAllUrl } from "../product.constant";
 
 @Component({
   selector: "product-all",
   templateUrl: "./product-all.html",
-  imports: [MatListModule, ButtonFilled],
+  imports: [MatListModule, AppButton],
 })
 export class ProductAll {
   public router = inject(Router);
@@ -19,8 +19,9 @@ export class ProductAll {
     url: productAllUrl,
   }));
 
-  public navigateButton = signal<ButtonDefinitions.Filled>({
+  public navigateButton = signal<ButtonDefinitions>({
     innerHtml: `View/Edit`,
+    type: `filled`,
   });
 
   public navigateTo(id: number) {
