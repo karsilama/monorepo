@@ -8,7 +8,7 @@ import { productAllUrl } from "./product.constant";
 export class ProductService {
   private http = inject(HttpClient);
 
-  public save(product: Product): Observable<Partial<Product>> {
+  public save(product: Partial<Product>): Observable<Partial<Product>> {
     return this.http.patch(`${productAllUrl}/${product.id}`, product);
   }
 }

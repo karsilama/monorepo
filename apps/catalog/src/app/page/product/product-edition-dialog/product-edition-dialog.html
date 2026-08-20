@@ -1,4 +1,4 @@
-<form class="flex flex-col gap-6">
+<form class="flex flex-col gap-6 p-5">
   <mat-form-field appearance="outline">
     <mat-label>Title</mat-label>
     <input matInput aria-label="Title" [value]="product.title" />
@@ -16,11 +16,11 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Price</mat-label>
-    <input matInput aria-label="Price" type="number" [value]="product.price" />
+    <input matInput aria-label="Price" type="string" [value]="product.price" />
   </mat-form-field>
 
   <div class="flex gap-3">
-    <button mat-flat-button type="submit">Save</button>
+    <button mat-flat-button type="submit" (click)="save()">Save</button>
 
     <button mat-button type="button">Cancel</button>
   </div>
