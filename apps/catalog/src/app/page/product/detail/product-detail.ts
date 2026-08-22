@@ -1,7 +1,6 @@
 import { httpResource } from "@angular/common/http";
 import { Component, computed, effect, inject, input } from "@angular/core";
 import { Router } from "@angular/router";
-import { firstValueFrom } from "rxjs";
 import { Product } from "../ product.model";
 import { AppButton } from "../../../core/button/button";
 import { DialogService } from "../../../core/dialog/dialog.service";
@@ -34,6 +33,10 @@ export class ProductDetail {
   public product = httpResource<Product>(() => ({
     url: `${productAllUrl}/${this.id()}`,
   }));
+
+  /**
+   * Back button check
+   */
 
   public readonly hasChanges = computed(() => {
     const original = this.product.value();
@@ -78,10 +81,15 @@ export class ProductDetail {
 
   public ngOnInit() {
     const productId = this.id();
+    console.log(productId);
     if (!productId || isNaN(Number(productId))) {
-      this.store.setError("Invalid ID");
+      this.store.setError("URL Invalid - not product id found");
     }
 
+    /**
+     *
+     * Product edition dialog registration
+     * */
     this.dialogService.register({
       id: PRODUCT_EDITION_DIALOG_ID,
       component: ProductEditionDialog,
@@ -101,50 +109,5 @@ export class ProductDetail {
       if (!confirm) return;
     }
     this.router.navigate([`product/all`]);
-  }
-
-  public updateProduct(product: Product) {
-    this.store.updateProduct(product);
-  }
-
-  public async save() {
-    const product = this.store.product();
-
-    if (!product) {
-      if (!product) {
-        this.store.setError("No product for update");
-        return;
-      }
-      return;
-    }
-
-    try {
-      const updatedProduct = await firstValueFrom(
-        this.productService.save(product),
-      );
-
-      console.log("Product updated!!", updatedProduct);
-
-      this.store.setProduct(updatedProduct);
-      this.store.setSaving(false);
-    } catch (error) {
-      console.error("Error saving:", error);
-      this.store.setError(
-        error instanceof Error ? error.message : "Error saving product",
-      );
-      this.store.setSaving(false);
-    }
-  }
-
-  public resetProduct() {
-    const original = this.product.value();
-    if (original) {
-      this.store.resetProduct(original);
-    }
-  }
-
-  public reloadProduct() {
-    this.product.reload();
-    this.store.setError(null);
   }
 }

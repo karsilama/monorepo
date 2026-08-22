@@ -1,6 +1,7 @@
 import { inject, InjectionToken } from "@angular/core";
 import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
 import { Product } from "./ product.model";
+import { ProductService } from "./product.service";
 
 type ProductState = {
   product: Product | null;
@@ -22,10 +23,13 @@ export const PRODUCT_STATE = new InjectionToken<ProductState>(`ProductState`, {
 
 export const ProductStore = signalStore(
   withState(() => inject(PRODUCT_STATE)),
-  withMethods((store) => ({
-    /** Set product */
-    // product.store.ts - Solo el método setProduct
+  withMethods((store, service = inject(ProductService)) => ({
+    /** Save product */
+    async save(id: number, changes: Partial<Product>) {
+      return service.save(id, changes);
+    },
 
+    /** Set product */
     setProduct(product: Product | Partial<Product>) {
       patchState(store, (state) => ({
         ...state,

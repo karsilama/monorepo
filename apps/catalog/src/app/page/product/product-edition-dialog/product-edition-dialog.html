@@ -1,7 +1,7 @@
-<form class="flex flex-col gap-6 p-5">
+<form [formRoot]="editionForm" class="flex flex-col gap-6 p-5">
   <mat-form-field appearance="outline">
     <mat-label>Title</mat-label>
-    <input matInput aria-label="Title" [value]="product.title" />
+    <input matInput [formField]="editionForm.title" aria-label="Title" />
   </mat-form-field>
 
   <mat-form-field appearance="outline">
@@ -10,18 +10,23 @@
       matInput
       aria-label="Description"
       rows="5"
-      [value]="product.description"
+      [formField]="editionForm.description"
     ></textarea>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Price</mat-label>
-    <input matInput aria-label="Price" type="string" [value]="product.price" />
+    <input
+      matInput
+      aria-label="Price"
+      type="string"
+      [formField]="editionForm.price"
+    />
   </mat-form-field>
 
   <div class="flex gap-3">
-    <button mat-flat-button type="submit" (click)="save()">Save</button>
+    <button mat-flat-button type="submit">Save</button>
 
-    <button mat-button type="button">Cancel</button>
+    <button mat-button type="button" (click)="cancel()">Cancel</button>
   </div>
 </form>
