@@ -1,9 +1,7 @@
-import { HttpClient } from "@angular/common/http";
 import { inject, InjectionToken } from "@angular/core";
 import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
-import { firstValueFrom, of } from "rxjs";
 import { Product } from "./ product.model";
-import { productAllUrl } from "./product.constant";
+import { ProductService } from "./product.service";
 
 type ProductState = {
   product: Product | null;
@@ -25,7 +23,7 @@ export const PRODUCT_STATE = new InjectionToken<ProductState>(`ProductState`, {
 
 export const ProductStore = signalStore(
   withState(() => inject(PRODUCT_STATE)),
-  withMethods((store, http = inject(HttpClient)) => ({
+  withMethods((store, productService = inject(ProductService)) => ({
     async save(id: number, changes: Partial<Product>) {
       const product = {
         ...store.product(),
@@ -36,17 +34,16 @@ export const ProductStore = signalStore(
         product,
       }));
 
-      try {
-        const result = await firstValueFrom(
-          http.patch(`${productAllUrl}/${id}`, product),
-        );
-        return of(result);
-      } catch {
-        patchState(store, {
-          error: "Error: method not supported. Product not stored",
-        });
-        return of(null);
+      const response = await productService.patchProduct(product);
+
+      console.log(typeof response);
+      console.log(response);
+
+      if (response instanceof Error) {
+        patchState(store, { error: response.message });
       }
+
+      return response;
     },
 
     updateProduct(changes: Partial<Product>) {
