@@ -1,5 +1,6 @@
 import { httpResource } from "@angular/common/http";
 import { Component, computed, effect, inject, input } from "@angular/core";
+import { MatIconModule } from "@angular/material/icon";
 import { Router } from "@angular/router";
 import { Product } from "../ product.model";
 import { AppButton } from "../../../core/button/button";
@@ -7,7 +8,6 @@ import { DialogService } from "../../../core/dialog/dialog.service";
 import { ButtonDefinitions } from "../../../core/form/definitions/button-definition";
 import { ProductEditionDialog } from "../product-edition-dialog/product.edition-dialog";
 import { productAllUrl } from "../product.constant";
-import { ProductService } from "../product.service";
 import { ProductStore } from "../product.store";
 
 export const PRODUCT_EDITION_DIALOG_ID = "product-edition-dialog-id";
@@ -15,14 +15,13 @@ export const PRODUCT_EDITION_DIALOG_ID = "product-edition-dialog-id";
 @Component({
   selector: "product-detail",
   templateUrl: "./product-detail.html",
-  imports: [AppButton],
+  imports: [AppButton, MatIconModule],
   providers: [ProductStore],
 })
 export class ProductDetail {
   public router = inject(Router);
 
   public store = inject(ProductStore);
-  public productService = inject(ProductService);
   public dialogService = inject(DialogService);
 
   public readonly id = input.required<string>();
@@ -30,7 +29,7 @@ export class ProductDetail {
   /**
    * Preserve initial value
    */
-  public product = httpResource<Product>(() => ({
+  public readonly product = httpResource<Product>(() => ({
     url: `${productAllUrl}/${this.id()}`,
   }));
 
@@ -61,7 +60,7 @@ export class ProductDetail {
     effect(() => {
       const product = this.product.value();
       if (product) {
-        this.store.setProduct(product);
+        this.store.updateProduct(product);
       }
     });
 
@@ -81,7 +80,7 @@ export class ProductDetail {
 
   public ngOnInit() {
     const productId = this.id();
-    console.log(productId);
+
     if (!productId || isNaN(Number(productId))) {
       this.store.setError("URL Invalid - not product id found");
     }
@@ -97,10 +96,10 @@ export class ProductDetail {
   }
 
   public editButtonHandler() {
-    this.dialogService.openDialog(
-      PRODUCT_EDITION_DIALOG_ID,
-      this.store.product(),
-    );
+    this.dialogService.openDialog(PRODUCT_EDITION_DIALOG_ID, {
+      product: this.store.product(),
+      store: this.store,
+    });
   }
 
   public backButtonHandler() {

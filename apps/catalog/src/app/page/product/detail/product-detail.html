@@ -1,25 +1,34 @@
-@if (product.isLoading()) {
+@if (store.isLoading()) {
   <div class="flex flex-col gap-3 p-6">
     <div class="h-7 w-3/4 animate-pulse rounded bg-gray-200"></div>
     <div class="h-4 w-full animate-pulse rounded bg-gray-200"></div>
     <div class="h-4 w-5/6 animate-pulse rounded bg-gray-200"></div>
   </div>
 } @else {
-  <main class="mx-auto max-w-4xl p-6">
-    @if (product.value(); as product) {
-      <section class="flex flex-col gap-6">
-        <app-button
-          [options]="editButton"
-          (click)="editButtonHandler()"
-        ></app-button>
-        <h1 class="text-3xl font-bold tracking-tight">
-          {{ product.title }}
-        </h1>
+  @if (store.error()) {
+    <div class="flex justify-start gap-2 p-2 text-orange-400">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        fontIcon="warning"
+      ></mat-icon>
+      <span>{{ store.error() }}</span>
+    </div>
+  }
 
-        <p class="leading-7 text-gray-600">
-          {{ product.description }}
-        </p>
-      </section>
-    }
+  <main class="mx-auto max-w-4xl p-6">
+    <section class="flex flex-col gap-6">
+      <app-button
+        [options]="editButton"
+        (click)="editButtonHandler()"
+      ></app-button>
+      <h1 class="text-3xl font-bold tracking-tight">
+        {{ store.product()?.title }}
+      </h1>
+
+      <p class="leading-7 text-gray-600">
+        {{ store.product()?.description }}
+      </p>
+    </section>
   </main>
 }

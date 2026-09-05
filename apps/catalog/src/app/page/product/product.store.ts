@@ -1,7 +1,9 @@
+import { HttpClient } from "@angular/common/http";
 import { inject, InjectionToken } from "@angular/core";
 import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
+import { firstValueFrom, of } from "rxjs";
 import { Product } from "./ product.model";
-import { ProductService } from "./product.service";
+import { productAllUrl } from "./product.constant";
 
 type ProductState = {
   product: Product | null;
@@ -23,37 +25,38 @@ export const PRODUCT_STATE = new InjectionToken<ProductState>(`ProductState`, {
 
 export const ProductStore = signalStore(
   withState(() => inject(PRODUCT_STATE)),
-  withMethods((store, service = inject(ProductService)) => ({
-    /** Save product */
+  withMethods((store, http = inject(HttpClient)) => ({
     async save(id: number, changes: Partial<Product>) {
-      return service.save(id, changes);
-    },
+      const product = {
+        ...store.product(),
+        ...(changes as Product),
+      };
 
-    /** Set product */
-    setProduct(product: Product | Partial<Product>) {
       patchState(store, (state) => ({
-        ...state,
-        product: state.product
-          ? {
-              ...state.product,
-              ...product,
-            }
-          : (product as Product),
-        isLoading: false,
-        error: null,
+        product,
       }));
+
+      try {
+        const result = await firstValueFrom(
+          http.patch(`${productAllUrl}/${id}`, product),
+        );
+        return of(result);
+      } catch {
+        patchState(store, {
+          error: "Error: method not supported. Product not stored",
+        });
+        return of(null);
+      }
     },
 
-    /** Product update */
     updateProduct(changes: Partial<Product>) {
       patchState(store, (state) => ({
-        ...state,
         product: state.product
           ? {
               ...state.product,
               ...changes,
             }
-          : null,
+          : (changes as Product),
       }));
     },
 
@@ -61,22 +64,8 @@ export const ProductStore = signalStore(
       patchState(store, { isLoading });
     },
 
-    // State saving
-    setSaving(isSaving: boolean) {
-      patchState(store, { isSaving });
-    },
-
-    // Error state
     setError(error: string | null) {
       patchState(store, { error });
-    },
-
-    // Reset product
-    resetProduct(originalProduct: Product) {
-      patchState(store, {
-        product: structuredClone(originalProduct),
-        error: null,
-      });
     },
   })),
 );
