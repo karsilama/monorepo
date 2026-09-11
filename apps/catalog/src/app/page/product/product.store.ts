@@ -36,9 +36,6 @@ export const ProductStore = signalStore(
 
       const response = await productService.patchProduct(product);
 
-      console.log(typeof response);
-      console.log(response);
-
       if (response instanceof Error) {
         patchState(store, { error: response.message });
       }

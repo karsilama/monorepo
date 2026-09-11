@@ -22,6 +22,14 @@ export interface ProductMeta {
   qrCode: string;
 }
 
+export interface ProductFilter {
+  description?: string;
+}
+
+export interface ProductParams {
+  productFilter?: ProductFilter;
+}
+
 export interface Product {
   id: number;
   title: string;

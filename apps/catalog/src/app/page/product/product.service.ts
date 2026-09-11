@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Service } from "@angular/core";
-import { firstValueFrom } from "rxjs";
+import { firstValueFrom, Observable } from "rxjs";
 import { Product } from "./ product.model";
 import { productAllUrl } from "./product.constant";
 
@@ -19,5 +19,9 @@ export class ProductService {
     } catch {
       return new Error("Error: method not supported. Product not stored");
     }
+  }
+
+  public productAll(): Observable<Product[]> {
+    return this.http.get<Product[]>(productAllUrl);
   }
 }

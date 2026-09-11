@@ -1,0 +1,18 @@
+<h1 class="text-lg font-extrabold">Product all component !!!</h1>
+<mat-list>
+  @for (product of productAll(); track product.id) {
+    <mat-list-item>
+      <span matListItemTitle>{{ product.title }}</span>
+      <span matListItemLine>{{ product.brand }} - ${{ product.price }}</span>
+      <div matListItemMeta>
+        <app-button
+          mat-list-item
+          [options]="navigateButton()"
+          (click)="navigateTo(product.id)"
+        >
+          View/Edit
+        </app-button>
+      </div>
+    </mat-list-item>
+  }
+</mat-list>
