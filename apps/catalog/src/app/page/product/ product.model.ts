@@ -1,3 +1,7 @@
+export interface ProductAllConfiguration {
+  size: number;
+}
+
 export interface ProductDimensions {
   width: number;
   height: number;

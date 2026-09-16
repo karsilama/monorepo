@@ -6,6 +6,10 @@
     }
   </div>
 } @else {
+  <pre>
+    {{ configuration | ngrxPush | json }}
+  </pre>
+  <br />
   <mat-list>
     @for (product of productAll.value()?.products; track product.id) {
       <mat-list-item>

@@ -1,9 +1,8 @@
 import { Routes } from "@angular/router";
 import { ProductAll } from "./all/product-all";
-import { ResolvedProductAll } from "./all/resolved-product-all";
+import { productAllConfigurationResolver } from "./all/product-all-configuration.resolver";
 import { canMatchDetailGuard } from "./can-match-detail.guard";
 import { ProductDetail } from "./detail/product-detail";
-import { productAllResolver } from "./product-all.resolver";
 
 export const productPageRoutes: Routes = [
   {
@@ -12,12 +11,8 @@ export const productPageRoutes: Routes = [
       {
         path: "all",
         component: ProductAll,
-      },
-      {
-        path: "resolve-all",
-        component: ResolvedProductAll,
         resolve: {
-          all: productAllResolver,
+          configuration: productAllConfigurationResolver,
         },
       },
       {

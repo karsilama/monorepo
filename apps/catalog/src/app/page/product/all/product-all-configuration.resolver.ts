@@ -1,10 +1,12 @@
 import { inject } from "@angular/core";
 import { RedirectCommand, ResolveFn, Router } from "@angular/router";
 import { catchError, of } from "rxjs";
-import { Product } from "./ product.model";
-import { ProductService } from "./product.service";
+import { ProductAllConfiguration } from "../ product.model";
+import { ProductService } from "../product.service";
 
-export const productAllResolver: ResolveFn<Product[]> = () => {
+export const productAllConfigurationResolver: ResolveFn<
+  ProductAllConfiguration
+> = () => {
   const productService = inject(ProductService);
   const router = inject(Router);
 
