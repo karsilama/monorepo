@@ -16,6 +16,11 @@ enum appTheme {
   light = "light-mode",
 }
 
+function rentalCarCost(d: number) {
+  const price = 40;
+  return d >= 7 ? d * price - 50 : d >= 3 ? d * price - 20 : d * price;
+}
+
 @Component({
   imports: [RouterModule, AppButton],
   selector: "app-root",

@@ -8,11 +8,12 @@ import { ProductsResponse } from "../ product.model";
 import { AppButton } from "../../../core/button/button";
 import { ButtonDefinitions } from "../../../core/form/definitions/button-definition";
 import { productAllUrl } from "../product.constant";
+import { LargeFooterComponent } from "./product-all-footer";
 
 @Component({
   selector: "product-all",
   templateUrl: "./product-all.html",
-  imports: [MatListModule, AppButton, PushPipe, JsonPipe],
+  imports: [MatListModule, AppButton, PushPipe, JsonPipe, LargeFooterComponent],
 })
 export class ProductAll {
   public router = inject(Router);

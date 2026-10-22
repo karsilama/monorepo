@@ -1,15 +1,15 @@
-import { Route } from '@angular/router';
-import { Home } from './home/home';
+import { Route } from "@angular/router";
+import { Home } from "./home/home";
 
 export const appRoutes: Route[] = [
   {
-    path: '',
+    path: "",
     loadComponent: () => Home,
-    pathMatch: 'full',
+    pathMatch: "full",
   },
   {
-    path: 'users',
+    path: "users",
     loadChildren: () =>
-      import('@users/feature').then((x) => x.UsersFeatureModule),
+      import("@users/feature").then((x) => x.UsersFeatureModule),
   },
 ];

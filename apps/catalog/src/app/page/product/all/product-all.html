@@ -7,6 +7,7 @@
   </div>
 } @else {
   <pre>
+    Route configuration: <br><br>
     {{ configuration | ngrxPush | json }}
   </pre>
   <br />
@@ -27,4 +28,8 @@
       </mat-list-item>
     }
   </mat-list>
+  <mat-divider #trigger></mat-divider>
+  @defer (on viewport(trigger)) {
+    <product-all-footer #footer></product-all-footer>
+  }
 }
