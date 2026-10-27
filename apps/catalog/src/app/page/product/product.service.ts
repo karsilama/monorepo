@@ -1,7 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Service } from "@angular/core";
 import { firstValueFrom, Observable, of } from "rxjs";
-import { Product, ProductAllConfiguration } from "./ product.model";
+import {
+  Product,
+  ProductAllConfiguration,
+  ProductsResponse,
+} from "./ product.model";
 import { productAllUrl } from "./product.constant";
 
 export type PatchResponse = Product | Error;
@@ -17,6 +21,18 @@ export class ProductService {
      */
     return of({
       size: 10,
+    });
+  }
+
+  public productPage(
+    page: number,
+    pageSize: number,
+  ): Observable<ProductsResponse> {
+    return this.http.get<ProductsResponse>(productAllUrl, {
+      params: {
+        limit: pageSize,
+        skip: (page - 1) * pageSize,
+      },
     });
   }
 

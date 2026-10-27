@@ -1,0 +1,34 @@
+@if (controls().totalPages > 1) {
+  <nav aria-label="Product pages" class="flex items-center gap-2 py-4">
+    <button
+      type="button"
+      [disabled]="controls().page <= 1"
+      aria-label="Previous page"
+      (click)="previousPage.emit()"
+    >
+      prev
+    </button>
+    @for (page of pages(); track page) {
+      <button
+        type="button"
+        [attr.aria-current]="page === controls().page ? 'page' : null"
+        [attr.aria-label]="'Page ' + page"
+        (click)="pageChange.emit(page)"
+      >
+        @if (page === controls().page) {
+          <strong>[{{ page }}]</strong>
+        } @else {
+          {{ page }}
+        }
+      </button>
+    }
+    <button
+      type="button"
+      [disabled]="controls().page >= controls().totalPages"
+      aria-label="Next page"
+      (click)="nextPage.emit()"
+    >
+      next
+    </button>
+  </nav>
+}

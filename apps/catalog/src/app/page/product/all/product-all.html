@@ -1,5 +1,7 @@
 <h1 class="text-lg font-extrabold">Product all component !!!</h1>
-@if (productAll.isLoading()) {
+@if (productAll.error(); as error) {
+  <p role="alert">Unable to load products: {{ error }}</p>
+} @else if (productAll.isLoading()) {
   <div class="flex flex-col gap-1">
     @for (row of [].constructor(10); track $index) {
       <div class="w-full h-14 rounded animate-pulse bg-gray-200"></div>
@@ -28,6 +30,12 @@
       </mat-list-item>
     }
   </mat-list>
+  <app-pagination-controls
+    [controls]="paginationControls()"
+    (pageChange)="setPage($event)"
+    (previousPage)="previousPage()"
+    (nextPage)="nextPage()"
+  ></app-pagination-controls>
   <mat-divider #trigger></mat-divider>
   @defer (on viewport(trigger)) {
     <product-all-footer #footer></product-all-footer>
