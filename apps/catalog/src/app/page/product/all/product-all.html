@@ -1,20 +1,15 @@
-<h1 class="text-lg font-extrabold">Product all component !!!</h1>
-@if (productAll.error(); as error) {
+<h1 class="text-lg font-extrabold sticky top-0 bg-withe shadow-sm">Catalog</h1>
+@if (extended.error(); as error) {
   <p role="alert">Unable to load products: {{ error }}</p>
-} @else if (productAll.isLoading()) {
+} @else if (extended.isLoading() && !extended.value()) {
   <div class="flex flex-col gap-1">
     @for (row of [].constructor(10); track $index) {
       <div class="w-full h-14 rounded animate-pulse bg-gray-200"></div>
     }
   </div>
-} @else {
-  <pre>
-    Route configuration: <br><br>
-    {{ configuration | ngrxPush | json }}
-  </pre>
-  <br />
+} @else if (extended.value(); as response) {
   <mat-list>
-    @for (product of productAll.value()?.products; track product.id) {
+    @for (product of response.products; track product.id) {
       <mat-list-item>
         <span matListItemTitle>{{ product.title }}</span>
         <span matListItemLine>{{ product.brand }} - ${{ product.price }}</span>
@@ -36,8 +31,4 @@
     (previousPage)="previousPage()"
     (nextPage)="nextPage()"
   ></app-pagination-controls>
-  <mat-divider #trigger></mat-divider>
-  @defer (on viewport(trigger)) {
-    <product-all-footer #footer></product-all-footer>
-  }
 }
