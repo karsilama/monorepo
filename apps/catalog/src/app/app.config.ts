@@ -5,6 +5,7 @@ import {
 import {
   provideRouter,
   withComponentInputBinding,
+  withInMemoryScrolling,
   withRouterConfig,
 } from "@angular/router";
 import { appRoutes } from "./app.routes";
@@ -17,6 +18,10 @@ export const appConfig: ApplicationConfig = {
       withComponentInputBinding(),
       withRouterConfig({
         canceledNavigationResolution: "computed",
+      }),
+      withInMemoryScrolling({
+        scrollPositionRestoration: "disabled",
+        anchorScrolling: "enabled",
       }),
     ),
   ],
